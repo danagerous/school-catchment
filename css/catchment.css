@@ -1,0 +1,117 @@
+/*
+	Name: Catchment Areas - School District 8
+	Date: November 24, 2012
+	Description: CSS for catchment area Google map
+	Author: Dana Diotte
+*/
+
+/***** Global *****/
+body { 
+	margin:0; 
+	padding:0;
+	border:0;
+	width:100%;
+	min-width:600px;    /* Minimum width of layout - remove line if not required */
+						/* The min-width property does not work in old versions of Internet Explorer */
+	font-family: 'Trebuchet MS', Trebuchet, 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+	
+h1, h2, h3 {
+	margin:.8em 0 .2em 0;
+	padding:0;
+}
+
+p {
+	margin:.4em 0 .8em 0;
+	padding:0;
+	font-weight: bold;
+}
+	
+#header {
+	background:#3A833B;
+	/*background: #6cf;*/
+	padding: 10px;
+	font-weight: bold;
+	color:white;
+	width: 100%;
+	height: 50px; /*set in em units*/
+	border-bottom:1px solid #000;
+}
+
+#map_canvas {
+	border: 1px solid black;
+	position:absolute;
+	width:73%;
+	height:98%;
+}
+
+/* column container */
+.colmask {
+	position:relative;	/* This fixes the IE7 overflow hidden bug */
+	clear:both;
+	float:left;
+	width:100%;			/* width of whole page */
+	overflow:hidden;	/* This chops off any overhanging divs */
+}
+
+/* common column settings */
+.colright,
+.colmid,
+.colleft {
+	float:left;
+	width:100%;
+	position:relative;
+}
+.col1,
+.col2,
+.col3 {
+	float:left;
+	position:relative;
+	padding:0 0 1em 0;
+	overflow:hidden;
+}
+/* 2 Column (right menu) settings */
+.rightmenu {
+	background:#eee;		/* right column background colour */
+}
+.rightmenu .colleft {
+	right:25%;			/* right column width */
+	background:#fff;	/* left column background colour */
+}
+.rightmenu .col1 {
+	width:73%;			/* left column content width (left column width minus left and right padding) */
+	left:25%;			/* (right column width) plus (left column left padding) */
+}
+.rightmenu .col2 {
+	width:25%;			/* right column content width (right column width minus left and right padding) */
+	left:98%;			/* (right column width) plus (left column left and right padding) plus (right column left padding) */
+	/*border: 1px solid black;*/
+}
+
+#legend {
+	padding:10px;
+	margin:0;
+}
+
+#legend p,
+#legend h1,
+#legend h2 {
+	padding:.4em 15px 0 25px;
+	margin:0;
+}
+
+/* Footer styles */
+#footer {
+	clear:both;
+	float:left;
+	width:100%;
+	height:30px; /* set in em units if possible*/
+	border-top:1px solid #000;
+	/*background:#6cf;*/
+	background:#3A833B;
+	padding-top: 10px;
+	padding-right: 4px;
+	padding-left: 4px;
+	color:white;
+	
+}

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Catchment Areas : School District 8</title>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<meta charset="UTF-8">
+<meta name="author" content="Dana Diotte" />
+
+<link rel="stylesheet" type="text/css" href="css/catchment.css" />
+
+<!--Load the FUSTION Tables API-->
+<link href="https://developers.google.com/fusiontables/docs/samples/style/default.css" rel="stylesheet" type="text/css">
+<!--Load the AJAX API-->
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<!-- Load the maps API (v3) -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1Paa_gWGVcqOOzk2EtrXjzGzLu4O3tN4"
+    async defer></script>
+<!-- Load geoxml3 -->
+<script type="text/javascript" src="javascript/geoxml3.js"></script>
+
+<script type="text/javascript">
+	google.load('visualization', '1', {'packages':['corechart', 'table', 'geomap']});
+	var map;
+	var tableId = '1yc4wo1kBGNJwpDm6e-eJY_KL1YhQWfftjhA38w8';
+	var varID = [
+		"Adam Robertson Elementary",
+		"Blewett Elementary",
+		"Brent Kennedy",
+		"Canyon-Lister Elementary",
+		"Crawford Bay Elementary/Secondary",
+		"Erickson Elementary",
+		"Hume Elementary",
+		"JV Humphries Elementary",
+		"JV Humphries Secondary",
+		"Jewett Elementary",
+		"LV Rogers Secondary",
+		"Mount Sentinel Middle",
+		"Mount Sentinel Secondary",
+		"Prince Charles Secondary",
+		"Redfish Elementary",
+		"Rosemont Elementary",
+		"Salmo Elementary",
+		"Salmo Secondary",
+		"South Nelson Elementary",
+		"Trafalgar Middle School",
+		"W.E. Graham Community Elementary",
+		"W.E. Graham Community Secondary",
+		"Wildflower Elementary Nelson",
+		"Wildflower Elementary Creston",
+		"Winlaw Elementary",
+		"Yahk Elementary",
+		"Community",
+		"Kootenay Lake",
+		"Lower Kootenay Band",
+		"Regional District"
+	];
+	
+	function initialize() {
+	    var catchSD8 = {lat: 50.0267110, lng: -116.907234};//new google.maps.LatLng(50.0267110, -116.907234);
+		var myOptions = new google.maps.Map(document.getElementById('map_canvas'), {
+		  center: catchSD8,
+		  zoom: 8,
+		  zoomControl: true,
+		  zoomControlOptions: {
+		  	style: google.maps.ZoomControlStyle.SMALL
+		  	},
+		  scaleControl: true,
+		  scaleControlOptions: {
+		  position: google.maps.ControlPosition.LEFT_BOTTOM
+          		},
+		  mapTypeId: google.maps.MapTypeId.ROADMAP
+		});
+		map = new google.maps.Map(document.getElementById("map_canvas"),
+			myOptions);
+		var layer = new google.maps.FusionTablesLayer();
+		filterMap(layer, tableId, map);
+		
+		var mySchool; 
+		var limit = varID.length;
+		for(var i=0; i < limit; i++){
+		    mySchool = document.getElementById(varID[i]);
+		    (function(schl,lyr,tbl,mp){
+		        google.maps.event.addDomListener(schl,'click', function() {
+		            filterMap(lyr,tbl,mp);                 
+		        });
+		
+		    }(mySchool,layer,tableId,map));
+		}
+	}
+	
+	// Filter the map based on checkbox selection.
+	function filterMap(layer, tableId, map) {
+		var where = generateWhere();
+		
+		if (where) {
+		zoom2query('SELECT Polygons from '+tableId+ ' where '+where);
+		if (!layer.getMap()) {
+			layer.setMap(map);
+		}
+		
+		layer.setOptions({
+			query: {
+				select: 'Polygons',
+			  	from: tableId,
+			  	where: where
+			}
+		});
+		}
+		else {
+			layer.setMap(null);
+		}
+	}
+	
+	// Generate a where clause from the checkboxes. If no boxes
+	// are checked, return an empty string.
+	function generateWhere() {
+		var filter = [];
+		var schools = document.getElementsByName('school');
+		for (var i = 0, school; school = schools[i]; i++) {
+		  if (school.checked) {
+		    var schoolName = school.value.replace(/'/g, '\\\'');
+		    filter.push("'" + schoolName + "'");
+		  }
+		}
+		var where = '';
+		if (filter.length) {
+		  where = "School IN (" + filter.join(',') + ')';
+		}
+		return where;
+	}
+	
+	function zoom2query(query) {
+		// zoom and center map on query results
+		// set the query using the parameter
+		var queryText = encodeURIComponent(query);
+		var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq='  + queryText);
+		
+		// set the callback function
+		query.send(zoomTo);
+		
+		}
+
+	function zoomTo(response) {
+		if (!response) {
+		  alert('no response');
+		  return;
+		}
+		if (response.isError()) {
+		  alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+		  return;
+		} 
+		FTresponse = response;
+		//for more information on the response object, see the documentation
+		//http://code.google.com/apis/visualization/documentation/reference.html#QueryResponse
+		numRows = response.getDataTable().getNumberOfRows();
+		numCols = response.getDataTable().getNumberOfColumns();
+		
+		var kml =  FTresponse.getDataTable().getValue(0,0);
+		// create a geoXml3 parser for the click handlers
+		var geoXml = new geoXML3.parser({
+			map: map,
+			zoom: false
+			});
+		
+		geoXml.parseKmlString("<Placemark>"+kml+"</Placemark>");
+		geoXml.docs[0].gpolygons[0].setMap(null);
+		map.fitBounds(geoXml.docs[0].gpolygons[0].bounds);
+	}
+
+	google.maps.event.addDomListener(window, 'load', initialize);
+    
+</script>
+</head>
+
+<body>
+<div id="header"><h2>School District 8 (Kootenay Lake) - Catchment Areas</h2></div>
+
+<div class="rightmenu">
+	<div class="colmask">
+		<div class="colleft">
+			<div id="map_canvas" class="col1"></div>
+				<div id="legend" class="col2"><h2>Legend</h2>
+					<!--CHECKBOXES-->
+					<!--Slocan Valley-->
+					<p>Slocan Valley</p>
+					<input type="checkbox" id="Brent Kennedy" name="school" value="Brent Kennedy">
+					<label>Brent Kennedy</label><br>
+					<input type="checkbox" id="Mount Sentinel Middle" name="school" value="Mount Sentinel Middle">
+					<label>Mount Sentinel Middle</label><br>        
+					<input type="checkbox" id="Mount Sentinel Secondary" name="school" value="Mount Sentinel Secondary">
+					<label>Mount Sentinel Secondary</label><br>   
+					<input type="checkbox" id="W.E. Graham Community Elementary" name="school" value="W.E. Graham Community Elementary">
+					<label>W.E. Graham Community Elementary</label><br>
+					<input type="checkbox" id="W.E. Graham Community Secondary" name="school" value="W.E. Graham Community Secondary">
+					<label>W.E. Graham Community Secondary</label><br>
+					<input type="checkbox" id="Winlaw Elementary" name="school" value="Winlaw Elementary">
+					<label>Winlaw Elementary</label><br>
+					<!--Nelson-->
+					<p>Nelson</p>
+					<input type="checkbox" id="Blewett Elementary" name="school" value="Blewett Elementary" >
+					<label>Blewett Elementary</label><br>
+					<input type="checkbox" id="Hume Elementary" name="school" value="Hume Elementary">
+					<label>Hume Elementary</label><br>
+					<input type="checkbox" id="LV Rogers Secondary" name="school" value="LV Rogers Secondary">
+					<label>LV Rogers Secondary</label><br>
+					<input type="checkbox" id="Rosemont Elementary" name="school" value="Rosemont Elementary">
+					<label>Rosemont Elementary</label><br>
+					<input type="checkbox" id="South Nelson Elementary" name="school" value="South Nelson Elementary">
+					<label>South Nelson Elementary</label><br>      
+					<input type="checkbox" id="Trafalgar Middle School" name="school" value="Trafalgar Middle School">
+					<label>Trafalgar Middle School</label><br>
+					<input type="checkbox" id="Wildflower Elementary Nelson" name="school" value="Wildflower Elementary Nelson" >
+					<label>Wildflower Elementary Nelson</label><br>
+					<!--North Shore, Kaslo and Meadow Creek-->
+					<p>North Shore, Kaslo and Meadow Creek</p>
+					<input type="checkbox" id="Jewett Elementary" name="school" value="Jewett Elementary">
+					<label>Jewett Elementary</label><br>    
+					<input type="checkbox" id="JV Humphries Elementary" name="school" value="JV Humphries Elementary">
+					<label>JV Humphries Elementary</label><br> 
+					<input type="checkbox" id="JV Humphries Secondary" name="school" value="JV Humphries Secondary">
+					<label>JV Humphries Secondary</label><br>
+					<input type="checkbox" id="Redfish Elementary" name="school" value="Redfish Elementary">
+					<label>Redfish Elementary</label><br>
+					<!--Salmo-->
+					<p>Salmo</p>
+					<input type="checkbox" id="Salmo Elementary" name="school" value="Salmo Elementary">
+					<label>Salmo Elementary</label><br>      
+					<input type="checkbox" id="Salmo Secondary" name="school" value="Salmo Secondary">
+					<label>Salmo Secondary</label><br>
+					<!--Creston, Crawford Bay and Yahk-->
+					<p>Creston, Crawford Bay and Yahk</p>
+					<input type="checkbox" id="Adam Robertson Elementary" name="school" value="Adam Robertson Elementary">
+					<label>Adam Robertson Elementary</label><br>
+					<input type="checkbox" id="Canyon-Lister Elementary" name="school" value="Canyon-Lister Elementary">
+					<label>Canyon-Lister Elementary</label><br>
+					<input type="checkbox" id="Crawford Bay Elementary/Secondary" name="school" value="Crawford Bay Elementary/Secondary">
+					<label>Crawford Bay Elementary/Secondary</label><br>
+					<input type="checkbox" id="Erickson Elementary" name="school" value="Erickson Elementary">
+					<label>Erickson Elementary</label><br> 
+					<input type="checkbox" id="Prince Charles Secondary" name="school" value="Prince Charles Secondary">
+					<label>Prince Charles Secondary</label><br>
+					<input type="checkbox" id="Wildflower Elementary Creston" name="school" value="Wildflower Elementary Creston" >
+					<label>Wildflower Elementary Creston</label><br>       
+					<input type="checkbox" id="Yahk Elementary" name="school" value="Yahk Elementary">
+					<label>Yahk Elementary</label><br>
+					<!--SD8 Boundary-->
+					<p>Boundaries</p>
+					<input type="checkbox" id="Kootenay Lake" checked="checked" name="school" value="Kootenay Lake">
+					<label>SD8 District Boundary</label><br>
+					<input type="checkbox" id="Lower Kootenay Band" name="school" value="Lower Kootenay Band">
+					<label>Lower Kootenay Band</label><br>
+					<input type="checkbox" id="Regional District" name="school" value="Regional District">
+					<label>Regional Districts</label><br>
+					<input type="checkbox" id="Community" name="school" value="Community">
+					<label>Communities</label><br>
+					<!--<p><a href='#' onclick='removeAll();return false;'>Remove All Layers</a></p>-->
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="footer">2012 &copy; Application Developed by: Dana Diotte - <a onclick="location.href='mail'+'to'+':'+'danadiotte'+unescape('%40')+'gmail.com';return false;" href="mailto:danadiotte-at-gmail-com">danadiotte-at-gmail-com</a></div>
+</body>
+</html>
+

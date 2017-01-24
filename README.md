@@ -5,4 +5,4 @@ Web Mapping app showing catchment areas for Kootenay Lake School District. Creat
 1. Google Fusion Tables
 2. Google Maps API
 3. geoxml parser
-4. Google Visutalization API
+4. Google Visualization API

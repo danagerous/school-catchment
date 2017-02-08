@@ -231,11 +231,11 @@
             <input type="checkbox" id="SLOCAN" name="bndry" value="SLOCAN">
             Slocan
         </label><br><br>
-        <div>
+        <!--<div>
             <button type="button" class="btn btn-default" id="reset">
                 <span class="glyphicon glyphicon-repeat"></span> Reset
             </button>
-        </div>
+        </div>-->
     </div>
 
     <!-- This is the top navigation bar -->
@@ -582,12 +582,12 @@
             map.fitBounds(bounds);
         } 
 
-        $(document).ready(function() {
+        /*$(document).ready(function() {
             $("#reset").click(function() {
                 map = init_map($(this));
                 $("input[type='checkbox']").prop('checked',false);
             })
-        });
+        });*/
 
         //google.maps.event.addDomListener(window, 'load', init_map);
         window.onload = init_map;

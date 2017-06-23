@@ -509,7 +509,7 @@
             });
 
             // Load GeoJSON.
-            var poly = map.data.loadGeoJson('bndry.geojson');
+            var poly = map.data.loadGeoJson('data/bndry.geojson');
 
             // Set the stroke width for polygon boundary
             map.data.setStyle({
@@ -527,7 +527,7 @@
           //Start jQuery
           $(document).ready(function(){
             //Start JSON
-            $.getJSON('data.json', function(data) {
+            $.getJSON('data/markers.json', function(data) {
               for (var i = 0; i < data.length; i++) {
                 // obtain the attribues of each marker
                 var item = data[i];

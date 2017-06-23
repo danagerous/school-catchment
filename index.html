@@ -508,18 +508,6 @@
                 map.setCenter(center);
             });
 
-            // Load GeoJSON.
-            var poly = map.data.loadGeoJson('data/bndry.geojson');
-
-            // Set the stroke width for polygon boundary
-            map.data.setStyle({
-                fillOpacity: 0.1,
-                strokeColor: 'red',
-                strokeWeight: 2,
-                clickable: false
-            });
-            // end GeoJSON
-
           google.maps.event.addListener(map, 'click', function() {
             ib.close();
           });

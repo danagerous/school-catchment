@@ -311,15 +311,15 @@
     </div>
 
     <!-- Always put your scripts at the bottom of the page -->
-    <!-- Google Maps API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1Paa_gWGVcqOOzk2EtrXjzGzLu4O3tN4"
-    async defer></script>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <!-- Boostrap -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- Jasny -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1Paa_gWGVcqOOzk2EtrXjzGzLu4O3tN4"
+    async defer></script>
     <!-- Google Viz -->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <!-- Load geoxml3 for Fustion Table Parsing-->
@@ -502,7 +502,6 @@
             });
 
             //Start jQuery
-            var threadCounter = 0;
             $(document).ready(function(){
                 //Start JSON
                 $.getJSON('data/markers.json', function(data) {
@@ -516,11 +515,9 @@
                         // create the marker
                         var marker = createMarker(point,name,html,category);
                     }
-                    
+
                     // == show or hide the categories initially ==
                     show("school");
-
-                    map.fitBounds(gmarkers);
 
                 }); //end JSON
             }); //end jQuery

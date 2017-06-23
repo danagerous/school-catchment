@@ -320,7 +320,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- Jasny -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-    <!-- Google -->
+    <!-- Google Viz -->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <!-- Load geoxml3 for Fustion Table Parsing-->
     <script type="text/javascript" src="js/geoxml3.js"></script>
@@ -335,13 +335,11 @@
         var map;
         var layer1;
         var layer2;
-        //var layer3;
-        //var tableId3 = '15LKXBGRwJEZAZONDzuhETLKoHFdA2iZb8KBUEQzn'; // schools
         var tableId2 = '12s-v0aOkqPt254PdUh5YIEf9hSAkbEW54I1kGpM'; //regional district and community boundaries
         var tableId1 = '1b3s-ebYPeLRiRaJMT11_7yMOY5K2t0vPCyYJVwA'; //school catchment boundaries
-        var gmarkers = []; // empty array for json markers
-        var ib = new InfoBox(); // infobox 
-        var markerCluster = null; //markerclusterer
+        var gmarkers = []; // empty array for json school markers
+        var ib = new InfoBox(); // infobox variable
+        var markerCluster = null; //markerclusterer variable
 
         //Setting up variable for school catchment checkboxes
         var catchment = [
@@ -419,13 +417,6 @@
             zIndex: Math.round(latlng.lat()*-100000)<<5
           });
 
-          /*oms = new OverlappingMarkerSpiderfier(map, { 
-            markersWontMove: true,   // we promise not to move any markers, allowing optimizations
-            markersWontHide: false,   // change visibility of markers
-            basicFormatEvents: true,  // allow the library to skip calculating advanced formatting information
-            keepSpiderfied: true
-          });*/
-
           // === Store the category and name info as a marker properties ===
           marker.mycategory = category;                                 
           marker.myname = name;
@@ -436,8 +427,6 @@
             ib.open(map, this);
           });
 
-          // Add markers to Spiderfier
-          //oms.addMarker(marker);
         } // end createMarker
 
         // == shows all markers of a particular category ==
@@ -508,48 +497,32 @@
                 map.setCenter(center);
             });
 
-          google.maps.event.addListener(map, 'click', function() {
-            ib.close();
-          });
+            google.maps.event.addListener(map, 'click', function() {
+                ib.close();
+            });
 
-          //Start jQuery
-          $(document).ready(function(){
-            //Start JSON
-            $.getJSON('data/markers.json', function(data) {
-              for (var i = 0; i < data.length; i++) {
-                // obtain the attribues of each marker
-                var item = data[i];
-                var point = new google.maps.LatLng(item.ltt, item.lgt);
-                var name = item.name;
-                var html = "<b>"+item.name+"<\/b><br \/>"+item.description;
-                var category = item.education;
-                // create the marker
-                var marker = createMarker(point,name,html,category);
-              }
-              // == show or hide the categories initially ==
-              hide("school");
-            }); //end JSON
-          }); //end jQuery
+            //Start jQuery
+            $(document).ready(function(){
+                //Start JSON
+                $.getJSON('data/markers.json', function(data) {
+                  for (var i = 0; i < data.length; i++) {
+                    // obtain the attribues of each marker
+                    var item = data[i];
+                    var point = new google.maps.LatLng(item.ltt, item.lgt);
+                    var name = item.name;
+                    var html = "<b>"+item.name+"<\/b><br \/>"+item.description;
+                    var category = item.education;
+                    // create the marker
+                    var marker = createMarker(point,name,html,category);
+                  }
+                  // == show or hide the categories initially ==
+                  hide("school");
+                }); //end JSON
+            }); //end jQuery
 
             // Create Fusion Table Layers
             layer1 = new google.maps.FusionTablesLayer(); //school catchment boundaries
             layer2 = new google.maps.FusionTablesLayer(); //other boundaries           
-            // School Fusion Tables Layer
-            /*layer3 = new google.maps.FusionTablesLayer({
-                query: {
-                    select: '\'SCHOOL_PHYSICAL_ADDRESS\'',
-                    from: tableId3
-                },
-                // Specify icon listed in fusion tables column 'Icon'
-                styles: [{
-                    where: 'Icon',
-                    markerOptions: {
-                        iconName: "schools"
-                    }
-                }],
-                // Specify Template ID for custom infoWindow
-                templateId: 2
-            });*/
 
             // Create Filter Variables
             var mySchool; 
@@ -576,21 +549,7 @@
                 }(myBndry,layer2, tableId2, map));
             }
 
-            //layer3.setMap(null); //school markers
-
         }//end init_map
-
-        // To turn school markers on/off
-        /*function changeLayer(mySchool) {
-        
-            if (document.getElementById("_location").checked == true) {
-                if(layer3.getMap() == null) { layer3.setMap(map); }
-            }
-          
-            if (document.getElementById("_location").checked == false) {
-                layer3.setMap(null); // layersetoff
-            }
-        }*/
 
         // Filter the map based on checkbox selection for school catchment boundaries
         function filterMap(layer1,tableId1,map) {
@@ -735,11 +694,11 @@
             })
         });
 
-        // Removes selections from map
+        // Removes data from map
         function removeData(){
             layer1.setMap(null);
             layer2.setMap(null);
-            //layer3.setMap(null);
+            markers.setMap(null);
         }
 
         window.onload = init_map;

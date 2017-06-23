@@ -506,24 +506,21 @@
             $(document).ready(function(){
                 //Start JSON
                 $.getJSON('data/markers.json', function(data) {
-                  for (var i = 0; i < data.length; i++) {
-                    // obtain the attribues of each marker
-                    var item = data[i];
-                    var point = new google.maps.LatLng(item.ltt, item.lgt);
-                    var name = item.name;
-                    var html = "<b>"+item.name+"<\/b><br \/>"+item.description;
-                    var category = item.education;
-                    // create the marker
-                    var marker = createMarker(point,name,html,category);
-                  }
-                  // == show or hide the categories initially ==
-                  show("school");
+                    for (var i = 0; i < data.length; i++) {
+                        // obtain the attribues of each marker
+                        var item = data[i];
+                        var point = new google.maps.LatLng(item.ltt, item.lgt);
+                        var name = item.name;
+                        var html = "<b>"+item.name+"<\/b><br \/>"+item.description;
+                        var category = item.education;
+                        // create the marker
+                        var marker = createMarker(point,name,html,category);
+                    }
+                    
+                    // == show or hide the categories initially ==
+                    show("school");
 
-                  // Set the viewport in the last call to Google Maps
-                  if (threadCounter == addresses.length - 1)
                     map.fitBounds(gmarkers);
-
-                  threadCounter++;
 
                 }); //end JSON
             }); //end jQuery

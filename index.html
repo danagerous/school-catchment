@@ -19,7 +19,6 @@
         /* This is used to specify the map area. */
         html, body, .row, .container, .container-map, #map-canvas {
             height: 100%;
-            overflow-y: scroll !important;
         }
 
         /* Add padding on the top an bottom so the top and bottom of map align with nav bars */
@@ -246,11 +245,9 @@
             <input type="checkbox" id="SLOCAN" name="bndry" value="SLOCAN">
             Slocan
         </label><br><br>
-        <div>
-            <button type="button" class="btn btn-default" id="reset" onclick="removeData();">
-                <span class="glyphicon glyphicon-repeat"></span> Reset
-            </button>
-        </div>
+        <button type="button" class="btn btn-default" id="reset" onclick="removeData();">
+            <span class="glyphicon glyphicon-repeat"></span> Reset
+        </button>
         <div><br></div>
     </div>
 

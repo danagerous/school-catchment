@@ -19,8 +19,6 @@
         /* This is used to specify the map area. */
         html, body, .row, .container, .container-map, #map-canvas {
             height: 100%;
-            margin-bottom: 0px;
-            overflow-y: scroll;
         }
 
         /* Add padding on the top an bottom so the top and bottom of map align with nav bars */
@@ -519,6 +517,13 @@
                   }
                   // == show or hide the categories initially ==
                   show("school");
+
+                  // Set the viewport in the last call to Google Maps
+                  if (threadCounter == addresses.length - 1)
+                    map.fitBounds(gmarkers);
+
+                  threadCounter++;
+
                 }); //end JSON
             }); //end jQuery
 
@@ -700,7 +705,7 @@
         function removeData(){
             layer1.setMap(null);
             layer2.setMap(null);
-            hide("schoo");
+            hide("school");
         }
 
         window.onload = init_map;

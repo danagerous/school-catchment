@@ -1,0 +1,184 @@
+[  
+   {  
+      "name":"Hume Elementary School",
+      "description":"310 NELSON AVE, NELSON, BC V1L2M8",
+      "lgt": -117.27936,
+      "ltt": 49.50008,
+      "education":"school"
+   },
+   {  
+      "name":"Trafalgar Middle School",
+      "description":"1201 JOSEPHINE ST, NELSON, BC V1L1X8",
+      "lgt": -117.28784,
+      "ltt": 49.48716,
+      "education":"school"
+   },
+   {  
+      "name":"Salmo Elementary School",
+      "description":"650 GLENDALE AVE, SALMO, BC V0G1Z0",
+      "lgt": -117.27499,
+      "ltt": 49.1897,
+      "education":"school"
+   },
+   {  
+      "name":"Salmo Secondary",
+      "description":"715 DAVIES AVE, SALMO, BC V0G1Z0",
+      "lgt": -117.28143,
+      "ltt": 49.19105,
+      "education":"school"
+   },
+   {  
+      "name":"L V Rogers Secondary",
+      "description":"1004 COTTONWOOD ST, NELSON, BC V1L3W2",
+      "lgt": -117.27263,
+      "ltt": 49.50223,
+      "education":"school"
+   },
+   {  
+      "name":"South Nelson Elementary",
+      "description":"814 LATIMER ST, NELSON, BC V1L4V7",
+      "lgt": -117.28629,
+      "ltt": 49.48976,
+      "education":"school"
+   },
+   {  
+      "name":"Blewett Elementary School",
+      "description":"2665 BLEWETT RD, NELSON, BC V1L6V4",
+      "lgt": -117.37,
+      "ltt": 49.4889,
+      "education":"school"
+   },
+   {  
+      "name":"Rosemont Elementary School",
+      "description":"1605 CREASE AVE, NELSON, BC V1L1A5",
+      "lgt": -117.30295,
+      "ltt": 49.48102,
+      "education":"school"
+   },
+   {  
+      "name":"Mount Sentinel Secondary",
+      "description":"1014 PLAYMOR RD, SOUTH SLOCAN, BC V0G2G0",
+      "lgt": -117.53581,
+      "ltt": 49.44594,
+      "education":"school"
+   },
+   {  
+      "name":"W.E. Graham Community School",
+      "description":"915 HAROLD ST, SLOCAN, BC V0G2C0",
+      "lgt": -117.46969,
+      "ltt": 49.76393,
+      "education":"school"
+   },
+   {  
+      "name":"Brent Kennedy Elementary",
+      "description":"1092 HIGHWAY 6, CRESCENT VALLEY, BC V0G2G0",
+      "lgt": -117.54444,
+      "ltt": 49.4419,
+      "education":"school"
+   },
+   {  
+      "name":"Winlaw Elementary School",
+      "description":"5604 WINLAW BRIDGE RD, WINLAW, BC V0G2J0",
+      "lgt": -117.56749,
+      "ltt": 49.61332,
+      "education":"school"
+   },
+   {  
+      "name":"Redfish Elementary School",
+      "description":"265 BRYAN RD, NELSON, BC V1L6M9",
+      "lgt": -117.048,
+      "ltt": 49.6137,
+      "education":"school"
+   },
+   {  
+      "name":"Adam Robertson Elementary",
+      "description":"421 9TH AVE NORTH, CRESTON, BC V0B1G0",
+      "lgt": -116.5148,
+      "ltt": 49.09976,
+      "education":"school"
+   },
+   {  
+      "name":"Jewett Elementary",
+      "description":"132 MEADOW CREEK RD, MEADOW CREEK, BC V0G1N0",
+      "lgt": -116.97604,
+      "ltt": 50.23867,
+      "education":"school"
+   },
+   {  
+      "name":"Crawford Bay Elem-Secondary",
+      "description":"16150 WALKLEY RD, CRAWFORD BAY, BC V0B1E0",
+      "lgt": -116.82782,
+      "ltt": 49.67999,
+      "education":"school"
+   },
+   {  
+      "name":"Prince Charles Secondary",
+      "description":"223 18 AVE S, CRESTON, BC V0B1G0",
+      "lgt": -116.50432,
+      "ltt": 49.09418,
+      "education":"school"
+   },
+   {  
+      "name":"Yahk Elementary",
+      "description":"8826 RAILWAY BLVD, YAHK, BC V0B2P0",
+      "lgt": -116.09328,
+      "ltt": 49.0844,
+      "education":"school"
+   },
+   {  
+      "name":"Canyon/Lister Elementary",
+      "description":"4575 CANYON-LISTER RD, CANYON, BC V0B1C0",
+      "lgt": -116.448,
+      "ltt": 49.0825,
+      "education":"school"
+   },
+   {  
+      "name":"Homelinks Centre",
+      "description":"617 11TH AVE S, CRESTON, BC V0B1G0",
+      "lgt": -116.51246,
+      "ltt": 49.0889,
+      "education":"school"
+   },
+   {
+      "name":"Wildflower",
+      "description":"617 11TH AVE S, CRESTON, BC V0B1G0",
+      "lgt": -116.51246,
+      "ltt": 49.0889,
+      "education":"school"
+   },
+   {  
+      "name":"J V Humphries Elem-Secondary",
+      "description":"500 6TH ST, KASLO, BC V0G1M0",
+      "lgt": -116.91124,
+      "ltt": 49.91218,
+      "education":"school"
+   },
+   {  
+      "name":"Erickson Elementary",
+      "description":"3523 HWY #3, ERICKSON, BC V0B1K0",
+      "lgt": -116.469,
+      "ltt": 49.0917,
+      "education":"school"
+   },
+   {  
+      "name":"Distance Ed School of the Kootenays",
+      "description":"811 STANLEY ST, NELSON, BC V1L1N8",
+      "lgt": -117.29322,
+      "ltt": 49.48911,
+      "education":"school"
+   },
+   {  
+      "name":"Wildflower",
+      "description":"811 STANLEY ST, NELSON, BC V1L1N8",
+      "lgt": -117.29322,
+      "ltt": 49.48911,
+      "education":"school"
+   },
+   {  
+      "name":"REACH",
+      "description":"811 STANLEY ST, NELSON, BC V1L1N8",
+      "lgt": -117.29322,
+      "ltt": 49.48911,
+      "education":"school"
+   }
+]

@@ -65,6 +65,20 @@
     <!-- Google Maps API - Avoid refresh but putting this in the head -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1Paa_gWGVcqOOzk2EtrXjzGzLu4O3tN4"
     async defer></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <!-- Boostrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- Jasny -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+    <!-- Google Viz -->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <!-- Load geoxml3 for Fustion Table Parsing-->
+    <script type="text/javascript" src="js/geoxml3.js"></script>
+    <!-- Infobox -->
+    <script type="text/javascript" src="js/infobox.js"></script>
+    <!-- Marker Clusterer Plus -->
+    <script type="text/javascript" src="js/markerclustererplus.js"></script>
 </head>
 <body>
     <!-- This is the off canvas menu for filtering -->
@@ -294,7 +308,7 @@
 
             <p><a href="http://catalogue.data.gov.bc.ca/dataset/bc-schools-school-locations" target="_blank">School Location</a>, <a href="http://catalogue.data.gov.bc.ca/dataset/tantalis-municipalities" target="_blank">Municipality</a>, <a href="http://catalogue.data.gov.bc.ca/dataset/indian-reserves-band-names-national-framework-canada-lands-administrative-boundaries-level-1" target="_blank">First Nations</a> and <a href="http://catalogue.data.gov.bc.ca/dataset/tantalis-regional-districts" target="_blank">Regional District</a> data acquired from <a href="http://www.data.gov.bc.ca/" target="_blank">DataBC</a>.</p>
 
-            <p>Admininstrative boundaries, school catchment and location layers served using <a href="https://support.google.com/fusiontables/?hl=en#topic=1652595" target="_blank">Google Fusion Tables</a>.<!-- and school locations served using <a href="http://geojson.org/" target="_blank">GeoJSON</a>. GeoJSON validated using <a href="http://geojsonlint.com/" target="_blank">GeoJSONLint</a>.-->
+            <p>Admininstrative boundaries, school catchment and location layers served using <a href="https://support.google.com/fusiontables/?hl=en#topic=1652595" target="_blank">Google Fusion Tables</a> and JSON.<!-- and school locations served using <a href="http://geojson.org/" target="_blank">GeoJSON</a>. GeoJSON validated using <a href="http://geojsonlint.com/" target="_blank">GeoJSONLint</a>.-->
             </p>
 
             <p>All school catchment layers digitized in <a href="http://www.qgis.org/en/site/" target="_blank">QGIS</a> and topology run through <a href="http://grass.osgeo.org/" target="_blank">GRASS</a> where geometry errors were detected.
@@ -307,21 +321,6 @@
       </div>
     </div>
 
-    <!-- Always put your scripts at the bottom of the page -->
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <!-- Boostrap -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <!-- Jasny -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-    <!-- Google Viz -->
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <!-- Load geoxml3 for Fustion Table Parsing-->
-    <script type="text/javascript" src="js/geoxml3.js"></script>
-    <!-- Infobox -->
-    <script type="text/javascript" src="js/infobox.js"></script>
-    <!-- Marker Clusterer Plus -->
-    <script type="text/javascript" src="js/markerclustererplus.js"></script>
     <script>
         google.load('visualization', '1', {'packages':['corechart', 'table', 'geomap']});
         var map;

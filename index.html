@@ -40,7 +40,14 @@
             width: 250px;
         }
 
-        /* This are for the "normal" size off cavas menu */
+        /* To accommodate iPad portrait mode */
+        @media (min-width: 0px) {
+            .navbar-toggle {
+                display: block; /* force showing the toggle */
+            }
+        }
+
+        /* This is for the "normal" size off canvas menu */
         @media (min-width: 992px) {
             body {
                 padding: 50px 250px 50px 0;
@@ -63,9 +70,13 @@
         <!--All school locations-->
         <h5><span class="label label-default">Schools</span></h5>
         <label class="small">
+            <input type="checkbox" id="schoolbox" onclick="boxclick(this,'school')";>
+            School Locations
+        </label>
+        <!--<label class="small">
             <input type="checkbox" id="_location" onclick="changeLayer(this.value)";>
             School Locations
-        </label><br>
+        </label>--><br>
         <h5><span class="label label-default">Catchment Boundaries</span></h5>
         <!--Slocan Valley-->
         <h6><span>Slocan Valley</span></h6>
@@ -232,10 +243,11 @@
             Slocan
         </label><br><br>
         <div>
-            <button type="button" class="btn btn-default" id="reset">
+            <button type="button" class="btn btn-default" id="reset" onclick="removeData();">
                 <span class="glyphicon glyphicon-repeat"></span> Reset
             </button>
         </div>
+        <div><br></div>
     </div>
 
     <!-- This is the top navigation bar -->
@@ -299,21 +311,37 @@
     </div>
 
     <!-- Always put your scripts at the bottom of the page -->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <!-- Google Maps API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1Paa_gWGVcqOOzk2EtrXjzGzLu4O3tN4"
     async defer></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <!-- Boostrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- Jasny -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+    <!-- Google -->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <!-- Load geoxml3 for Fustion Table Parsing-->
     <script type="text/javascript" src="js/geoxml3.js"></script>
+    <!-- Infobox -->
+    <script type="text/javascript" src="js/infobox.js"></script>
+    <!-- Marker Clusterer Plus -->
+    <script type="text/javascript" src="js/markerclustererplus.js"></script>
+    <!-- OMS -->
+    <script async defer src="https://cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier/1.0.3/oms.min.js"></script>
     <script>
         google.load('visualization', '1', {'packages':['corechart', 'table', 'geomap']});
         var map;
-        var layer3;
-        var tableId3 = '15LKXBGRwJEZAZONDzuhETLKoHFdA2iZb8KBUEQzn'; // schools
+        var layer1;
+        var layer2;
+        //var layer3;
+        //var tableId3 = '15LKXBGRwJEZAZONDzuhETLKoHFdA2iZb8KBUEQzn'; // schools
         var tableId2 = '12s-v0aOkqPt254PdUh5YIEf9hSAkbEW54I1kGpM'; //regional district and community boundaries
         var tableId1 = '1b3s-ebYPeLRiRaJMT11_7yMOY5K2t0vPCyYJVwA'; //school catchment boundaries
+        var gmarkers = []; // empty array for json markers
+        var ib = new InfoBox(); // infobox 
+        var markerCluster = null; //markerclusterer
 
         //Setting up variable for school catchment checkboxes
         var catchment = [
@@ -360,10 +388,104 @@
             "SLOCAN"
         ];
 
+        // A function to create the marker and set up the event window
+        function createMarker(latlng,name,html,category) {
+          var boxText = document.createElement("div");
+          boxText.style.cssText = "margin-top: 10px; background: rgba(255,255,255,0.7); padding: 10px; border-radius: 10px; color: #000";
+          boxText.innerHTML = html;
+
+          var myOptions = {
+            content: boxText,
+            disableAutoPan: false,
+            maxWidth: 0,
+            pixelOffset: new google.maps.Size(-100, 0),
+            zIndex: null,
+            boxStyle: { 
+              background: "url('images/tip.png') no-repeat",
+              width: "250px",
+            },
+            closeBoxURL: "",
+            infoBoxClearance: new google.maps.Size(1, 1),
+            isHidden: false,
+            pane: "floatPane",
+            enableEventPropagation: false
+          };
+
+          var marker = new google.maps.Marker({
+            position: latlng,
+            icon: "images/" + category + ".png",
+            map: map,
+            title: name,
+            zIndex: Math.round(latlng.lat()*-100000)<<5
+          });
+
+          /*oms = new OverlappingMarkerSpiderfier(map, { 
+            markersWontMove: true,   // we promise not to move any markers, allowing optimizations
+            markersWontHide: false,   // change visibility of markers
+            basicFormatEvents: true,  // allow the library to skip calculating advanced formatting information
+            keepSpiderfied: true
+          });*/
+
+          // === Store the category and name info as a marker properties ===
+          marker.mycategory = category;                                 
+          marker.myname = name;
+          gmarkers.push(marker);
+
+          google.maps.event.addListener(marker, 'click', function() {
+            ib.setOptions(myOptions)
+            ib.open(map, this);
+          });
+
+          // Add markers to Spiderfier
+          //oms.addMarker(marker);
+        } // end createMarker
+
+        // == shows all markers of a particular category ==
+        function show(category) {
+          for (var i=0; i<gmarkers.length; i++) {
+            if (gmarkers[i].mycategory == category) {
+              gmarkers[i].setVisible(true);
+            }
+          }
+
+          markerCluster = new MarkerClusterer(map, gmarkers, {maxZoom: 20});
+
+          // == check the checkbox ==
+          document.getElementById(category+"box").checked = true;
+        }
+
+        // == hides all markers of a particular category ==
+        function hide(category) {
+          markerCluster.clearMarkers(); //clear marker cluster icons
+          for (var i=0; i<gmarkers.length; i++) {
+            if (gmarkers[i].mycategory == category) {
+              gmarkers[i].setVisible(false);
+            }
+          }
+
+          // == clear the checkbox ==
+          document.getElementById(category+"box").checked = false;
+          // == close the info window, in case its open on a marker that we just hid
+          ib.close();
+        }
+
+        // == a checkbox has been clicked ==
+        function boxclick(box,category) {
+          if (box.checked) {
+            show(category);
+          } else {
+            hide(category);
+          }
+        }
+
+        function myclick(i) {
+          google.maps.event.trigger(gmarkers[i],"click");
+        }
+
         function init_map() {
             var location = new google.maps.LatLng(49.624889, -116.962890);
 
-            var mapoptions = {
+            var mapOptions = {
                 zoom: 8,
                 center: location,
                 scaleControl: true,
@@ -377,7 +499,7 @@
                 mapTypeControl: false
             };
 
-            map = new google.maps.Map(document.getElementById("map-canvas"), mapoptions);
+            map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
             // Keep map center upon window resize
             google.maps.event.addDomListener(window, "resize", function() {
@@ -386,11 +508,46 @@
                 map.setCenter(center);
             });
 
+            // Load GeoJSON.
+            var poly = map.data.loadGeoJson('bndry.geojson');
+
+            // Set the stroke width for polygon boundary
+            map.data.setStyle({
+                fillOpacity: 0.1,
+                strokeColor: 'red',
+                strokeWeight: 2,
+                clickable: false
+            });
+            // end GeoJSON
+
+          google.maps.event.addListener(map, 'click', function() {
+            ib.close();
+          });
+
+          //Start jQuery
+          $(document).ready(function(){
+            //Start JSON
+            $.getJSON('data.json', function(data) {
+              for (var i = 0; i < data.length; i++) {
+                // obtain the attribues of each marker
+                var item = data[i];
+                var point = new google.maps.LatLng(item.ltt, item.lgt);
+                var name = item.name;
+                var html = "<b>"+item.name+"<\/b><br \/>"+item.description;
+                var category = item.education;
+                // create the marker
+                var marker = createMarker(point,name,html,category);
+              }
+              // == show or hide the categories initially ==
+              show("school");
+            }); //end JSON
+          }); //end jQuery
+
             // Create Fusion Table Layers
-            var layer1 = new google.maps.FusionTablesLayer(); //school catchment boundaries
-            var layer2 = new google.maps.FusionTablesLayer(); //other boundaries           
+            layer1 = new google.maps.FusionTablesLayer(); //school catchment boundaries
+            layer2 = new google.maps.FusionTablesLayer(); //other boundaries           
             // School Fusion Tables Layer
-            layer3 = new google.maps.FusionTablesLayer({
+            /*layer3 = new google.maps.FusionTablesLayer({
                 query: {
                     select: '\'SCHOOL_PHYSICAL_ADDRESS\'',
                     from: tableId3
@@ -404,7 +561,7 @@
                 }],
                 // Specify Template ID for custom infoWindow
                 templateId: 2
-            }); 
+            });*/
 
             // Create Filter Variables
             var mySchool; 
@@ -431,21 +588,21 @@
                 }(myBndry,layer2, tableId2, map));
             }
 
-            layer3.setMap(null);
+            //layer3.setMap(null); //school markers
 
-        }
+        }//end init_map
 
         // To turn school markers on/off
-        function changeLayer(mySchool) {
-
+        /*function changeLayer(mySchool) {
+        
             if (document.getElementById("_location").checked == true) {
                 if(layer3.getMap() == null) { layer3.setMap(map); }
             }
           
             if (document.getElementById("_location").checked == false) {
-                layer3.setMap(null); /*layersetoff*/
+                layer3.setMap(null); // layersetoff
             }
-        }
+        }*/
 
         // Filter the map based on checkbox selection for school catchment boundaries
         function filterMap(layer1,tableId1,map) {
@@ -576,20 +733,27 @@
                 if (geoXml.docs[0].gpolygons.length > 0) {
                     geoXml.docs[0].gpolygons[0].setMap(null);
                 if (i==0) var bounds = geoXml.docs[0].gpolygons[0].bounds;
+                // Union multi-polygons as one
                 else bounds.union(geoXml.docs[0].gpolygons[0].bounds);
                 }
             }
             map.fitBounds(bounds);
         } 
 
-        /*$(document).ready(function() {
+        // Clear all checkboxes
+        $(document).ready(function() {
             $("#reset").click(function() {
-                map = init_map($(this));
                 $("input[type='checkbox']").prop('checked',false);
             })
-        });*/
+        });
 
-        //google.maps.event.addDomListener(window, 'load', init_map);
+        // Removes selections from map
+        function removeData(){
+            layer1.setMap(null);
+            layer2.setMap(null);
+            //layer3.setMap(null);
+        }
+
         window.onload = init_map;
 
     </script>

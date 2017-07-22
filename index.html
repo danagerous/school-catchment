@@ -636,7 +636,7 @@
             // zoom and center map on query results
             // set the query using the parameter
             var queryText = encodeURIComponent(query);
-            var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq='  + queryText);
+            var query = new google.visualization.Query('https://www.google.com/fusiontables/gvizdata?tq='  + queryText);
             
             // set the callback function
             query.send(zoomTo);

@@ -2,14 +2,20 @@
 <html>
 <head>
     <title>Catchment Areas : Kootenay Lake School District</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta class="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8" />
-    <meta name="author" content="Dana Diotte" />
+    <meta class="author" content="Dana Diotte" />
     <link rel="canonical" href="http://danadiotte.com" />
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css" rel="stylesheet">
-
+    <!-- Leaflet CSS-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+        integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+        crossorigin=""/>
+    <!-- Leaflet Marker Cluster CSS-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -17,7 +23,7 @@
     <![endif]-->
     <style>
         /* This is used to specify the map area. */
-        html, body, .row, .container, .container-map, #map-canvas {
+        html, body, .row, .container, .container-map, #map {
             height: 100%;
         }
 
@@ -70,185 +76,182 @@
         <!--All school locations-->
         <h5><span class="label label-default">Schools</span></h5>
         <label class="small">
-            <input type="checkbox" id="schoolbox" onclick="boxclick(this,'school')";>
+            <input type="checkbox" id="schools"checked>
             School Locations
         </label><br>
         <h5><span class="label label-default">Catchment Boundaries</span></h5>
         <!--Slocan Valley-->
         <h6><span>Slocan Valley</span></h6>
         <label class="small">
-            <input type="checkbox" id="Brent Kennedy" name="school" value="Brent Kennedy">
+            <input type="checkbox" id="Brent Kennedy" class="catchment" name="catchment" value="Brent Kenney k-6">
             Brent Kennedy
         </label><br>
         <label class="small">
-            <input type="checkbox" id="Mount Sentinel Middle" name="school" value="Mount Sentinel Middle">
+            <input type="checkbox" id="Mount Sentinel Middle" class="catchment" name="catchment" value="Mount Sentinel 7-9">
             Mount Sentinel Middle
         </label><br> 
         <label class="small">
-            <input type="checkbox" id="Mount Sentinel Secondary" name="school" value="Mount Sentinel Secondary">
+            <input type="checkbox" id="Mount Sentinel Secondary" class="catchment" name="catchment" value="Mount Sentinel 9-12">
             Mount Sentinel Secondary
         </label><br>   
         <label class="small">
-            <input type="checkbox" id="W.E. Graham Community Elementary" name="school" value="W.E. Graham Community Elementary">
+            <input type="checkbox" id="W.E. Graham Community Elementary" class="catchment" name="catchment" value="W.E. Graham Community k-6">
             W.E. Graham Community Elementary
         </label><br>
         <label class="small">
-            <input type="checkbox" id="W.E. Graham Community Secondary" name="school" value="W.E. Graham Community Secondary">
+            <input type="checkbox" id="W.E. Graham Community Secondary" class="catchment" name="catchment" value="W.E. Graham Community 7-10">
             W.E. Graham Community Secondary
         </label><br>
         <label class="small">
-            <input type="checkbox" id="Winlaw Elementary" name="school" value="Winlaw Elementary">
+            <input type="checkbox" id="Winlaw Elementary" class="catchment" name="catchment" value="Winlaw Elementary">
             Winlaw Elementary
         </label><br>
         <!--Nelson-->
         <h6><span>Nelson</span></h6>
         <label class="small">
-            <input type="checkbox" id="Blewett Elementary" name="school" value="Blewett Elementary" >
+            <input type="checkbox" id="Blewett Elementary" class="catchment" name="catchment" value="Blewett Elementary" >
             Blewett Elementary
         </label><br>
         <label class="small">
-            <input type="checkbox" id="Hume Elementary" name="school" value="Hume Elementary">
+            <input type="checkbox" id="Hume Elementary" class="catchment" name="catchment" value="Hume Elementary k-5">
             Hume Elementary
         </label><br>
         <label class="small">
-            <input type="checkbox" id="LV Rogers Secondary" name="school" value="LV Rogers Secondary">
+            <input type="checkbox" id="LV Rogers Secondary" class="catchment" name="catchment" value="LV Rogers Secondary">
             LV Rogers Secondary
         </label><br>
         <label class="small">
-            <input type="checkbox" id="Redfish Elementary" name="school" value="Redfish Elementary">
+            <input type="checkbox" id="Redfish Elementary" class="catchment" name="catchment" value="Redfish Elementary">
             Redfish Elementary
         </label><br>
         <label class="small">
-            <input type="checkbox" id="Rosemont Elementary" name="school" value="Rosemont Elementary">
+            <input type="checkbox" id="Rosemont Elementary" class="catchment" name="catchment" value="Rosemont Elementary">
             Rosemont Elementary
         </label><br>
         <label class="small">
-            <input type="checkbox" id="South Nelson Elementary" name="school" value="South Nelson Elementary">
+            <input type="checkbox" id="South Nelson Elementary" class="catchment" name="catchment" value="South Nelson Elementary">
             South Nelson Elementary
         </label><br>      
         <label class="small">
-            <input type="checkbox" id="Trafalgar Middle School" name="school" value="Trafalgar Middle School">
+            <input type="checkbox" id="Trafalgar Middle School" class="catchment" name="catchment" value="Trafalgar Middle School">
             Trafalgar Middle School
         </label><br>
         <label class="small">
-            <input type="checkbox" id="Wildflower Elementary Nelson" name="school" value="Wildflower Elementary Nelson">
+            <input type="checkbox" id="Wildflower Elementary Nelson" class="catchment" name="catchment" value="Wildflower Nelson">
             Wildflower Elementary Nelson
         </label><br> 
         <!--North Shore, Kaslo and Meadow Creek-->
         <h6><span>Kaslo and Meadow Creek</span></h6>
         <label class="small">
-            <input type="checkbox" id="Jewett Elementary" name="school" value="Jewett Elementary">
+            <input type="checkbox" id="Jewett Elementary" class="catchment" name="catchment" value="Jewett Elementary">
             Jewett Elementary
         </label><br>    
         <label class="small">
-            <input type="checkbox" id="JV Humphries Elementary" name="school" value="JV Humphries Elementary">
+            <input type="checkbox" id="JV Humphries Elementary" class="catchment" name="catchment" value="JV Humphries Elementary">
             JV Humphries Elementary
         </label><br> 
         <label class="small">
-            <input type="checkbox" id="JV Humphries Secondary" name="school" value="JV Humphries Secondary">
+            <input type="checkbox" id="JV Humphries Secondary" class="catchment" name="catchment" value="JV Humphries Secondary">
             JV Humphries Secondary
         </label><br>
         <!--Salmo-->
         <h6><span>Salmo</span></h6>
         <label class="small">
-            <input type="checkbox" id="Salmo Elementary" name="school" value="Salmo Elementary">
+            <input type="checkbox" id="Salmo Elementary" class="catchment" name="catchment" value="Salmo Elementary">
             Salmo Elementary
         </label><br>      
         <label class="small">
-            <input type="checkbox" id="Salmo Secondary" name="school" value="Salmo Secondary">
+            <input type="checkbox" id="Salmo Secondary" class="catchment" name="catchment" value="Salmo Secondary">
             Salmo Secondary
         </label><br>
         <!--Creston, Crawford Bay and Yahk-->
         <h6><span>Creston, Crawford Bay and Yahk</span></h6>
         <label class="small">
-            <input type="checkbox" id="Adam Robertson Elementary" name="school" value="Adam Robertson Elementary">
+            <input type="checkbox" id="Adam Robertson Elementary" class="catchment" name="catchment" value="Adam Robertson Elementary">
             Adam Robertson Elementary
         </label><br>
         <label class="small">
-            <input type="checkbox" id="Canyon-Lister Elementary" name="school" value="Canyon-Lister Elementary">
+            <input type="checkbox" id="Canyon-Lister Elementary" class="catchment" name="catchment" value="Canyon-Lister Elementary">
             Canyon-Lister Elementary
         </label><br>
         <label class="small">
-            <input type="checkbox" id="Crawford Bay Elementary/Secondary" name="school" value="Crawford Bay Elementary/Secondary">
+            <input type="checkbox" id="Crawford Bay Elementary/Secondary" class="catchment" name="catchment" value="Crawford Bay Elementary Secondary">
             Crawford Bay Elementary/Secondary
         </label><br>
         <label class="small">
-            <input type="checkbox" id="Erickson Elementary" name="school" value="Erickson Elementary">
+            <input type="checkbox" id="Erickson Elementary" class="catchment" name="catchment" value="Erickson Elementary">
             Erickson Elementary
         </label><br> 
         <label class="small">
-            <input type="checkbox" id="Prince Charles Secondary" name="school" value="Prince Charles Secondary">
+            <input type="checkbox" id="Prince Charles Secondary" class="catchment" name="catchment" value="Prince Charles Secondary">
             Prince Charles Secondary
         </label><br>
         <label class="small">
-            <input type="checkbox" id="Wildflower Elementary Creston" name="school" value="Wildflower Elementary Creston">
+            <input type="checkbox" id="Wildflower Elementary Creston" class="catchment" name="catchment" value="Wildflower Creston">
             Wildflower Elementary Creston
         </label><br>      
-        <label class="small">
-            <input type="checkbox" id="Yahk Elementary" name="school" value="Yahk Elementary">
-            Yahk Elementary
-        </label><br>
+
         <!--Boundaries-->
         <h5><span class="label label-default">Administrative Boundaries</span></h5>
         <label class="small">
-            <input type="checkbox" id="SCHOOL DISTRICT 8 - KOOTENAY LAKE"  name="bndry" value="SCHOOL DISTRICT 8 - KOOTENAY LAKE">
+            <input type="checkbox" id="SCHOOL DISTRICT 8 - KOOTENAY LAKE"  class="bndry" value="SCHOOL DISTRICT 8 - KOOTENAY LAKE">
             SD8 District Boundary
         </label><br>
         <label class="small">
-            <input type="checkbox" id="LOWER KOOTENAY BAND" name="bndry" value="LOWER KOOTENAY BAND">
+            <input type="checkbox" id="LOWER KOOTENAY BAND" class="bndry" value="LOWER KOOTENAY BAND">
             Lower Kootenay Band
         </label><br>
         <!--Regional Districts-->
         <h6><span>Regional Districts</span></h6>
         <label class="small">
-            <input type="checkbox" id="CENTRAL KOOTENAY" name="bndry" value="CENTRAL KOOTENAY">
+            <input type="checkbox" id="CENTRAL KOOTENAY" class="bndry" value="CENTRAL KOOTENAY">
             Central Kootenay
         </label><br>
         <label class="small">
-            <input type="checkbox" id="COLUMBIA SHUSWAP" name="bndry" value="COLUMBIA SHUSWAP">
+            <input type="checkbox" id="COLUMBIA SHUSWAP" class="bndry" value="COLUMBIA SHUSWAP">
             Columbia Shuswap
         </label><br>
         <label class="small">
-            <input type="checkbox" id="EAST KOOTENAY" name="bndry" value="EAST KOOTENAY">
+            <input type="checkbox" id="EAST KOOTENAY" class="bndry" value="EAST KOOTENAY">
             East Kootenay
         </label><br>
         <label class="small">
-            <input type="checkbox" id="KOOTENAY BOUNDARY" name="bndry" value="KOOTENAY BOUNDARY">
+            <input type="checkbox" id="KOOTENAY BOUNDARY" class="bndry" value="KOOTENAY BOUNDARY">
             Kootenay Boundary
         </label><br>
         <!--Communities -->
         <h6><span>Communities</span></h6>
         <label class="small">
-            <input type="checkbox" id="CRESTON" name="bndry" value="CRESTON">
+            <input type="checkbox" id="CRESTON" class="bndry" value="CRESTON">
             Creston
         </label><br>
         <label class="small">
-            <input type="checkbox" id="KASLO" name="bndry" value="KASLO">
+            <input type="checkbox" id="KASLO" class="bndry" value="KASLO">
             Kaslo
         </label><br>
         <label class="small">
-            <input type="checkbox" id="NELSON" name="bndry" value="NELSON">
+            <input type="checkbox" id="NELSON" class="bndry" value="NELSON">
             Nelson
         </label><br>
         <label class="small">
-            <input type="checkbox" id="SALMO" name="bndry" value="SALMO">
+            <input type="checkbox" id="SALMO" class="bndry" value="SALMO">
             Salmo
         </label><br>
         <label class="small">
-            <input type="checkbox" id="SLOCAN" name="bndry" value="SLOCAN">
+            <input type="checkbox" id="SLOCAN" class="bndry" value="SLOCAN">
             Slocan
         </label><br><br>
         <button type="button" class="btn btn-default" id="reset" onclick="removeData();">
             <span class="glyphicon glyphicon-repeat"></span> Reset
         </button>
-        <br><br>
+        <br><br><br><br><br>
     </div>
 
     <!-- This is the top navigation bar -->
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#"><img src="images/logo.png" alt="Kootenay Lake School District" style="width:50px;height:52px;float:left;margin-top:-13px;vertical-align: middle;display: inline-block;" class="img-responsive">Kootenay Lake School District - Catchment Areas</a>
+                <a class="navbar-brand" href="#"><img src="images/logo.png" alt="Kootenay Lake School District" style="width:100px;height:46px;float:left;margin-top:-10px;vertical-align: middle;display: inline-block;" class="img-responsive">Kootenay Lake School District - Catchment Areas</a>
                 <button type="button" class="navbar-toggle navmenu-toggle btn btn-xs" data-toggle="offcanvas" data-target="#filterMenu" data-canvas="body">Filters</button>
             </div>
         </div>
@@ -256,14 +259,14 @@
 
     <!-- This is where the map will be displayed -->
     <div class="container-map">
-        <div id="map-canvas"></div>
+        <div id="map"></div>
     </div>
 
     <!-- This is the footer as fixed navigation bar -->
     <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
         <div class="container-fluid">
             <div class="panel-footer pull-right">
-                <!-- Trigge> the modal with a button -->
+                <!-- Trigger the modal with a button -->
                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">About</button>
             </div>
             <div class="panel-footer">
@@ -289,9 +292,13 @@
 
             <p><a href="http://www.bcstats.gov.bc.ca/StatisticsBySubject/Geography/TranslationsDataSets.aspx" target="_blank">School District</a> boundary data acquired from <a href="http://www.bcstats.gov.bc.ca/Home.aspx" target="_blank">BC Stats</a>.</p>
 
-            <p><a href="http://catalogue.data.gov.bc.ca/dataset/bc-schools-school-locations" target="_blank">School Location</a>, <a href="http://catalogue.data.gov.bc.ca/dataset/tantalis-municipalities" target="_blank">Municipality</a>, <a href="http://catalogue.data.gov.bc.ca/dataset/indian-reserves-band-names-national-framework-canada-lands-administrative-boundaries-level-1" target="_blank">First Nations</a> and <a href="http://catalogue.data.gov.bc.ca/dataset/tantalis-regional-districts" target="_blank">Regional District</a> data acquired from <a href="http://www.data.gov.bc.ca/" target="_blank">DataBC</a>.</p>
+            <p><a href="http://catalogue.data.gov.bc.ca/dataset/bc-schools-school-locations" target="_blank">School Location</a>, 
+                <a href="http://catalogue.data.gov.bc.ca/dataset/tantalis-municipalities" target="_blank">Municipality</a>, 
+                <a href="https://catalogue.data.gov.bc.ca/dataset/indian-reserves-band-names-administrative-boundaries" target="_blank">First Nations</a> 
+                and <a href="http://catalogue.data.gov.bc.ca/dataset/tantalis-regional-districts" target="_blank">Regional District</a> data acquired from <a href="http://www.data.gov.bc.ca/" target="_blank">DataBC</a>.
+            </p>
 
-            <p>Admininstrative boundaries, school catchment and location layers served using <a href="https://support.google.com/fusiontables/?hl=en#topic=1652595" target="_blank">Google Fusion Tables</a> and JSON.<!-- and school locations served using <a href="http://geojson.org/" target="_blank">GeoJSON</a>. GeoJSON validated using <a href="http://geojsonlint.com/" target="_blank">GeoJSONLint</a>.-->
+            <p>Built on a <a href="https://leafletjs.com/" target="_blank">Leaflet</a> with all layers served using <a href="http://geojson.org/" target="_blank">GeoJSON</a>. GeoJSON validated using <a href="http://jsonlint.com/" target="_blank">JSONLint</a>.
             </p>
 
             <p>All school catchment layers digitized in <a href="http://www.qgis.org/en/site/" target="_blank">QGIS</a> and topology run through <a href="http://grass.osgeo.org/" target="_blank">GRASS</a> where geometry errors were detected.
@@ -303,397 +310,194 @@
         </div>
       </div>
     </div>
-
-    <!-- Google Maps API  -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1Paa_gWGVcqOOzk2EtrXjzGzLu4O3tN4"></script>
+    <!-- Leaflet-->
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+        integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+        crossorigin=""></script>
+    <!-- Leaflet Marker Cluster-->
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <!-- Boostrap -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- Jasny -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-    <!-- Google Viz -->
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <!-- Load geoxml3 for Fustion Table Parsing-->
-    <script type="text/javascript" src="js/geoxml3.js"></script>
-    <!-- Infobox -->
-    <script type="text/javascript" src="js/infobox.js"></script>
-    <!-- Marker Clusterer Plus -->
-    <script type="text/javascript" src="js/markerclustererplus.js"></script>
     <script>
-        google.load('visualization', '1', {'packages':['corechart', 'table', 'geomap']});
-        var map;
-        var layer1;
-        var layer2;
-        var tableId2 = '12s-v0aOkqPt254PdUh5YIEf9hSAkbEW54I1kGpM'; //regional district and community boundaries
-        var tableId1 = '1b3s-ebYPeLRiRaJMT11_7yMOY5K2t0vPCyYJVwA'; //school catchment boundaries
-        var gmarkers = []; // empty array for json school markers
-        var ib = new InfoBox(); // infobox variable
-        var markerCluster = null; //markerclusterer variable
+        var map = L.map('map').setView([49.624889, -116.962890], 8);
 
-        //Setting up variable for school catchment checkboxes
-        var catchment = [
-            "Adam Robertson Elementary",
-            "Blewett Elementary",
-            "Brent Kennedy",
-            "Canyon-Lister Elementary",
-            "Crawford Bay Elementary/Secondary",
-            "Erickson Elementary",
-            "Hume Elementary",
-            "JV Humphries Elementary",
-            "JV Humphries Secondary",
-            "Jewett Elementary",
-            "LV Rogers Secondary",
-            "Mount Sentinel Middle",
-            "Mount Sentinel Secondary",
-            "Prince Charles Secondary",
-            "Redfish Elementary",
-            "Rosemont Elementary",
-            "Salmo Elementary",
-            "Salmo Secondary",
-            "South Nelson Elementary",
-            "Trafalgar Middle School",
-            "W.E. Graham Community Elementary",
-            "W.E. Graham Community Secondary",
-            "Wildflower Elementary Nelson",
-            "Wildflower Elementary Creston",
-            "Yahk Elementary",
-            "Winlaw Elementary"
-        ];
-
-        //Setting up variables for boundaries checkboxes
-        var boundary = [
-            "CENTRAL KOOTENAY",
-            "COLUMBIA SHUSWAP",
-            "CRESTON",
-            "EAST KOOTENAY",
-            "KASLO",
-            "KOOTENAY BOUNDARY",
-            "LOWER KOOTENAY BAND",
-            "NELSON",
-            "SALMO",
-            "SCHOOL DISTRICT 8 - KOOTENAY LAKE",
-            "SLOCAN"
-        ];
-
-        // A function to create the marker and set up the event window
-        function createMarker(latlng,name,html,category) {
-          var boxText = document.createElement("div");
-          boxText.style.cssText = "margin-top: 10px; background: rgba(255,255,255,0.7); padding: 10px; border-radius: 10px; color: #000";
-          boxText.innerHTML = html;
-
-          var myOptions = {
-            content: boxText,
-            disableAutoPan: false,
-            maxWidth: 0,
-            pixelOffset: new google.maps.Size(-100, 0),
-            zIndex: null,
-            boxStyle: { 
-              background: "url('images/tip.png') no-repeat",
-              width: "250px",
-            },
-            closeBoxURL: "",
-            infoBoxClearance: new google.maps.Size(1, 1),
-            isHidden: false,
-            pane: "floatPane",
-            enableEventPropagation: false
-          };
-
-          var marker = new google.maps.Marker({
-            position: latlng,
-            icon: "images/" + category + ".png",
-            map: map,
-            title: name,
-            zIndex: Math.round(latlng.lat()*-100000)<<5
-          });
-
-          // === Store the category and name info as a marker properties ===
-          marker.mycategory = category;                                 
-          marker.myname = name;
-          gmarkers.push(marker);
-
-          google.maps.event.addListener(marker, 'click', function() {
-            ib.setOptions(myOptions)
-            ib.open(map, this);
-          });
-
-        } // end createMarker
-
-        // == shows all markers of a particular category ==
-        function show(category) {
-          for (var i=0; i<gmarkers.length; i++) {
-            if (gmarkers[i].mycategory == category) {
-              gmarkers[i].setVisible(true);
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href=”http://osm.org/copyright”>OpenStreetMap</a> contributors'
+        }).addTo(map);
+        
+        // Cluster school markers
+        var markers = L.markerClusterGroup({
+            showCoverageOnHover:false
             }
-          }
-
-          markerCluster = new MarkerClusterer(map, gmarkers, {maxZoom: 20});
-
-          // == check the checkbox ==
-          document.getElementById(category+"box").checked = true;
-        }
-
-        // == hides all markers of a particular category ==
-        function hide(category) {
-          markerCluster.clearMarkers(); //clear marker cluster icons
-          for (var i=0; i<gmarkers.length; i++) {
-            if (gmarkers[i].mycategory == category) {
-              gmarkers[i].setVisible(false);
-            }
-          }
-
-          // == clear the checkbox ==
-          document.getElementById(category+"box").checked = false;
-          // == close the info window, in case its open on a marker that we just hid
-          ib.close();
-        }
-
-        // == a checkbox has been clicked ==
-        function boxclick(box,category) {
-          if (box.checked) {
-            show(category);
-          } else {
-            hide(category);
-          }
-        }
-
-        function myclick(i) {
-          google.maps.event.trigger(gmarkers[i],"click");
-        }
-
-        function init_map() {
-            var location = new google.maps.LatLng(49.624889, -116.962890);
-
-            var mapOptions = {
-                zoom: 8,
-                center: location,
-                scaleControl: true,
-                streetViewControl: true,
-                draggableCursor: 'auto',
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                overviewMapControl: true,
-                overviewMapControlOptions: {
-                    opened: false
-                },
-                mapTypeControl: false
-            };
-
-            map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-
-            // Keep map center upon window resize
-            google.maps.event.addDomListener(window, "resize", function() {
-                var center = map.getCenter();
-                google.maps.event.trigger(map, "resize");
-                map.setCenter(center);
-            });
-
-            google.maps.event.addListener(map, 'click', function() {
-                ib.close();
-            });
-
-            //Start jQuery
-            $(document).ready(function(){
-                //Start JSON
-                $.getJSON('data/markers.json', function(data) {
-                    for (var i = 0; i < data.length; i++) {
-                        // obtain the attribues of each marker
-                        var item = data[i];
-                        var point = new google.maps.LatLng(item.ltt, item.lgt);
-                        var name = item.name;
-                        var html = "<b>"+item.name+"<\/b><br \/>"+item.description;
-                        var category = item.education;
-                        // create the marker
-                        var marker = createMarker(point,name,html,category);
-                    }
-
-                    // == show or hide the categories initially ==
-                    show("school");
-
-                }); //end JSON
-            }); //end jQuery
-
-            // Create Fusion Table Layers
-            layer1 = new google.maps.FusionTablesLayer(); //school catchment boundaries
-            layer2 = new google.maps.FusionTablesLayer(); //other boundaries           
-
-            // Create Filter Variables
-            var mySchool; 
-            var myBndry;
-
-            // Call Filter Function on Click Action
-            var limitC = catchment.length;
-            for(var i=0; i < limitC; i++){
-                mySchool = document.getElementById(catchment[i]);
-                (function(schl,lyr,tbl,mp){
-                    google.maps.event.addDomListener(schl,'click', function() {
-                        filterMap(lyr,tbl,mp);                 
-                    });
-                }(mySchool,layer1,tableId1,map));
-            }
-            
-            var limitB = boundary.length;
-            for(var i=0; i < limitB; i++){
-                myBndry = document.getElementById(boundary[i]);
-                (function(bnd,lyr,tbl,mp){
-                    google.maps.event.addDomListener(bnd,'click', function() {
-                        filterMap2(lyr,tbl,mp);                 
-                    });
-                }(myBndry,layer2, tableId2, map));
-            }
-
-        }//end init_map
-
-        // Filter the map based on checkbox selection for school catchment boundaries
-        function filterMap(layer1,tableId1,map) {
-            var where = generateWhere();
-            
-            if (where) {
-                zoom2query('SELECT Polygons from ' + tableId1 + ' where ' + where);
-                if (!layer1.getMap()) {
-                    layer1.setMap(map);
-            }
-            
-            layer1.setOptions({
-                query: {
-                    select: 'Polygons',
-                    from: tableId1,
-                    where: where
-                }
-            }); 
-            }
-
-            else {
-                layer1.setMap(null);
-            }
-        }
-
-        // School Catchments: Generate a where clause from the checkboxes. If no boxes
-        // are checked, return an empty string.
-        function generateWhere() {
-            var filter = [];
-            var schools = document.getElementsByName('school');
-            for (var i = 0, school; school = schools[i]; i++) {
-              if (school.checked) {
-                var schoolName = school.value.replace(/'/g, '\\\'');
-                filter.push("'" + schoolName + "'");
-              }
-            }
-            var where = '';
-            if (filter.length) {
-              where = "School IN (" + filter.join(',') + ')';
-            }
-
-            return where;
-        }
-
-        // Filter the map based on checkbox selection for admin boundaries
-        function filterMap2(layer2,tableId2,map) {
-            var where = generateWhere2();
-            
-            if (where) {
-                zoom2query('SELECT Polygons from ' + tableId2 + ' where ' + where);
-                if (!layer2.getMap()) {
-                    layer2.setMap(map);
-            }
-            
-            layer2.setOptions({
-                query: {
-                    select: 'Polygons',
-                    from: tableId2,
-                    where: where
-                },
-                // Specify Template ID for custom infoWindow
-                templateId: 1
-            }); 
-            }
-
-            else {
-                layer2.setMap(null);
-            }
-        }
-
-        // Admin Boundaries: Generate a where clause from the checkboxes. If no boxes
-        // are checked, return an empty string.
-        function generateWhere2() {
-            var filter = [];
-            var boundaries = document.getElementsByName('bndry');
-            for (var i = 0, bndry; bndry = boundaries[i]; i++) {
-              if (bndry.checked) {
-                var bndName = bndry.value.replace(/'/g, '\\\'');
-                filter.push("'" + bndName + "'");
-              }
-            }
-            var where = '';
-            if (filter.length) {
-              where = "Boundary IN (" + filter.join(',') + ')';
-            }
-
-            return where;
-        }
-
-        function zoom2query(query) {
-            // zoom and center map on query results
-            // set the query using the parameter
-            var queryText = encodeURIComponent(query);
-            var query = new google.visualization.Query('https://www.google.com/fusiontables/gvizdata?tq='  + queryText);
-            
-            // set the callback function
-            query.send(zoomTo);
-            
-            }
-
-        // FROM view-source:http://www.geocodezip.com/geoxml3_test/indianatrails_com_fusiontables_map.html
-        function zoomTo(response) {
-            if (!response) {
-                alert('no response');
-                return;
-            }
-            if (response.isError()) {
-              alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
-              return;
-            }
-            FTresponse = response;
-            //for more information on the response object, see the documentation
-            //http://code.google.com/apis/visualization/documentation/reference.html#QueryResponse
-            numRows = response.getDataTable().getNumberOfRows();
-            numCols = response.getDataTable().getNumberOfColumns();
-            // handle multiple matches
-            var bounds = new google.maps.LatLngBounds();
-            for (var i=0;i<numRows;i++){
-                var kml =  FTresponse.getDataTable().getValue(i,0);
-                // create a geoXml3 parser for the click handlers
-                var geoXml = new geoXML3.parser({
-                    map: map,
-                    zoom: false
-                });
-
-                geoXml.parseKmlString("<Placemark>"+kml+"</Placemark>");
-                // handle polygon kml placmarks
-                if (geoXml.docs[0].gpolygons.length > 0) {
-                    geoXml.docs[0].gpolygons[0].setMap(null);
-                if (i==0) var bounds = geoXml.docs[0].gpolygons[0].bounds;
-                // Union multi-polygons as one
-                else bounds.union(geoXml.docs[0].gpolygons[0].bounds);
-                }
-            }
-            map.fitBounds(bounds);
-        } 
-
-        // Clear all checkboxes
-        $(document).ready(function() {
-            $("#reset").click(function() {
-                $("input[type='checkbox']").prop('checked',false);
-            })
+        );
+        
+        // Custom School Icon
+        var schoolIcon = L.icon({
+            iconUrl: 'images/school.png',
+            iconSize:     [32, 37], // size of the icon
+            iconAnchor:   [15, 35], // point of the icon which will correspond to marker's location
+            popupAnchor:  [1, -30] // point from which the popup should open relative to the iconAnchor
         });
 
-        // Removes data from map
-        function removeData(){
-            layer1.setMap(null);
-            layer2.setMap(null);
-            hide("school");
+        /******************************/
+        /* load school GeoJSON file
+        /******************************/
+        // start json
+        $.getJSON("data/schools.geojson",function(data){
+            // L.geoJson function is used to parse geojson file and load on to map 
+            var schoolLayer = L.geoJson(data ,{
+                pointToLayer: function(feature, latlng) {
+                    console.log(latlng, feature);
+                    return L.marker(latlng, {
+                    icon: schoolIcon
+                    })
+                },
+                onEachFeature: function(feature, featureLayer) {
+                    featureLayer.bindPopup('<b>' + feature.properties.SCHOOL_NAM + '</b>' + '<br />'
+                                + feature.properties.SCHOOL_PHY);
+                }
+            })
+
+            markers.addLayer(schoolLayer);
+            map.addLayer(markers);
+            map.fitBounds(markers.getBounds());
+
+        });//end json
+        // end load school GeoJSON file
+
+        // Function to add schools
+		function addSchools(){
+			map.addLayer(markers);
+            // Fit to school markers bounds if clicked off/on
+            map.fitBounds(markers.getBounds());
+		};
+
+		// Function to remove schools
+		function removeSchools(){
+			map.removeLayer(markers);
+		};
+
+		// Function to toggle schools
+		function toggleSchools(){
+			if(map.hasLayer(markers)){
+				removeSchools();
+			} else {
+				addSchools();
+			}
+		};
+
+		// Use $("elementID") and the jQuery click listener method to toggle schools
+		$( "#schools" ).click(function() {
+			toggleSchools();
+		});
+
+        // Set style function for GeoJSON polygon style properties
+        function style(feature) {
+            return {color: feature.properties.stroke};
+            return {weight: feature.properties.stroke-width};
+            return {opacity: feature.properties.stroke-opacity};
+            return {fillColor: feature.properties.fill};
+            return {fillOpacity: feature.properties.fill-opacity};
         }
 
-        window.onload = init_map;
+        let checkboxStates
+
+        /***********************************/
+        /* start load catchment GeoJSON file
+        /***********************************/
+        //start json
+        $.getJSON("data/catchment.geojson",function(data){
+            const catchmentLayer = L.geoJSON(null,{
+                filter: (feature) => {
+                    const isCatchmentChecked = checkboxStates.catchments.includes(feature.properties.SCHOOL)
+                    return isCatchmentChecked //only true if both are true
+                },
+                onEachFeature: function(feature, featureLayer) {
+                    featureLayer.bindPopup('<b>' + "Catchment: " + '</b>' + feature.properties.CATCHMENT +  '<br />'
+                                + '<b>' + "School: " + '</b>' + feature.properties.SCHOOL);
+                },
+                style: style
+            }).addTo(map)
+
+            function updateCheckboxStates() {
+                checkboxStates = {
+                catchments: []
+            }    
+                for (let input of document.querySelectorAll('input')) {
+                    if(input.checked) {
+                        switch (input.className) {
+                            case 'catchment': checkboxStates.catchments.push(input.value); break
+                        }
+                    }
+                }
+            }
+
+            for (let input of document.querySelectorAll('input')) {
+            //Listen to 'change' event of all inputs
+                input.onchange = (e) => {
+                    catchmentLayer.clearLayers()
+                    updateCheckboxStates()
+                    catchmentLayer.addData(data)
+                    map.addLayer(catchmentLayer);
+                    map.fitBounds(catchmentLayer.getBounds());
+                }
+            }
+
+            /****** INIT ******/
+            updateCheckboxStates()
+            catchmentLayer.addData(data)
+
+        });//end json
+        //end load catchment GeoJSON file
+
+        /**************************************/
+        /* load admin boundaries GeoJSON file
+        /**************************************/
+        //start json
+        // $.getJSON("data/adminBoundaries.geojson",function(data){
+        //     const boundariesLayer = L.geoJSON(null,{
+        //         filter: (feature) => {
+        //             const isBoundaryChecked = checkboxStates.boundaries.includes(feature.properties.SCHOOL)
+        //             return isBoundaryChecked //only true if both are true
+        //         },
+        //         onEachFeature: function(feature, featureLayer) {
+        //             featureLayer.bindPopup('<b>' + "Boundary: " + '</b>' + feature.properties.BOUNDARY);
+        //         },
+        //         style: style
+        //     }).addTo(map)
+
+        //     function updateCheckboxStates() {
+        //         checkboxStates = {
+        //         boundaries: []
+        //     }    
+        //         for (let input of document.querySelectorAll('input')) {
+        //             if(input.checked) {
+        //                 switch (input.className) {
+        //                     case 'bndry': checkboxStates.boundaries.push(input.value); break
+        //                 }
+        //             }
+        //         }
+        //     }
+
+        //     for (let input of document.querySelectorAll('input')) {
+        //     //Listen to 'change' event of all inputs
+        //         input.onchange = (e) => {
+        //             boundariesLayer.clearLayers()
+        //             updateCheckboxStates()
+        //             boundariesLayer.addData(data)
+        //         }
+        //     }
+
+        //     /****** INIT ******/
+        //     updateCheckboxStates()
+        //     boundariesLayer.addData(data)
+
+        // });//end json
+        // end load admin boundaries GeoJSON file
 
     </script>
 </body>

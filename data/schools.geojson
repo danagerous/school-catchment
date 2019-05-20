@@ -1,0 +1,786 @@
+{
+	"type": "FeatureCollection",
+	"name": "schools",
+	"crs": {
+		"type": "name",
+		"properties": {
+			"name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+		}
+	},
+	"features": [{
+			"type": "Feature",
+			"properties": {
+				"X": -117.27936,
+				"Y": 49.50008,
+				"SCHOOL_YEA": "2013\/2014",
+				"PUBLIC_OR_": "BC Public School",
+				"DISTRICT_N": 8,
+				"DISTRICT_L": "Kootenay Lake",
+				"SCHOOL_NUM": 807004,
+				"SCHOOL_NAM": "Hume Elementary School",
+				"SCHOOL_FAC": "Standard",
+				"SCHOOL_PHY": "310 NELSON AVE, NELSON, BC",
+				"SCHOOL_CIT": "NELSON",
+				"SCHOOL_PRO": "BC",
+				"SCHOOL_POS": "V1L2M8",
+				"SCHOOL_PHO": "250 352-3186",
+				"SCHOOL_FAX": "250 352-3183",
+				"SCHOOL_LAT": 49.50008,
+				"SCHOOL_LON": -117.27936,
+				"ORGANIZATI": "ELEMENTARY",
+				"GRADE_STRI": "K-5",
+				"HAS_ELEMEN": "TRUE",
+				"HAS_SECOND": "FALSE",
+				"Unique_ID": 3
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-117.27936, 49.50008]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"X": -117.28784,
+				"Y": 49.48716,
+				"SCHOOL_YEA": "2013\/2014",
+				"PUBLIC_OR_": "BC Public School",
+				"DISTRICT_N": 8,
+				"DISTRICT_L": "Kootenay Lake",
+				"SCHOOL_NUM": 807005,
+				"SCHOOL_NAM": "Trafalgar Middle School",
+				"SCHOOL_FAC": "Standard",
+				"SCHOOL_PHY": "1201 JOSEPHINE ST, NELSON, BC",
+				"SCHOOL_CIT": "NELSON",
+				"SCHOOL_PRO": "BC",
+				"SCHOOL_POS": "V1L1X8",
+				"SCHOOL_PHO": "250 352-5591",
+				"SCHOOL_FAX": "250 352-6522",
+				"SCHOOL_LAT": 49.48716,
+				"SCHOOL_LON": -117.28784,
+				"ORGANIZATI": "MIDDLE SCHOOL",
+				"GRADE_STRI": "8 Jun",
+				"HAS_ELEMEN": "TRUE",
+				"HAS_SECOND": "TRUE",
+				"Unique_ID": 9
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-117.28784, 49.48716]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"X": -117.27499,
+				"Y": 49.1897,
+				"SCHOOL_YEA": "2013\/2014",
+				"PUBLIC_OR_": "BC Public School",
+				"DISTRICT_N": 8,
+				"DISTRICT_L": "Kootenay Lake",
+				"SCHOOL_NUM": 807011,
+				"SCHOOL_NAM": "Salmo Elementary School",
+				"SCHOOL_FAC": "Standard",
+				"SCHOOL_PHY": "650 GLENDALE AVE, SALMO, BC",
+				"SCHOOL_CIT": "SALMO",
+				"SCHOOL_PRO": "BC",
+				"SCHOOL_POS": "V0G1Z0",
+				"SCHOOL_PHO": "250 357-2214",
+				"SCHOOL_FAX": "250 357-9449",
+				"SCHOOL_LAT": 49.1897,
+				"SCHOOL_LON": -117.27499,
+				"ORGANIZATI": "ELEMENTARY",
+				"GRADE_STRI": "K-6",
+				"HAS_ELEMEN": "TRUE",
+				"HAS_SECOND": "FALSE",
+				"Unique_ID": 1
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-117.27499, 49.1897]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"X": -117.28143,
+				"Y": 49.19105,
+				"SCHOOL_YEA": "2013\/2014",
+				"PUBLIC_OR_": "BC Public School",
+				"DISTRICT_N": 8,
+				"DISTRICT_L": "Kootenay Lake",
+				"SCHOOL_NUM": 807012,
+				"SCHOOL_NAM": "Salmo Secondary",
+				"SCHOOL_FAC": "Standard",
+				"SCHOOL_PHY": "715 DAVIES AVE, SALMO, BC",
+				"SCHOOL_CIT": "SALMO",
+				"SCHOOL_PRO": "BC",
+				"SCHOOL_POS": "V0G1Z0",
+				"SCHOOL_PHO": "250 357-2226",
+				"SCHOOL_FAX": "250 357-9777",
+				"SCHOOL_LAT": 49.19105,
+				"SCHOOL_LON": -117.28143,
+				"ORGANIZATI": "ELEMENTARY SECONDARY",
+				"GRADE_STRI": "12 Jul",
+				"HAS_ELEMEN": "TRUE",
+				"HAS_SECOND": "TRUE",
+				"Unique_ID": 2
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-117.28143, 49.19105]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"X": -117.27263,
+				"Y": 49.50223,
+				"SCHOOL_YEA": "2013\/2014",
+				"PUBLIC_OR_": "BC Public School",
+				"DISTRICT_N": 8,
+				"DISTRICT_L": "Kootenay Lake",
+				"SCHOOL_NUM": 807013,
+				"SCHOOL_NAM": "L V Rogers Secondary",
+				"SCHOOL_FAC": "Standard",
+				"SCHOOL_PHY": "1004 COTTONWOOD ST, NELSON, BC",
+				"SCHOOL_CIT": "NELSON",
+				"SCHOOL_PRO": "BC",
+				"SCHOOL_POS": "V1L3W2",
+				"SCHOOL_PHO": "250 352-5538",
+				"SCHOOL_FAX": "250 352-3119",
+				"SCHOOL_LAT": 49.50223,
+				"SCHOOL_LON": -117.27263,
+				"ORGANIZATI": "SECONDARY",
+				"GRADE_STRI": "12 Aug",
+				"HAS_ELEMEN": "FALSE",
+				"HAS_SECOND": "TRUE",
+				"Unique_ID": 4
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-117.27263, 49.50223]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"X": -117.28629,
+				"Y": 49.48976,
+				"SCHOOL_YEA": "2013\/2014",
+				"PUBLIC_OR_": "BC Public School",
+				"DISTRICT_N": 8,
+				"DISTRICT_L": "Kootenay Lake",
+				"SCHOOL_NUM": 807014,
+				"SCHOOL_NAM": "South Nelson Elementary",
+				"SCHOOL_FAC": "Standard",
+				"SCHOOL_PHY": "814 LATIMER ST, NELSON, BC",
+				"SCHOOL_CIT": "NELSON",
+				"SCHOOL_PRO": "BC",
+				"SCHOOL_POS": "V1L4V7",
+				"SCHOOL_PHO": "250 354-4139",
+				"SCHOOL_FAX": "250 354-4407",
+				"SCHOOL_LAT": 49.48976,
+				"SCHOOL_LON": -117.28629,
+				"ORGANIZATI": "ELEMENTARY",
+				"GRADE_STRI": "K-5",
+				"HAS_ELEMEN": "TRUE",
+				"HAS_SECOND": "FALSE",
+				"Unique_ID": 8
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-117.28629, 49.48976]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"X": -117.37,
+				"Y": 49.4889,
+				"SCHOOL_YEA": "2013\/2014",
+				"PUBLIC_OR_": "BC Public School",
+				"DISTRICT_N": 8,
+				"DISTRICT_L": "Kootenay Lake",
+				"SCHOOL_NUM": 807016,
+				"SCHOOL_NAM": "Blewett Elementary School",
+				"SCHOOL_FAC": "Standard",
+				"SCHOOL_PHY": "2665 BLEWETT RD, NELSON, BC",
+				"SCHOOL_CIT": "NELSON",
+				"SCHOOL_PRO": "BC",
+				"SCHOOL_POS": "V1L6V4",
+				"SCHOOL_PHO": "250 352-5314",
+				"SCHOOL_FAX": "250 352-1648",
+				"SCHOOL_LAT": 49.4889,
+				"SCHOOL_LON": -117.37,
+				"ORGANIZATI": "ELEMENTARY",
+				"GRADE_STRI": "K-5",
+				"HAS_ELEMEN": "TRUE",
+				"HAS_SECOND": "FALSE",
+				"Unique_ID": 1
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-117.37, 49.4889]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"X": -117.30295,
+				"Y": 49.48102,
+				"SCHOOL_YEA": "2013\/2014",
+				"PUBLIC_OR_": "BC Public School",
+				"DISTRICT_N": 8,
+				"DISTRICT_L": "Kootenay Lake",
+				"SCHOOL_NUM": 807018,
+				"SCHOOL_NAM": "Rosemont Elementary School",
+				"SCHOOL_FAC": "Standard",
+				"SCHOOL_PHY": "1605 CREASE AVE, NELSON, BC",
+				"SCHOOL_CIT": "NELSON",
+				"SCHOOL_PRO": "BC",
+				"SCHOOL_POS": "V1L1A5",
+				"SCHOOL_PHO": "250 352-3182",
+				"SCHOOL_FAX": "250 352-9761",
+				"SCHOOL_LAT": 49.48102,
+				"SCHOOL_LON": -117.30295,
+				"ORGANIZATI": "ELEMENTARY",
+				"GRADE_STRI": "K-5",
+				"HAS_ELEMEN": "TRUE",
+				"HAS_SECOND": "FALSE",
+				"Unique_ID": 7
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-117.30295, 49.48102]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"X": -117.53581,
+				"Y": 49.44594,
+				"SCHOOL_YEA": "2013\/2014",
+				"PUBLIC_OR_": "BC Public School",
+				"DISTRICT_N": 8,
+				"DISTRICT_L": "Kootenay Lake",
+				"SCHOOL_NUM": 807025,
+				"SCHOOL_NAM": "Mount Sentinel Secondary",
+				"SCHOOL_FAC": "Standard",
+				"SCHOOL_PHY": "1014 PLAYMOR RD, SOUTH SLOCAN, BC",
+				"SCHOOL_CIT": "SOUTH SLOCAN",
+				"SCHOOL_PRO": "BC",
+				"SCHOOL_POS": "V0G2G0",
+				"SCHOOL_PHO": "250 359-7219",
+				"SCHOOL_FAX": "250 359-7688",
+				"SCHOOL_LAT": 49.44594,
+				"SCHOOL_LON": -117.53581,
+				"ORGANIZATI": "ELEMENTARY SECONDARY",
+				"GRADE_STRI": "12 Jul",
+				"HAS_ELEMEN": "TRUE",
+				"HAS_SECOND": "TRUE",
+				"Unique_ID": 2
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-117.53581, 49.44594]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"X": -117.46969,
+				"Y": 49.76393,
+				"SCHOOL_YEA": "2013\/2014",
+				"PUBLIC_OR_": "BC Public School",
+				"DISTRICT_N": 8,
+				"DISTRICT_L": "Kootenay Lake",
+				"SCHOOL_NUM": 807026,
+				"SCHOOL_NAM": "W.E. Graham Community School",
+				"SCHOOL_FAC": "Standard",
+				"SCHOOL_PHY": "915 HAROLD ST, SLOCAN, BC",
+				"SCHOOL_CIT": "SLOCAN",
+				"SCHOOL_PRO": "BC",
+				"SCHOOL_POS": "V0G2C0",
+				"SCHOOL_PHO": "250 355-2212",
+				"SCHOOL_FAX": "250 355-2523",
+				"SCHOOL_LAT": 49.76393,
+				"SCHOOL_LON": -117.46969,
+				"ORGANIZATI": "ELEMENTARY JR SECONDARY",
+				"GRADE_STRI": "K-10",
+				"HAS_ELEMEN": "TRUE",
+				"HAS_SECOND": "TRUE",
+				"Unique_ID": 3
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-117.46969, 49.76393]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"X": -117.54444,
+				"Y": 49.4419,
+				"SCHOOL_YEA": "2013\/2014",
+				"PUBLIC_OR_": "BC Public School",
+				"DISTRICT_N": 8,
+				"DISTRICT_L": "Kootenay Lake",
+				"SCHOOL_NUM": 807033,
+				"SCHOOL_NAM": "Brent Kennedy Elementary",
+				"SCHOOL_FAC": "Standard",
+				"SCHOOL_PHY": "1092 HIGHWAY 6, CRESCENT VALLEY, BC",
+				"SCHOOL_CIT": "CRESCENT VALLEY",
+				"SCHOOL_PRO": "BC",
+				"SCHOOL_POS": "V0G2G0",
+				"SCHOOL_PHO": "250 359-7292",
+				"SCHOOL_FAX": "250 359-7522",
+				"SCHOOL_LAT": 49.4419,
+				"SCHOOL_LON": -117.54444,
+				"ORGANIZATI": "ELEMENTARY",
+				"GRADE_STRI": "K-6",
+				"HAS_ELEMEN": "TRUE",
+				"HAS_SECOND": "FALSE",
+				"Unique_ID": 1
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-117.54444, 49.4419]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"X": -117.56749,
+				"Y": 49.61332,
+				"SCHOOL_YEA": "2013\/2014",
+				"PUBLIC_OR_": "BC Public School",
+				"DISTRICT_N": 8,
+				"DISTRICT_L": "Kootenay Lake",
+				"SCHOOL_NUM": 807034,
+				"SCHOOL_NAM": "Winlaw Elementary School",
+				"SCHOOL_FAC": "Standard",
+				"SCHOOL_PHY": "5604 WINLAW BRIDGE RD, WINLAW, BC",
+				"SCHOOL_CIT": "WINLAW",
+				"SCHOOL_PRO": "BC",
+				"SCHOOL_POS": "V0G2J0",
+				"SCHOOL_PHO": "250 226-7217",
+				"SCHOOL_FAX": "250 226-7210",
+				"SCHOOL_LAT": 49.61332,
+				"SCHOOL_LON": -117.56749,
+				"ORGANIZATI": "ELEMENTARY",
+				"GRADE_STRI": "K-6",
+				"HAS_ELEMEN": "TRUE",
+				"HAS_SECOND": "FALSE",
+				"Unique_ID": 4
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-117.56749, 49.61332]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"X": -117.048,
+				"Y": 49.6137,
+				"SCHOOL_YEA": "2013\/2014",
+				"PUBLIC_OR_": "BC Public School",
+				"DISTRICT_N": 8,
+				"DISTRICT_L": "Kootenay Lake",
+				"SCHOOL_NUM": 807035,
+				"SCHOOL_NAM": "Redfish Elementary School",
+				"SCHOOL_FAC": "Standard",
+				"SCHOOL_PHY": "265 BRYAN RD, NELSON, BC",
+				"SCHOOL_CIT": "NELSON",
+				"SCHOOL_PRO": "BC",
+				"SCHOOL_POS": "V1L6M9",
+				"SCHOOL_PHO": "250 229-4224",
+				"SCHOOL_FAX": "250 229-5676",
+				"SCHOOL_LAT": 49.6137,
+				"SCHOOL_LON": -117.048,
+				"ORGANIZATI": "ELEMENTARY",
+				"GRADE_STRI": "K-5",
+				"HAS_ELEMEN": "TRUE",
+				"HAS_SECOND": "FALSE",
+				"Unique_ID": 6
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-117.048, 49.6137]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"X": -116.5148,
+				"Y": 49.09976,
+				"SCHOOL_YEA": "2013\/2014",
+				"PUBLIC_OR_": "BC Public School",
+				"DISTRICT_N": 8,
+				"DISTRICT_L": "Kootenay Lake",
+				"SCHOOL_NUM": 886004,
+				"SCHOOL_NAM": "Adam Robertson Elementary",
+				"SCHOOL_FAC": "Standard",
+				"SCHOOL_PHY": "421 9TH AVE NORTH, CRESTON, BC",
+				"SCHOOL_CIT": "CRESTON",
+				"SCHOOL_PRO": "BC",
+				"SCHOOL_POS": "V0B1G0",
+				"SCHOOL_PHO": "250 428-2051",
+				"SCHOOL_FAX": "250 428-2019",
+				"SCHOOL_LAT": 49.09976,
+				"SCHOOL_LON": -116.5148,
+				"ORGANIZATI": "ELEMENTARY",
+				"GRADE_STRI": "K-7",
+				"HAS_ELEMEN": "TRUE",
+				"HAS_SECOND": "FALSE",
+				"Unique_ID": 1
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-116.5148, 49.09976]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"X": -116.97604,
+				"Y": 50.23867,
+				"SCHOOL_YEA": "2013\/2014",
+				"PUBLIC_OR_": "BC Public School",
+				"DISTRICT_N": 8,
+				"DISTRICT_L": "Kootenay Lake",
+				"SCHOOL_NUM": 886005,
+				"SCHOOL_NAM": "Jewett Elementary",
+				"SCHOOL_FAC": "Standard",
+				"SCHOOL_PHY": "132 MEADOW CREEK RD, MEADOW CREEK, BC",
+				"SCHOOL_CIT": "MEADOW CREEK",
+				"SCHOOL_PRO": "BC",
+				"SCHOOL_POS": "V0G1N0",
+				"SCHOOL_PHO": "250 366-4224",
+				"SCHOOL_FAX": "250 366-4429",
+				"SCHOOL_LAT": 50.23867,
+				"SCHOOL_LON": -116.97604,
+				"ORGANIZATI": "ELEMENTARY",
+				"GRADE_STRI": "K-4",
+				"HAS_ELEMEN": "TRUE",
+				"HAS_SECOND": "FALSE",
+				"Unique_ID": 2
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-116.97604, 50.23867]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"X": -116.82782,
+				"Y": 49.67999,
+				"SCHOOL_YEA": "2013\/2014",
+				"PUBLIC_OR_": "BC Public School",
+				"DISTRICT_N": 8,
+				"DISTRICT_L": "Kootenay Lake",
+				"SCHOOL_NUM": 886006,
+				"SCHOOL_NAM": "Crawford Bay Elem-Secondary",
+				"SCHOOL_FAC": "Standard",
+				"SCHOOL_PHY": "16150 WALKLEY RD, CRAWFORD BAY, BC",
+				"SCHOOL_CIT": "CRAWFORD BAY",
+				"SCHOOL_PRO": "BC",
+				"SCHOOL_POS": "V0B1E0",
+				"SCHOOL_PHO": "250 227-9218",
+				"SCHOOL_FAX": "250 227-9525",
+				"SCHOOL_LAT": 49.67999,
+				"SCHOOL_LON": -116.82782,
+				"ORGANIZATI": "ELEMENTARY SECONDARY",
+				"GRADE_STRI": "K-12",
+				"HAS_ELEMEN": "TRUE",
+				"HAS_SECOND": "TRUE",
+				"Unique_ID": 3
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-116.82782, 49.67999]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"X": -116.50432,
+				"Y": 49.09418,
+				"SCHOOL_YEA": "2013\/2014",
+				"PUBLIC_OR_": "BC Public School",
+				"DISTRICT_N": 8,
+				"DISTRICT_L": "Kootenay Lake",
+				"SCHOOL_NUM": 886007,
+				"SCHOOL_NAM": "Prince Charles Secondary",
+				"SCHOOL_FAC": "Standard",
+				"SCHOOL_PHY": "223 18 AVE S, CRESTON, BC",
+				"SCHOOL_CIT": "CRESTON",
+				"SCHOOL_PRO": "BC",
+				"SCHOOL_POS": "V0B1G0",
+				"SCHOOL_PHO": "250 428-2274",
+				"SCHOOL_FAX": "250 428-5090",
+				"SCHOOL_LAT": 49.09418,
+				"SCHOOL_LON": -116.50432,
+				"ORGANIZATI": "SECONDARY",
+				"GRADE_STRI": "12 Aug",
+				"HAS_ELEMEN": "FALSE",
+				"HAS_SECOND": "TRUE",
+				"Unique_ID": 6
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-116.50432, 49.09418]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"X": -116.448,
+				"Y": 49.0825,
+				"SCHOOL_YEA": "2013\/2014",
+				"PUBLIC_OR_": "BC Public School",
+				"DISTRICT_N": 8,
+				"DISTRICT_L": "Kootenay Lake",
+				"SCHOOL_NUM": 886014,
+				"SCHOOL_NAM": "Canyon\/Lister Elementary",
+				"SCHOOL_FAC": "Standard",
+				"SCHOOL_PHY": "4575 CANYON-LISTER RD, CANYON, BC",
+				"SCHOOL_CIT": "CANYON",
+				"SCHOOL_PRO": "BC",
+				"SCHOOL_POS": "V0B1C0",
+				"SCHOOL_PHO": "250 428-4161",
+				"SCHOOL_FAX": "250 428-2268",
+				"SCHOOL_LAT": 49.0825,
+				"SCHOOL_LON": -116.448,
+				"ORGANIZATI": "ELEMENTARY",
+				"GRADE_STRI": "K-7",
+				"HAS_ELEMEN": "TRUE",
+				"HAS_SECOND": "FALSE",
+				"Unique_ID": 2
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-116.448, 49.0825]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"X": -116.51246,
+				"Y": 49.0889,
+				"SCHOOL_YEA": "2013\/2014",
+				"PUBLIC_OR_": "BC Public School",
+				"DISTRICT_N": 8,
+				"DISTRICT_L": "Kootenay Lake",
+				"SCHOOL_NUM": 886016,
+				"SCHOOL_NAM": "Homelinks Centre",
+				"SCHOOL_FAC": "District Distance Ed",
+				"SCHOOL_PHY": "617 11TH AVE S, CRESTON, BC",
+				"SCHOOL_CIT": "CRESTON",
+				"SCHOOL_PRO": "BC",
+				"SCHOOL_POS": "V0B1G0",
+				"SCHOOL_PHO": "250 428-2217",
+				"SCHOOL_FAX": "250 428-4990",
+				"SCHOOL_LAT": 49.0889,
+				"SCHOOL_LON": -116.51246,
+				"ORGANIZATI": "ELEMENTARY SECONDARY",
+				"GRADE_STRI": "K-12",
+				"HAS_ELEMEN": "TRUE",
+				"HAS_SECOND": "TRUE",
+				"Unique_ID": 5
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-116.51246, 49.0889]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"X": -116.91124,
+				"Y": 49.91218,
+				"SCHOOL_YEA": "2013\/2014",
+				"PUBLIC_OR_": "BC Public School",
+				"DISTRICT_N": 8,
+				"DISTRICT_L": "Kootenay Lake",
+				"SCHOOL_NUM": 886018,
+				"SCHOOL_NAM": "J V Humphries Elem-Secondary",
+				"SCHOOL_FAC": "Standard",
+				"SCHOOL_PHY": "500 6TH ST, KASLO, BC",
+				"SCHOOL_CIT": "KASLO",
+				"SCHOOL_PRO": "BC",
+				"SCHOOL_POS": "V0G1M0",
+				"SCHOOL_PHO": "250 353-2227",
+				"SCHOOL_FAX": "250 353-7434",
+				"SCHOOL_LAT": 49.91218,
+				"SCHOOL_LON": -116.91124,
+				"ORGANIZATI": "ELEMENTARY SECONDARY",
+				"GRADE_STRI": "K-12",
+				"HAS_ELEMEN": "TRUE",
+				"HAS_SECOND": "TRUE",
+				"Unique_ID": 1
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-116.91124, 49.91218]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"X": -116.469,
+				"Y": 49.0917,
+				"SCHOOL_YEA": "2013\/2014",
+				"PUBLIC_OR_": "BC Public School",
+				"DISTRICT_N": 8,
+				"DISTRICT_L": "Kootenay Lake",
+				"SCHOOL_NUM": 886019,
+				"SCHOOL_NAM": "Erickson Elementary",
+				"SCHOOL_FAC": "Standard",
+				"SCHOOL_PHY": "3523 HWY #3, ERICKSON, BC",
+				"SCHOOL_CIT": "ERICKSON",
+				"SCHOOL_PRO": "BC",
+				"SCHOOL_POS": "V0B1K0",
+				"SCHOOL_PHO": "250 428-2363",
+				"SCHOOL_FAX": "250 428-5783",
+				"SCHOOL_LAT": 49.0917,
+				"SCHOOL_LON": -116.469,
+				"ORGANIZATI": "ELEMENTARY",
+				"GRADE_STRI": "K-7",
+				"HAS_ELEMEN": "TRUE",
+				"HAS_SECOND": "FALSE",
+				"Unique_ID": 4
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-116.469, 49.0917]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"X": -117.29322,
+				"Y": 49.48911,
+				"SCHOOL_YEA": "2013\/2014",
+				"PUBLIC_OR_": "BC Public School",
+				"DISTRICT_N": 8,
+				"DISTRICT_L": "Kootenay Lake",
+				"SCHOOL_NUM": 898001,
+				"SCHOOL_NAM": "Distance Ed School of the Kootenays",
+				"SCHOOL_FAC": "District Distance Ed",
+				"SCHOOL_PHY": "811 STANLEY ST, NELSON, BC",
+				"SCHOOL_CIT": "NELSON",
+				"SCHOOL_PRO": "BC",
+				"SCHOOL_POS": "V1L1N8",
+				"SCHOOL_PHO": "250 354-4311",
+				"SCHOOL_FAX": "250 505-7007",
+				"SCHOOL_LAT": 49.48911,
+				"SCHOOL_LON": -117.29322,
+				"ORGANIZATI": "ELEMENTARY SECONDARY",
+				"GRADE_STRI": "K-12",
+				"HAS_ELEMEN": "TRUE",
+				"HAS_SECOND": "TRUE",
+				"Unique_ID": 2
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-117.29322, 49.48911]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"X": -117.29322,
+				"Y": 49.48911,
+				"SCHOOL_YEA": "2013\/2014",
+				"PUBLIC_OR_": "BC Public School",
+				"DISTRICT_N": 8,
+				"DISTRICT_L": "Kootenay Lake",
+				"SCHOOL_NUM": 899178,
+				"SCHOOL_NAM": "Wildflower",
+				"SCHOOL_FAC": "Standard",
+				"SCHOOL_PHY": "811 STANLEY ST, NELSON, BC",
+				"SCHOOL_CIT": "NELSON",
+				"SCHOOL_PRO": "BC",
+				"SCHOOL_POS": "V1L1N8",
+				"SCHOOL_PHO": "250 505-7020",
+				"SCHOOL_FAX": "250 505-7007",
+				"SCHOOL_LAT": 49.48911,
+				"SCHOOL_LON": -117.29322,
+				"ORGANIZATI": "ELEMENTARY JR SECONDARY",
+				"GRADE_STRI": "9 Jan",
+				"HAS_ELEMEN": "TRUE",
+				"HAS_SECOND": "TRUE",
+				"Unique_ID": 10
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-117.29322, 49.48911]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"X": -117.29322,
+				"Y": 49.48911,
+				"SCHOOL_YEA": "2013\/2014",
+				"PUBLIC_OR_": "BC Public School",
+				"DISTRICT_N": 8,
+				"DISTRICT_L": "Kootenay Lake",
+				"SCHOOL_NUM": 899225,
+				"SCHOOL_NAM": "REACH",
+				"SCHOOL_FAC": "Alternate",
+				"SCHOOL_PHY": "811 STANLEY ST, NELSON, BC",
+				"SCHOOL_CIT": "NELSON",
+				"SCHOOL_PRO": "BC",
+				"SCHOOL_POS": "V1L1N8",
+				"SCHOOL_PHO": "250 352-5538",
+				"SCHOOL_FAX": "250 352-3119",
+				"SCHOOL_LAT": 49.48911,
+				"SCHOOL_LON": -117.29322,
+				"ORGANIZATI": "SECONDARY",
+				"GRADE_STRI": "12 Sep",
+				"HAS_ELEMEN": "FALSE",
+				"HAS_SECOND": "TRUE",
+				"Unique_ID": 5
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-117.29322, 49.48911]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"X": -116.51246,
+				"Y": 49.0889,
+				"SCHOOL_YEA": "2015",
+				"PUBLIC_OR_": "BC Public School",
+				"DISTRICT_N": 8,
+				"DISTRICT_L": "Kootenay Lake",
+				"SCHOOL_NUM": null,
+				"SCHOOL_NAM": "Wildflower",
+				"SCHOOL_FAC": "Standard",
+				"SCHOOL_PHY": "617 11TH AVE S, CRESTON, BC",
+				"SCHOOL_CIT": "CRESTON",
+				"SCHOOL_PRO": "BC",
+				"SCHOOL_POS": "V0B1G0",
+				"SCHOOL_PHO": "250 428-2217",
+				"SCHOOL_FAX": null,
+				"SCHOOL_LAT": 49.0889,
+				"SCHOOL_LON": -116.51246,
+				"ORGANIZATI": "ELEMENTARY SECONDARY",
+				"GRADE_STRI": "K-12",
+				"HAS_ELEMEN": "TRUE",
+				"HAS_SECOND": "TRUE",
+				"Unique_ID": 7
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-116.512449790288059, 49.088986112476604]
+			}
+		}
+	]
+}

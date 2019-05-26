@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Catchment Areas : Kootenay Lake School District</title>
+    <title>Catchment Areas | SD8</title>
     <meta class="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8" />
+    <meta name="description" content="Kootenay Lake School District 8 School Catchment Areas">
+    <meta name="keywords" content="School,Catchment,Kootenay Lake,Nelson,British Columbia">
     <meta class="author" content="Dana Diotte" />
-    <link rel="canonical" href="http://danadiotte.com" />
+    <link rel="canonical" href="https://www.sd8.bc.ca/catchments/" />
+    <link rel="icon" href="images/icon_sd8.png" type="image/png"> 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+        crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css" rel="stylesheet">
     <!-- Leaflet CSS-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
@@ -21,53 +26,8 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <style>
-        /* This is used to specify the map area. */
-        html, body, .row, .container, .container-map, #map {
-            height: 100%;
-        }
-
-        /* Add padding on the top an bottom so the top and bottom of map align with nav bars */
-        body {
-            padding: 54px 0;
-        }       
-
-        /* This shows a box of color for the legend */
-        .color-box {
-            width: 20px;
-            min-height: 20px;
-            float: left;
-            margin-right: 3px;
-        }
-
-        /* This sets the mobile size of the off cavas menus */
-        .navmenu {
-            padding: 0 10px;
-            width: 250px;
-        }
-
-        /* To accommodate iPad portrait mode */
-        @media (min-width: 0px) {
-            .navbar-toggle {
-                display: block; /* force showing the toggle */
-            }
-        }
-
-        /* This is for the "normal" size off canvas menu */
-        @media (min-width: 992px) {
-            body {
-                padding: 50px 250px 50px 0;
-            }
-
-            .navmenu {
-                padding: 50px 10px;
-            }
-
-            .navmenu-toggle {
-                display: none !important;
-            }
-        }
-    </style>
+    <!-- Catchment Map CSS -->
+    <link rel="stylesheet" href="css/catchment.css" />
 </head>
 <body>
     <!-- This is the off canvas menu for filtering -->
@@ -194,55 +154,55 @@
         <!--Boundaries-->
         <h5><span class="label label-default">Administrative Boundaries</span></h5>
         <label class="small">
-            <input type="checkbox" id="SCHOOL DISTRICT 8 - KOOTENAY LAKE"  class="bndry" value="SCHOOL DISTRICT 8 - KOOTENAY LAKE">
+            <input type="checkbox" id="Kootenay Lake School District 8"  class="bndry" name="bndry" value="Kootenay Lake School District 8">
             SD8 District Boundary
         </label><br>
         <label class="small">
-            <input type="checkbox" id="LOWER KOOTENAY BAND" class="bndry" value="LOWER KOOTENAY BAND">
+            <input type="checkbox" id="Lower Kootenay Band" class="bndry" name="bndry" value="Lower Kootenay Band">
             Lower Kootenay Band
         </label><br>
         <!--Regional Districts-->
         <h6><span>Regional Districts</span></h6>
         <label class="small">
-            <input type="checkbox" id="CENTRAL KOOTENAY" class="bndry" value="CENTRAL KOOTENAY">
+            <input type="checkbox" id="Regional District of Central Kootenay" class="bndry" name="bndry" value="Regional District of Central Kootenay">
             Central Kootenay
         </label><br>
         <label class="small">
-            <input type="checkbox" id="COLUMBIA SHUSWAP" class="bndry" value="COLUMBIA SHUSWAP">
+            <input type="checkbox" id="Columbia Shuswap Regional District" class="bndry" name="bndry" value="Columbia Shuswap Regional District">
             Columbia Shuswap
         </label><br>
         <label class="small">
-            <input type="checkbox" id="EAST KOOTENAY" class="bndry" value="EAST KOOTENAY">
+            <input type="checkbox" id="Regional District of East Kootenay" class="bndry" name="bndry" value="Regional District of East Kootenay">
             East Kootenay
         </label><br>
         <label class="small">
-            <input type="checkbox" id="KOOTENAY BOUNDARY" class="bndry" value="KOOTENAY BOUNDARY">
+            <input type="checkbox" id="Kootenay Boundary Regional District" class="bndry" name="bndry" value="Kootenay Boundary Regional District">
             Kootenay Boundary
         </label><br>
         <!--Communities -->
         <h6><span>Communities</span></h6>
         <label class="small">
-            <input type="checkbox" id="CRESTON" class="bndry" value="CRESTON">
+            <input type="checkbox" id="Creston" class="bndry" name="bndry" value="Creston">
             Creston
         </label><br>
         <label class="small">
-            <input type="checkbox" id="KASLO" class="bndry" value="KASLO">
+            <input type="checkbox" id="Kaslo" class="bndry" name="bndry" value="Kaslo">
             Kaslo
         </label><br>
         <label class="small">
-            <input type="checkbox" id="NELSON" class="bndry" value="NELSON">
+            <input type="checkbox" id="Nelson" class="bndry" name="bndry" value="Nelson">
             Nelson
         </label><br>
         <label class="small">
-            <input type="checkbox" id="SALMO" class="bndry" value="SALMO">
+            <input type="checkbox" id="Salmo" class="bndry" name="bndry" value="Salmo">
             Salmo
         </label><br>
         <label class="small">
-            <input type="checkbox" id="SLOCAN" class="bndry" value="SLOCAN">
+            <input type="checkbox" id="Slocan" class="bndry" name="bndry" value="Slocan">
             Slocan
         </label><br><br>
-        <button type="button" class="btn btn-default" id="reset" onclick="removeData();">
-            <span class="glyphicon glyphicon-repeat"></span> Reset
+        <button type="button" class="btn btn-default" id="reset">
+            <span class="glyphicon glyphicon-repeat"></span> Reset Map
         </button>
         <br><br><br><br><br>
     </div>
@@ -251,7 +211,8 @@
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#"><img src="images/logo.png" alt="Kootenay Lake School District" style="width:100px;height:46px;float:left;margin-top:-10px;vertical-align: middle;display: inline-block;" class="img-responsive">Kootenay Lake School District - Catchment Areas</a>
+                <a class="navbar-brand" href="#"><img src="images/logo_sd8.png" alt="Kootenay Lake School District" style="width:100px;height:46px;float:left;margin-top:-15px;padding:5px 5px 5px 5px;vertical-align: middle;display: inline-block;" class="img-responsive"></a>
+                <a class="navbar-brand" href="#">Catchment Areas</a>
                 <button type="button" class="navbar-toggle navmenu-toggle btn btn-xs" data-toggle="offcanvas" data-target="#filterMenu" data-canvas="body">Filters</button>
             </div>
         </div>
@@ -285,10 +246,10 @@
             <h4 class="modal-title">Metadata</h4>
           </div>
           <div class="modal-body">
-            <p><strong>Description:</strong>  A School District Catchment Boundary is a geographic area created for the purposes of educational administration.
+            <p><strong>Summary:</strong>  A School District Catchment Boundary is a geographic area created for the purposes of educational administration.
             </p>
 
-            <p><strong>Method of Creation:</strong> SD catchment boundaries are determined by School District 8, Kootenay Lake <a href="http://www.sd8.bc.ca/Policy/461SchoolChoice&Catchments.pdf" target="_blank">Policy No. 461</a>. Boundaries are determined based upon a number of factors including geography and demographics. Boundaries were created using 1:20,000 TRIM data from <a href="http://www.data.gov.bc.ca/dbc/geographic/connect/index.page?" target="_blank">DataBC WMS base layers</a> and Fire Zone, Fire Department and Addressing data provided by the <a href="http://www.rdck.bc.ca/" target="_blank">Regional District of Central Kootenay (RDCK)</a>.</p>
+            <p><strong>Description:</strong> SD catchment boundaries are determined by School District 8, Kootenay Lake <a href="http://www.sd8.bc.ca/Policy/461SchoolChoice&Catchments.pdf" target="_blank">Policy No. 461</a>. Boundaries are determined based upon a number of factors including geography and demographics. Boundaries were created using 1:20,000 TRIM data from <a href="http://www.data.gov.bc.ca/dbc/geographic/connect/index.page?" target="_blank">DataBC WMS base layers</a> and Fire Zone, Fire Department and Addressing data provided by the <a href="http://www.rdck.bc.ca/" target="_blank">Regional District of Central Kootenay (RDCK)</a>.</p>
 
             <p><a href="http://www.bcstats.gov.bc.ca/StatisticsBySubject/Geography/TranslationsDataSets.aspx" target="_blank">School District</a> boundary data acquired from <a href="http://www.bcstats.gov.bc.ca/Home.aspx" target="_blank">BC Stats</a>.</p>
 
@@ -298,7 +259,7 @@
                 and <a href="http://catalogue.data.gov.bc.ca/dataset/tantalis-regional-districts" target="_blank">Regional District</a> data acquired from <a href="http://www.data.gov.bc.ca/" target="_blank">DataBC</a>.
             </p>
 
-            <p>Built on a <a href="https://leafletjs.com/" target="_blank">Leaflet</a> with all layers served using <a href="http://geojson.org/" target="_blank">GeoJSON</a>. GeoJSON validated using <a href="http://jsonlint.com/" target="_blank">JSONLint</a>.
+            <p>Built on a <a href="https://leafletjs.com/" target="_blank">Leaflet</a> with all layers served using <a href="https://geojson.org/" target="_blank">GeoJSON</a> (markers) and <a href="https://github.com/topojson/topojson" target="_blank">TopoJSON</a> (polygons). GeoJSON and TopoJSON validated using <a href="http://jsonlint.com/" target="_blank">JSONLint</a>.
             </p>
 
             <p>All school catchment layers digitized in <a href="http://www.qgis.org/en/site/" target="_blank">QGIS</a> and topology run through <a href="http://grass.osgeo.org/" target="_blank">GRASS</a> where geometry errors were detected.
@@ -318,187 +279,13 @@
     <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <!-- TopoJSON -->
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
     <!-- Boostrap -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- Jasny -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-    <script>
-        var map = L.map('map').setView([49.624889, -116.962890], 8);
-
-        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href=”http://osm.org/copyright”>OpenStreetMap</a> contributors'
-        }).addTo(map);
-        
-        // Cluster school markers
-        var markers = L.markerClusterGroup({
-            showCoverageOnHover:false
-            }
-        );
-        
-        // Custom School Icon
-        var schoolIcon = L.icon({
-            iconUrl: 'images/school.png',
-            iconSize:     [32, 37], // size of the icon
-            iconAnchor:   [15, 35], // point of the icon which will correspond to marker's location
-            popupAnchor:  [1, -30] // point from which the popup should open relative to the iconAnchor
-        });
-
-        /******************************/
-        /* load school GeoJSON file
-        /******************************/
-        // start json
-        $.getJSON("data/schools.geojson",function(data){
-            // L.geoJson function is used to parse geojson file and load on to map 
-            var schoolLayer = L.geoJson(data ,{
-                pointToLayer: function(feature, latlng) {
-                    console.log(latlng, feature);
-                    return L.marker(latlng, {
-                    icon: schoolIcon
-                    })
-                },
-                onEachFeature: function(feature, featureLayer) {
-                    featureLayer.bindPopup('<b>' + feature.properties.SCHOOL_NAM + '</b>' + '<br />'
-                                + feature.properties.SCHOOL_PHY);
-                }
-            })
-
-            markers.addLayer(schoolLayer);
-            map.addLayer(markers);
-            map.fitBounds(markers.getBounds());
-
-        });//end json
-        // end load school GeoJSON file
-
-        // Function to add schools
-		function addSchools(){
-			map.addLayer(markers);
-            // Fit to school markers bounds if clicked off/on
-            map.fitBounds(markers.getBounds());
-		};
-
-		// Function to remove schools
-		function removeSchools(){
-			map.removeLayer(markers);
-		};
-
-		// Function to toggle schools
-		function toggleSchools(){
-			if(map.hasLayer(markers)){
-				removeSchools();
-			} else {
-				addSchools();
-			}
-		};
-
-		// Use $("elementID") and the jQuery click listener method to toggle schools
-		$( "#schools" ).click(function() {
-			toggleSchools();
-		});
-
-        // Set style function for GeoJSON polygon style properties
-        function style(feature) {
-            return {color: feature.properties.stroke};
-            return {weight: feature.properties.stroke-width};
-            return {opacity: feature.properties.stroke-opacity};
-            return {fillColor: feature.properties.fill};
-            return {fillOpacity: feature.properties.fill-opacity};
-        }
-
-        let checkboxStates
-
-        /***********************************/
-        /* start load catchment GeoJSON file
-        /***********************************/
-        //start json
-        $.getJSON("data/catchment.geojson",function(data){
-            const catchmentLayer = L.geoJSON(null,{
-                filter: (feature) => {
-                    const isCatchmentChecked = checkboxStates.catchments.includes(feature.properties.SCHOOL)
-                    return isCatchmentChecked //only true if both are true
-                },
-                onEachFeature: function(feature, featureLayer) {
-                    featureLayer.bindPopup('<b>' + "Catchment: " + '</b>' + feature.properties.CATCHMENT +  '<br />'
-                                + '<b>' + "School: " + '</b>' + feature.properties.SCHOOL);
-                },
-                style: style
-            }).addTo(map)
-
-            function updateCheckboxStates() {
-                checkboxStates = {
-                catchments: []
-            }    
-                for (let input of document.querySelectorAll('input')) {
-                    if(input.checked) {
-                        switch (input.className) {
-                            case 'catchment': checkboxStates.catchments.push(input.value); break
-                        }
-                    }
-                }
-            }
-
-            for (let input of document.querySelectorAll('input')) {
-            //Listen to 'change' event of all inputs
-                input.onchange = (e) => {
-                    catchmentLayer.clearLayers()
-                    updateCheckboxStates()
-                    catchmentLayer.addData(data)
-                    map.addLayer(catchmentLayer);
-                    map.fitBounds(catchmentLayer.getBounds());
-                }
-            }
-
-            /****** INIT ******/
-            updateCheckboxStates()
-            catchmentLayer.addData(data)
-
-        });//end json
-        //end load catchment GeoJSON file
-
-        /**************************************/
-        /* load admin boundaries GeoJSON file
-        /**************************************/
-        //start json
-        // $.getJSON("data/adminBoundaries.geojson",function(data){
-        //     const boundariesLayer = L.geoJSON(null,{
-        //         filter: (feature) => {
-        //             const isBoundaryChecked = checkboxStates.boundaries.includes(feature.properties.SCHOOL)
-        //             return isBoundaryChecked //only true if both are true
-        //         },
-        //         onEachFeature: function(feature, featureLayer) {
-        //             featureLayer.bindPopup('<b>' + "Boundary: " + '</b>' + feature.properties.BOUNDARY);
-        //         },
-        //         style: style
-        //     }).addTo(map)
-
-        //     function updateCheckboxStates() {
-        //         checkboxStates = {
-        //         boundaries: []
-        //     }    
-        //         for (let input of document.querySelectorAll('input')) {
-        //             if(input.checked) {
-        //                 switch (input.className) {
-        //                     case 'bndry': checkboxStates.boundaries.push(input.value); break
-        //                 }
-        //             }
-        //         }
-        //     }
-
-        //     for (let input of document.querySelectorAll('input')) {
-        //     //Listen to 'change' event of all inputs
-        //         input.onchange = (e) => {
-        //             boundariesLayer.clearLayers()
-        //             updateCheckboxStates()
-        //             boundariesLayer.addData(data)
-        //         }
-        //     }
-
-        //     /****** INIT ******/
-        //     updateCheckboxStates()
-        //     boundariesLayer.addData(data)
-
-        // });//end json
-        // end load admin boundaries GeoJSON file
-
-    </script>
+    <!-- Catchment Map JS -->
+    <script src="js/map.js"></script>
 </body>
 </html>

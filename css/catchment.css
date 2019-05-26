@@ -1,0 +1,45 @@
+/* This is used to specify the map area. */
+html, body, .row, .container, .container-map, #map {
+    height: 100%;
+}
+
+/* Add padding on the top an bottom so the top and bottom of map align with nav bars */
+body {
+    padding: 54px 0;
+}       
+
+/* This shows a box of color for the legend */
+.color-box {
+    width: 20px;
+    min-height: 20px;
+    float: left;
+    margin-right: 3px;
+}
+
+/* This sets the mobile size of the off cavas menus */
+.navmenu {
+    padding: 0 10px;
+    width: 250px;
+}
+
+/* To accommodate iPad portrait mode */
+@media (min-width: 0px) {
+    .navbar-toggle {
+        display: block; /* force showing the toggle */
+    }
+}
+
+/* This is for the "normal" size off canvas menu */
+@media (min-width: 992px) {
+    body {
+        padding: 50px 250px 50px 0;
+    }
+
+    .navmenu {
+        padding: 50px 10px;
+    }
+
+    .navmenu-toggle {
+        display: none !important;
+    }
+}

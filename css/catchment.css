@@ -8,6 +8,14 @@ body {
     padding: 54px 0;
 }       
 
+/* To remove border and shading in footer */
+.panel-footer {
+    /* background-color:blue; */
+    line-height: 2.4;
+    background-color: #FFFFFF;
+    border-top: 0px;
+  }
+
 /* This shows a box of color for the legend */
 /* .color-box {
     width: 20px;

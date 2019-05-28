@@ -9,17 +9,25 @@ body {
 }       
 
 /* This shows a box of color for the legend */
-.color-box {
+/* .color-box {
     width: 20px;
     min-height: 20px;
     float: left;
     margin-right: 3px;
-}
+} */
 
 /* This sets the mobile size of the off cavas menus */
 .navmenu {
     padding: 0 10px;
     width: 250px;
+}
+
+/* To accommodate header with filter and see Leaflet Control */
+@media (max-width: 365px) {
+    .navbar-brand {
+        font-size: 12px;
+        padding-left: 10px;
+    }
 }
 
 /* To accommodate iPad portrait mode */

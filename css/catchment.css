@@ -28,6 +28,10 @@ body {
         font-size: 12px;
         padding-left: 10px;
     }
+
+    .panel-footer {
+        font-size: 11px;
+    }
 }
 
 /* To accommodate iPad portrait mode */

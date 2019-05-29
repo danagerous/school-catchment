@@ -17,8 +17,8 @@ L.TopoJSON = L.GeoJSON.extend({
 
 var map = L.map('map').setView([49.624889, -116.962890], 8);
 
-L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-attribution: '&copy; <a href=”http://osm.org/copyright”>OpenStreetMap</a> contributors'
+L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+attribution: '&copy; <a href=”https://osm.org/copyright”>OpenStreetMap</a> contributors'
 }).addTo(map);
 
 // Cluster school markers

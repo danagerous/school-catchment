@@ -17,7 +17,7 @@ L.TopoJSON = L.GeoJSON.extend({
 
 var map = L.map('map').setView([49.624889, -116.962890], 8);
 
-L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; <a href=”https://osm.org/copyright”>OpenStreetMap</a> contributors'
 }).addTo(map);
 
@@ -163,6 +163,6 @@ $.getJSON("data/catchment_sd8.topojson",function(data){
     /****** INIT ******/
     updateCheckboxStates()
     catchmentLayer.addData(data)
-
+    
 });//end json
 //end load catchment TopoJSON file

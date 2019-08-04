@@ -269,19 +269,12 @@
     
     <!-- Update Browser from IE11 or earlier -->
     <script> 
-        var $buoop = {required:{e:-7},
-            insecure:true,
-            //noclose:true,
-            //test: true,
-            api:2019.07
-        };
-
+        var $buoop = {required:{e:-3,f:-3,o:-3,s:-3,c:-3},insecure:true,unsupported:true,api:2019.08 }; 
         function $buo_f(){ 
-            var e = document.createElement("script"); 
-            e.src = "//browser-update.org/update.min.js"; 
-            document.body.appendChild(e);
+         var e = document.createElement("script"); 
+         e.src = "//browser-update.org/update.min.js"; 
+         document.body.appendChild(e);
         };
-
         try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
         catch(e){window.attachEvent("onload", $buo_f)}
     </script>

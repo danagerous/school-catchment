@@ -266,7 +266,25 @@
           </div>
         </div>
       </div>
+    
+    <!-- Update Browser from IE11 or earlier -->
+    <script> 
+        var $buoop = {required:{e:-6},
+            insecure:true,
+            //noclose:true,
+            //test: true,
+            api:2019.07
+        };
 
+        function $buo_f(){ 
+            var e = document.createElement("script"); 
+            e.src = "//browser-update.org/update.min.js"; 
+            document.body.appendChild(e);
+        };
+
+        try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
+        catch(e){window.attachEvent("onload", $buo_f)}
+    </script>
     <!-- Leaflet-->
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
     <!-- jQuery -->

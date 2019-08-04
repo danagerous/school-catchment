@@ -90,10 +90,6 @@ $("#schools").click(function() {
 // Set style function for TopoJSON polygon style properties
 function style(feature) {
     return {color: feature.properties.stroke};
-    return {weight: feature.properties.stroke-width};
-    return {opacity: feature.properties.stroke-opacity};
-    return {fillColor: feature.properties.fill};
-    return {fillOpacity: feature.properties.fill-opacity};
 }
 
 /*****************************/

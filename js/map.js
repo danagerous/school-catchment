@@ -89,7 +89,13 @@ $("#schools").click(function() {
 
 // Set style function for TopoJSON polygon style properties
 function style(feature) {
-    return {color: feature.properties.stroke};
+    return {
+        color: feature.properties.stroke,
+        // weight: feature.properties.stroke-width,
+        // opacity: feature.properties.stroke-opacity,
+        fillColor: feature.properties.fill,
+        // fillOpacity: feature.properties.fill-opacity
+    };
 }
 
 /*****************************/

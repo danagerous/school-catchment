@@ -103,7 +103,7 @@ function style(feature) {
 /*****************************/
 //start json
 let checkboxStates
-$.getJSON("data/catchment_sd8.topojson",function(data){
+$.getJSON("data/catchment_sd8_2023.topojson",function(data){
     const catchmentLayer = new L.TopoJSON(null,{
         filter: (feature) => {
             const isCatchmentChecked = checkboxStates.catchments.includes(feature.properties.SCHOOL)

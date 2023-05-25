@@ -21,6 +21,17 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
+// Create the locate control and add it to the map
+var locateControl = L.control.locate({
+    position: 'topleft',  // Change the position of the control
+    drawCircle: false,     // Disable drawing a circle indicating accuracy
+    setView: true,         // Automatically sets the map view to the user's location
+    keepCurrentZoomLevel: false,  // Do not keep the current zoom level when displaying the user's location
+    strings: {
+        title: "Show my location"  // Change the title of the control
+    }
+}).addTo(map);
+
 // Cluster school markers
 var markers = L.markerClusterGroup({
     showCoverageOnHover:false

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaflet Web Map with Locate Plugin</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
+    <script src="https://unpkg.com/leaflet.locatecontrol/dist/L.Control.Locate.min.js"></script>
+
+    <style>
+        #map {
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([51.505, -0.09], 13);
+
+        // Add the tile layer (you can use your own preferred tile layer)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+            maxZoom: 18
+        }).addTo(map);
+
+        // Create the locate control and add it to the map
+        var locateControl = L.control.locate({
+            position: 'topleft',  // Change the position of the control
+            drawCircle: false,     // Disable drawing a circle indicating accuracy
+            setView: true,         // Automatically sets the map view to the user's location
+            keepCurrentZoomLevel: false,  // Do not keep the current zoom level when displaying the user's location
+            strings: {
+                title: "Show my location"  // Change the title of the control
+            }
+        }).addTo(map);
+    </script>
+</body>
+</html>

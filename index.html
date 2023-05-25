@@ -27,6 +27,8 @@
     <!-- Leaflet Marker Cluster CSS-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    <!-- Leaflet Locate Control-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
     <!-- Catchment Map CSS-->
     <link rel="stylesheet" href="css/catchment.css" />
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -299,6 +301,23 @@
             </div>
         </div>
     </nav>
+    <!-- Address Form BC Geocoder -->
+    <div style="width: 400px">
+        <form autocomplete="off">
+            <div class="input-group">
+                <input type="text" class="form-control input-field ui-autocomplete-input" id="geocodeField" placeholder="Enter civic address (eg. 1511 Vancouver St)" autocomplete="off">
+                    <!-- <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span> -->
+                <div class="input-group-btn">
+                    <button id="geocodeBtn" class="btn btn-default" type="button" title="Search">
+                        <span class="glyphicon glyphicon-search" aria-label="Search"></span>
+                    </button>
+                    <button id="addressClear" class="btn btn-default input-clear" type="button" title="Clear">
+                        <span class="glyphicon glyphicon-remove" aria-label="Clear"></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
 
     <!-- This is where the map will be displayed -->
     <div class="container-map">
@@ -374,6 +393,8 @@
     </script>
     <!-- Leaflet-->
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+    <!-- Leaflet Locate Control-->
+    <script src="https://unpkg.com/leaflet.locatecontrol/dist/L.Control.Locate.min.js"></script>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <!-- Boostrap -->
@@ -386,5 +407,4 @@
     <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
     <!-- Catchment Leaflet -->
     <script src="js/map.js"></script>
-</body>
 </html>

@@ -1,0 +1,7 @@
+Make search bar pretty - css, width, border, colour, etc.
+https://stackoverflow.com/questions/37189484/how-to-add-a-search-box-on-a-leaflet-map
+Implement API get call (see script)
+Beautify API pop up window with relevant information
+
+
+If time permits: leaflet-control-locate (show me where I am)

@@ -62,3 +62,8 @@ body {
         display: none !important;
     }
 }
+
+/* Geocoder */
+.ui-autocomplete {
+    z-index: 1000;
+}

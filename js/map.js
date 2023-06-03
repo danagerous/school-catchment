@@ -21,6 +21,115 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
+
+/*******************************/
+/* Start BC Geocoder 
+/*******************************/
+var geocodeLayer = null;
+var searchInput = document.getElementById('geocodeField');
+var results = L.layerGroup().addTo(map);
+
+function searchAddress() {
+    var address = searchInput.value.trim();
+    geocodeAddress(address);
+}
+
+function geocodeAddress() {
+    var address = searchInput.value.trim();
+    if (address !== '') {
+        var url = 'https://geocoder.api.gov.bc.ca/addresses.json?addressString=' + encodeURIComponent(address) + '&minScore=80&maxResults=1';
+
+        fetch(url)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                results.clearLayers();
+                geocodeLayer = results;
+                if (data.features.length > 0) {
+                    var feature = data.features[0];
+                    var coordinates = feature.geometry.coordinates;
+                    var latlng = L.latLng(coordinates[1], coordinates[0]);
+                    var marker = L.marker(latlng).addTo(map);
+                    marker.bindPopup(formatAddress(feature.properties)).openPopup();
+                    results.addLayer(marker);
+                    map.setView(latlng, 13);
+                } else {
+                    alert('Address not found');
+                }
+            })
+            .catch(function (error) {
+                console.error('Error:', error);
+                alert('An error occurred during geocoding');
+            });
+    }
+}
+
+var gcApi = "https://geocoder.api.gov.bc.ca/";
+
+// Geocode Address autocomplete
+$('#geocodeField').autocomplete({
+    minLength: 3,
+    source: function (request, response) {
+        var params = {
+            minScore: 50,
+            maxResults: 3,
+            echo: 'false',
+            brief: true,
+            autoComplete: true,
+            addressString: request.term
+        };
+        $.ajax({
+            url: gcApi + "addresses.json",
+            data: params,
+            success: function (data) {
+                var list = [];
+                if (data.features && data.features.length > 0) {
+                    list = data.features.map(function (item) {
+                        return {
+                            value: item.properties.fullAddress,
+                            data: item
+                        };
+                    });
+                }
+                response(list);
+            },
+            error: function () {
+                response([]);
+            }
+        });
+    },
+    select: function (evt, ui) {
+        $('#output').text(JSON.stringify(ui.item.data, null, 4));
+        geocodeAddress(); // Geocode the selected address
+    }
+});
+
+function formatAddress(properties) {
+    var address = properties.fullAddress;
+    return address;
+}
+
+document.getElementById('geocodeField').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+        geocodeAddress();
+    }
+});
+
+$('#addressClear').on("click", function() {
+    if(geocodeLayer) {
+        map.removeLayer(geocodeLayer);
+        geocodeLayer = null;
+    }
+    results.clearLayers(); // Clear the results layer group
+    $('#geocodeField').val(''); // Clear the geocodeField value
+});
+
+$('#geocodeBtn').on("click", function() {
+    searchAddress(); // Call the searchAddress() function
+
+});// End BC Geocoder
+
 // Create the locate control and add it to the map
 var locateControl = L.control.locate({
     position: 'topleft',  // Change the position of the control

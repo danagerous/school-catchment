@@ -10,6 +10,8 @@ Created Using:
 * [GeoJSON](https://geojson.org/)
 * [TopoJSON](https://github.com/topojson/topojson)
 * [Twitter Bootstrap](http://getbootstrap.com)
+* [BC Geocoder](https://www2.gov.bc.ca/gov/content/data/geographic-data-services/location-services/geocoder)
+* [Leaflet Locate Control](https://github.com/domoritz/leaflet-locatecontrol)
 
 Original Responsive Template created by [MikeWills](https://github.com/MikeWills/GoogleMapsTemplate)
 

@@ -15,4 +15,4 @@ Created Using:
 
 Original Responsive Template created by [MikeWills](https://github.com/MikeWills/GoogleMapsTemplate)
 
-Best to view raw template on [bl.ocks.org](https://bl.ocks.org/danagerous/a7f8021cc3432eeca953a223a9b42b08/) and open in new window from within bl.ocks.org.
+Best to view raw template on [bl.ocks.org](https://blocks.roadtolarissa.com/danagerous/a7f8021cc3432eeca953a223a9b42b08/) and open in new window from within bl.ocks.org.

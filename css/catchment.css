@@ -1,9 +1,10 @@
 /* This is used to specify the map area. */
 html, body, .row, .container, .container-map, #map {
     height: 100%;
+    padding-bottom: 16px;
 }
 
-/* Add padding on the top an bottom so the top and bottom of map align with nav bars */
+/* Add padding on the top and bottom so the top and bottom of map align with nav bars */
 body {
     padding: 54px 0;
 }       
@@ -14,14 +15,6 @@ body {
     background-color: #f8f8f8;
     border-top: 0px;
   }
-
-/* This shows a box of color for the legend */
-/* .color-box {
-    width: 20px;
-    min-height: 20px;
-    float: left;
-    margin-right: 3px;
-} */
 
 /* This sets the mobile size of the off cavas menus */
 .navmenu {

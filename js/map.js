@@ -4,23 +4,22 @@
 L.TopoJSON = L.GeoJSON.extend({
     addData: function(jsonData) {    
         if (jsonData.type === "Topology") {
-        for (key in jsonData.objects) {
-            geojson = topojson.feature(jsonData, jsonData.objects[key]);
-            L.GeoJSON.prototype.addData.call(this, geojson);
+            for (var key in jsonData.objects) {
+                var geojson = topojson.feature(jsonData, jsonData.objects[key]);
+                L.GeoJSON.prototype.addData.call(this, geojson);
             }
         }    
         else {
             L.GeoJSON.prototype.addData.call(this, jsonData);
         }
     }  
-});// End TopoJSON-aware Leaflet layer
+}); // End TopoJSON-aware Leaflet layer
 
 var map = L.map('map').setView([49.624889, -116.962890], 8);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+    attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
-
 
 /*******************************/
 /* Start BC Geocoder 
@@ -34,17 +33,17 @@ function searchAddress() {
     geocodeAddress(address);
 }
 
-function geocodeAddress() {
+function geocodeAddress(address) {
     var address = searchInput.value.trim();
     if (address !== '') {
         var url = 'https://geocoder.api.gov.bc.ca/addresses.json?addressString=' + encodeURIComponent(address) + '&minScore=80&maxResults=1';
 
         fetch(url)
-            .then(function (response) {
+            .then(function(response) {
                 return response.json();
             })
-            .then(function (data) {
-                results.clearLayers();
+            .then(function(data) {
+                results.clearLayers(); // Clear existing address markers
                 geocodeLayer = results;
                 if (data.features.length > 0) {
                     var feature = data.features[0];
@@ -58,7 +57,7 @@ function geocodeAddress() {
                     alert('Address not found');
                 }
             })
-            .catch(function (error) {
+            .catch(function(error) {
                 console.error('Error:', error);
                 alert('An error occurred during geocoding');
             });
@@ -70,7 +69,7 @@ var gcApi = "https://geocoder.api.gov.bc.ca/";
 // Geocode Address autocomplete
 $('#geocodeField').autocomplete({
     minLength: 3,
-    source: function (request, response) {
+    source: function(request, response) {
         var params = {
             minScore: 50,
             maxResults: 3,
@@ -82,10 +81,10 @@ $('#geocodeField').autocomplete({
         $.ajax({
             url: gcApi + "addresses.json",
             data: params,
-            success: function (data) {
+            success: function(data) {
                 var list = [];
                 if (data.features && data.features.length > 0) {
-                    list = data.features.map(function (item) {
+                    list = data.features.map(function(item) {
                         return {
                             value: item.properties.fullAddress,
                             data: item
@@ -94,14 +93,14 @@ $('#geocodeField').autocomplete({
                 }
                 response(list);
             },
-            error: function () {
+            error: function() {
                 response([]);
             }
         });
     },
-    select: function (evt, ui) {
+    select: function(evt, ui) {
         $('#output').text(JSON.stringify(ui.item.data, null, 4));
-        geocodeAddress(); // Geocode the selected address
+        geocodeAddress(ui.item.value); // Geocode the selected address
     }
 });
 
@@ -110,14 +109,24 @@ function formatAddress(properties) {
     return address;
 }
 
-document.getElementById('geocodeField').addEventListener('keydown', function (e) {
+document.getElementById('geocodeField').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') {
-        geocodeAddress();
+        e.preventDefault(); // Prevent form submission if the input field is empty
+        if (searchInput.value.trim() === '') {
+            if ($('#geocodeField').data('ui-autocomplete').menu.element.find('li').length > 0) {
+                var firstItem = $('#geocodeField').data('ui-autocomplete').menu.element.find('li:first-child');
+                $('#geocodeField').val(firstItem.text());
+                $('#output').text(JSON.stringify(firstItem.data('ui-autocomplete-item').data, null, 4));
+                geocodeAddress(firstItem.text()); // Geocode the selected address
+            }
+        } else {
+            geocodeAddress(searchInput.value.trim());
+        }
     }
 });
 
 $('#addressClear').on("click", function() {
-    if(geocodeLayer) {
+    if (geocodeLayer) {
         map.removeLayer(geocodeLayer);
         geocodeLayer = null;
     }
@@ -127,50 +136,48 @@ $('#addressClear').on("click", function() {
 
 $('#geocodeBtn').on("click", function() {
     searchAddress(); // Call the searchAddress() function
-
-});// End BC Geocoder
+}); // End BC Geocoder
 
 // Create the locate control and add it to the map
 var locateControl = L.control.locate({
-    position: 'topleft',  // Change the position of the control
-    drawCircle: false,     // Disable drawing a circle indicating accuracy
-    setView: true,         // Automatically sets the map view to the user's location
-    keepCurrentZoomLevel: false,  // Do not keep the current zoom level when displaying the user's location
+    position: 'topleft', // Change the position of the control
+    drawCircle: false, // Disable drawing a circle indicating accuracy
+    setView: true, // Automatically sets the map view to the user's location
+    keepCurrentZoomLevel: false, // Do not keep the current zoom level when displaying the user's location
     strings: {
-        title: "Show my location"  // Change the title of the control
+        title: "Show my location" // Change the title of the control
     }
 }).addTo(map);
 
 // Cluster school markers
 var markers = L.markerClusterGroup({
-    showCoverageOnHover:false
-    }
-);
+    showCoverageOnHover: false
+});
 
 // Custom School Icon
 var schoolIcon = L.icon({
     iconUrl: 'images/school.png',
-    iconSize:     [32, 37], // size of the icon
-    iconAnchor:   [15, 35], // point of the icon which will correspond to marker's location
-    popupAnchor:  [1, -30] // point from which the popup should open relative to the iconAnchor
+    iconSize: [32, 37], // size of the icon
+    iconAnchor: [15, 35], // point of the icon which will correspond to marker's location
+    popupAnchor: [1, -30] // point from which the popup should open relative to the iconAnchor
 });
 
 /******************************/
 /* load school GeoJSON file
 /******************************/
 // start json
-$.getJSON("data/schools.geojson",function(data){
+$.getJSON("data/schools.geojson", function(data) {
     // L.geoJson function is used to parse geojson file and load on to map 
-    const schoolLayer = L.geoJson(data ,{
+    const schoolLayer = L.geoJson(data, {
         pointToLayer: function(feature, latlng) {
             console.log(latlng, feature);
             return L.marker(latlng, {
-            icon: schoolIcon
+                icon: schoolIcon
             })
         },
         onEachFeature: function(feature, featureLayer) {
-            featureLayer.bindPopup('<b>' + feature.properties.SCHOOL_NAM + '</b>' + '<br />'
-                        + feature.properties.SCHOOL_PHY);
+            featureLayer.bindPopup('<b>' + feature.properties.SCHOOL_NAM + '</b>' + '<br />' +
+                feature.properties.SCHOOL_PHY);
         }
     })
 
@@ -178,23 +185,23 @@ $.getJSON("data/schools.geojson",function(data){
     map.addLayer(markers);
     map.fitBounds(markers.getBounds());
 
-});//end json
+}); //end json
 
 // Function to add schools
-function addSchools(){
+function addSchools() {
     map.addLayer(markers);
     // Fit to school markers bounds if clicked off/on
     map.fitBounds(markers.getBounds());
 };
 
 // Function to remove schools
-function removeSchools(){
+function removeSchools() {
     map.removeLayer(markers);
 };
 
 // Function to toggle schools
-function toggleSchools(){
-    if(map.hasLayer(markers)){
+function toggleSchools() {
+    if (map.hasLayer(markers)) {
         removeSchools();
     } else {
         addSchools();
@@ -223,19 +230,18 @@ function style(feature) {
 /*****************************/
 //start json
 let checkboxStates
-$.getJSON("data/catchment_sd8_2023.topojson",function(data){
-    const catchmentLayer = new L.TopoJSON(null,{
+$.getJSON("data/catchment_sd8_2023.topojson", function(data) {
+    const catchmentLayer = new L.TopoJSON(null, {
         filter: (feature) => {
             const isCatchmentChecked = checkboxStates.catchments.includes(feature.properties.SCHOOL)
             const isBndryChecked = checkboxStates.boundaries.includes(feature.properties.Name)
-            return isCatchmentChecked || isBndryChecked 
+            return isCatchmentChecked || isBndryChecked
         },
         onEachFeature: function(feature, featureLayer) {
             if (feature.properties.CATCHMENT) {
-                featureLayer.bindPopup('<b>' + "Catchment: " + '</b>' + feature.properties.CATCHMENT +  '<br />'
-                    + '<b>' + "School: " + '</b>' + feature.properties.SCHOOL);
-            }
-            else if (feature.properties.Name) {
+                featureLayer.bindPopup('<b>' + "Catchment: " + '</b>' + feature.properties.CATCHMENT + '<br />' +
+                    '<b>' + "School: " + '</b>' + feature.properties.SCHOOL);
+            } else if (feature.properties.Name) {
                 featureLayer.bindPopup(feature.properties.Name);
             }
         },
@@ -244,32 +250,36 @@ $.getJSON("data/catchment_sd8_2023.topojson",function(data){
 
     function updateCheckboxStates() {
         checkboxStates = {
-        catchments: [],
-        boundaries: []
-    }    
+            catchments: [],
+            boundaries: []
+        }
         for (let input of document.querySelectorAll('input')) {
-            if(input.checked) {
+            if (input.checked) {
                 switch (input.className) {
-                    case 'catchment': checkboxStates.catchments.push(input.value); break
-                    case 'bndry': checkboxStates.boundaries.push(input.value); break
+                    case 'catchment':
+                        checkboxStates.catchments.push(input.value);
+                        break;
+                    case 'bndry':
+                        checkboxStates.boundaries.push(input.value);
+                        break;
                 }
             }
         }
     }
 
     for (let input of document.querySelectorAll('input')) {
-    //Listen to 'change' event of all inputs
+        //Listen to 'change' event of all inputs
         input.onchange = (e) => {
-            catchmentLayer.clearLayers()
-            updateCheckboxStates()
-            catchmentLayer.addData(data)
-            map.addLayer(catchmentLayer)
-            map.fitBounds(catchmentLayer.getBounds())
+            catchmentLayer.clearLayers();
+            updateCheckboxStates();
+            catchmentLayer.addData(data);
+            map.addLayer(catchmentLayer);
+            map.fitBounds(catchmentLayer.getBounds());
         }
     }
 
     // Remove polygon layers with reset button
-    function removePolys(){
+    function removePolys() {
         map.removeLayer(catchmentLayer);
     };
 
@@ -283,8 +293,8 @@ $.getJSON("data/catchment_sd8_2023.topojson",function(data){
     });
 
     /****** INIT ******/
-    updateCheckboxStates()
-    catchmentLayer.addData(data)
-    
-});//end json
+    updateCheckboxStates();
+    catchmentLayer.addData(data);
+
+}); //end json
 //end load catchment TopoJSON file

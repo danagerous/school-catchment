@@ -67,13 +67,18 @@ body {
 }
 
 /* Fix transparent SVG icons in search buttons */
-.address-search .btn svg {
-    fill: currentColor;
+.address-search .btn-outline-secondary {
     color: #6c757d;
 }
 
-.address-search .btn:hover svg {
+.address-search .btn-outline-secondary:hover {
     color: #495057;
+    background-color: #e9ecef;
+    border-color: #6c757d;
+}
+
+.address-search .btn-outline-secondary svg {
+    fill: currentColor;
 }
 
 /* Autocomplete dropdown */
@@ -172,12 +177,16 @@ body {
         padding-right: 300px;
     }
 
+    .container-map {
+        padding-right: 0;
+    }
+
     .offcanvas-end {
         visibility: visible !important;
         transform: none !important;
         position: fixed;
         top: 56px;
-        bottom: 56px;
+        bottom: 0;
         right: 0;
         border-left: 1px solid rgba(0, 0, 0, 0.125);
     }
@@ -199,12 +208,12 @@ body {
 
 /* Extra large screens */
 @media (min-width: 1200px) {
-    .offcanvas-end {
-        width: 350px;
-    }
-
     body {
         padding-right: 350px;
+    }
+
+    .offcanvas-end {
+        width: 350px;
     }
 }
 

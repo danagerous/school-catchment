@@ -69,6 +69,8 @@ body {
 /* Fix transparent SVG icons in search buttons */
 .address-search .btn-outline-secondary {
     color: #6c757d;
+    background-color: white;
+    border-color: #ced4da;
 }
 
 .address-search .btn-outline-secondary:hover {
@@ -174,11 +176,15 @@ body {
 /* Large screens - offcanvas becomes always visible sidebar */
 @media (min-width: 992px) {
     body {
-        padding-right: 300px;
+        padding-right: 0;
     }
 
     .container-map {
-        padding-right: 0;
+        margin-right: 300px;
+    }
+
+    #map {
+        margin-right: 0;
     }
 
     .offcanvas-end {
@@ -188,6 +194,7 @@ body {
         top: 56px;
         bottom: 0;
         right: 0;
+        width: 300px;
         border-left: 1px solid rgba(0, 0, 0, 0.125);
     }
 
@@ -208,8 +215,8 @@ body {
 
 /* Extra large screens */
 @media (min-width: 1200px) {
-    body {
-        padding-right: 350px;
+    .container-map {
+        margin-right: 350px;
     }
 
     .offcanvas-end {

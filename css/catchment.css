@@ -251,6 +251,12 @@ body {
     margin-top: 60px;
 }
 
+/* Ensure Leaflet attribution has proper spacing */
+.leaflet-bottom.leaflet-left {
+    margin-bottom: 45px;
+    margin-left: 10px;
+}
+
 /* Better popup styling */
 .leaflet-popup-content {
     margin: 13px 19px;

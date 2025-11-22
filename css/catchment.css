@@ -66,6 +66,16 @@ body {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
+/* Fix transparent SVG icons in search buttons */
+.address-search .btn svg {
+    fill: currentColor;
+    color: #6c757d;
+}
+
+.address-search .btn:hover svg {
+    color: #495057;
+}
+
 /* Autocomplete dropdown */
 .autocomplete-items {
     position: absolute;
@@ -178,6 +188,11 @@ body {
 
     /* Hide toggle button on desktop */
     .navbar .btn[data-bs-toggle="offcanvas"] {
+        display: none;
+    }
+
+    /* Hide close button in offcanvas on desktop */
+    .offcanvas-end .btn-close {
         display: none;
     }
 }

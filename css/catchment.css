@@ -187,6 +187,11 @@ body {
         margin-right: 0;
     }
 
+    /* Ensure Leaflet attribution is not hidden by filter menu */
+    .leaflet-bottom.leaflet-right {
+        right: 310px;
+    }
+
     .offcanvas-end {
         visibility: visible !important;
         transform: none !important;
@@ -217,6 +222,11 @@ body {
 @media (min-width: 1200px) {
     .container-map {
         margin-right: 350px;
+    }
+
+    /* Ensure Leaflet attribution is not hidden by wider filter menu */
+    .leaflet-bottom.leaflet-right {
+        right: 360px;
     }
 
     .offcanvas-end {

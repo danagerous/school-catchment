@@ -226,7 +226,7 @@ body {
 
     /* Ensure Leaflet attribution is not hidden by wider filter menu */
     .leaflet-bottom.leaflet-right {
-        right: 45px;
+        right: 50px;
     }
 
     .offcanvas-end {

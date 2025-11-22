@@ -1,62 +1,319 @@
-/* This is used to specify the map area. */
-html, body, .row, .container, .container-map, #map {
+/**
+ * School Catchment Map - Custom Styles
+ * Bootstrap 5 compatible
+ */
+
+/* ============================================================================
+   Layout & Container Styles
+   ============================================================================ */
+
+html, body {
     height: 100%;
-    padding-bottom: 16px;
+    margin: 0;
+    padding: 0;
 }
 
-/* Add padding on the top and bottom so the top and bottom of map align with nav bars */
 body {
-    padding: 54px 0;
-}       
-
-/* To remove border and shading in footer */
-.panel-footer {
-    line-height: 1.8;
-    background-color: #f8f8f8;
-    border-top: 0px;
-  }
-
-/* This sets the mobile size of the off cavas menus */
-.navmenu {
-    padding: 0 10px;
-    width: 250px;
+    padding-top: 56px;
+    padding-bottom: 56px;
 }
 
-/* To accommodate header with filter and see Leaflet Control */
-@media (max-width: 365px) {
-    .navbar-brand {
-        font-size: 12px;
-        padding-left: 10px;
-    }
-
-    .panel-footer {
-        font-size: 11px;
-    }
+.container-map {
+    height: 100%;
+    position: relative;
 }
 
-/* To accommodate iPad portrait mode */
-@media (min-width: 0px) {
-    .navbar-toggle {
-        display: block; /* force showing the toggle */
-    }
+#map {
+    height: 100%;
+    width: 100%;
 }
 
-/* This is for the "normal" size off canvas menu */
+/* ============================================================================
+   Navigation & Offcanvas
+   ============================================================================ */
+
+/* Ensure offcanvas is properly sized on desktop */
 @media (min-width: 992px) {
     body {
-        padding: 50px 250px 50px 0;
+        padding-right: 0;
     }
 
-    .navmenu {
-        padding: 50px 10px;
-    }
-
-    .navmenu-toggle {
-        display: none !important;
+    .offcanvas-end {
+        width: 300px;
     }
 }
 
-/* Geocoder */
-.ui-autocomplete {
+/* Offcanvas body scrolling */
+.offcanvas-body {
+    overflow-y: auto;
+}
+
+/* ============================================================================
+   Address Search / Geocoder
+   ============================================================================ */
+
+.address-search {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 1000;
+    width: 90%;
+    max-width: 400px;
+}
+
+.address-search .input-group {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Fix transparent SVG icons in search buttons */
+.address-search .btn-outline-secondary {
+    color: #6c757d;
+    background-color: white;
+    border-color: #ced4da;
+}
+
+.address-search .btn-outline-secondary:hover {
+    color: #495057;
+    background-color: #e9ecef;
+    border-color: #6c757d;
+}
+
+.address-search .btn-outline-secondary svg {
+    fill: currentColor;
+}
+
+/* Autocomplete dropdown */
+.autocomplete-items {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+    background-color: white;
+    border: 1px solid #ced4da;
+    border-top: none;
+    border-radius: 0 0 0.25rem 0.25rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+}
+
+.autocomplete-item {
+    padding: 10px;
+    cursor: pointer;
+    background-color: white;
+    border-bottom: 1px solid #e9ecef;
+    font-size: 0.9rem;
+}
+
+.autocomplete-item:hover,
+.autocomplete-item.autocomplete-active {
+    background-color: #e9ecef;
+}
+
+.autocomplete-item:last-child {
+    border-bottom: none;
+}
+
+/* ============================================================================
+   Filter Menu Styles
+   ============================================================================ */
+
+.offcanvas-body .form-check {
+    margin-bottom: 0.5rem;
+}
+
+.offcanvas-body .form-check-label {
+    cursor: pointer;
+    user-select: none;
+}
+
+.offcanvas-body .badge {
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+    padding: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+/* Section headers within filter groups */
+.offcanvas-body strong.small {
+    display: block;
+    margin-bottom: 0.25rem;
+    color: #495057;
+}
+
+/* ============================================================================
+   Responsive Adjustments
+   ============================================================================ */
+
+/* Small screens */
+@media (max-width: 576px) {
+    .address-search {
+        width: 95%;
+        max-width: none;
+    }
+
+    .navbar-brand span {
+        font-size: 0.9rem;
+    }
+
+    .offcanvas-body .form-check-label {
+        font-size: 0.85rem;
+    }
+}
+
+/* Medium screens and up */
+@media (min-width: 768px) {
+    .address-search {
+        width: 400px;
+    }
+}
+
+/* Large screens - offcanvas becomes always visible sidebar */
+@media (min-width: 992px) {
+    body {
+        padding-right: 0;
+    }
+
+    .container-map {
+        margin-right: 300px;
+    }
+
+    #map {
+        margin-right: 0;
+    }
+
+    /* Ensure Leaflet attribution is not hidden by filter menu */
+    .leaflet-bottom.leaflet-right {
+        right: 45px;
+    }
+
+    .offcanvas-end {
+        visibility: visible !important;
+        transform: none !important;
+        position: fixed;
+        top: 56px;
+        bottom: 0;
+        right: 0;
+        width: 300px;
+        border-left: 1px solid rgba(0, 0, 0, 0.125);
+    }
+
+    .offcanvas-backdrop {
+        display: none;
+    }
+
+    /* Hide toggle button on desktop */
+    .navbar .btn[data-bs-toggle="offcanvas"] {
+        display: none;
+    }
+
+    /* Hide close button in offcanvas on desktop */
+    .offcanvas-end .btn-close {
+        display: none;
+    }
+}
+
+/* Extra large screens */
+@media (min-width: 1200px) {
+    .container-map {
+        margin-right: 350px;
+    }
+
+    /* Ensure Leaflet attribution is not hidden by wider filter menu */
+    .leaflet-bottom.leaflet-right {
+        right: 45px;
+    }
+
+    .offcanvas-end {
+        width: 350px;
+    }
+}
+
+/* ============================================================================
+   Footer Styles
+   ============================================================================ */
+
+.navbar-fixed-bottom {
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+/* ============================================================================
+   Leaflet Override Styles
+   ============================================================================ */
+
+/* Ensure Leaflet controls don't overlap with search bar */
+.leaflet-top.leaflet-left {
+    margin-top: 60px;
+}
+
+/* Ensure Leaflet attribution has proper spacing */
+.leaflet-bottom.leaflet-left {
+    margin-bottom: 45px;
+    margin-left: 10px;
+}
+
+/* Better popup styling */
+.leaflet-popup-content {
+    margin: 13px 19px;
+    line-height: 1.4;
+}
+
+.leaflet-popup-content b {
+    font-weight: 600;
+}
+
+/* Marker cluster styling adjustments */
+.marker-cluster-small,
+.marker-cluster-medium,
+.marker-cluster-large {
+    background-color: rgba(51, 136, 255, 0.6);
+}
+
+.marker-cluster-small div,
+.marker-cluster-medium div,
+.marker-cluster-large div {
+    background-color: rgba(51, 136, 255, 0.8);
+    color: white;
+    font-weight: bold;
+}
+
+/* ============================================================================
+   Utility Classes
+   ============================================================================ */
+
+/* Smooth transitions */
+.form-check-input {
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+/* Loading state (can be used later for better UX) */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* ============================================================================
+   Print Styles
+   ============================================================================ */
+
+@media print {
+    .navbar,
+    .offcanvas,
+    .address-search {
+        display: none;
+    }
+
+    body {
+        padding: 0;
+    }
+
+    #map {
+        height: 100vh;
+    }
 }

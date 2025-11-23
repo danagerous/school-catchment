@@ -4,14 +4,21 @@
 
 Kootenay Lake School District 8 | Catchment Map
 
-Created Using:
-* [Leaflet.js](https://leafletjs.com/)
-* [Leaflet.markercluster](https://github.com/Leaflet/Leaflet.markercluster)
-* [GeoJSON](https://geojson.org/)
-* [TopoJSON](https://github.com/topojson/topojson)
-* [Twitter Bootstrap](http://getbootstrap.com)
-* [BC Geocoder](https://www2.gov.bc.ca/gov/content/data/geographic-data-services/location-services/geocoder)
-* [Leaflet Locate Control](https://github.com/domoritz/leaflet-locatecontrol)
+## Tech Stack
+
+### State Management & UI Components
+* **[Bootstrap 5](https://getbootstrap.com/)** - Responsive grid system and utilities
+
+### Mapping & Geospatial
+* **[Leaflet.js](https://leafletjs.com/)** - Open-source interactive mapping library
+* **[Leaflet.markercluster](https://github.com/Leaflet/Leaflet.markercluster)** - Beautiful marker clustering for dense data visualization
+* **[Leaflet Locate Control](https://github.com/domoritz/leaflet-locatecontrol)** - Geolocation control for finding user's current location
+* **[TopoJSON](https://github.com/topojson/topojson)** - Efficient encoding of geographic topology
+* **[GeoJSON](https://geojson.org/)** - Standard format for encoding geographic data structures
+
+### External Services
+* **[BC Geocoder](https://www2.gov.bc.ca/gov/content/data/geographic-data-services/location-services/geocoder)** - Address geocoding for British Columbia locations
+
 
 Original Responsive Template created by [MikeWills](https://github.com/MikeWills/GoogleMapsTemplate)
 

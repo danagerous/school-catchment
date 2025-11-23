@@ -1,424 +1,458 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kootenay Lake School District 8 Catchment Areas">
+    <meta name="keywords" content="School,Catchment,Kootenay Lake,Nelson,British Columbia">
+    <meta name="author" content="Dana Diotte">
+    <link rel="canonical" href="https://www.sd8.bc.ca/catchments/">
+    <link rel="icon" href="images/icon_sd8.png" type="image/png">
+
+    <title>Catchment Areas | SD8</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Leaflet CSS (latest stable) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+
+    <!-- Leaflet Marker Cluster CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+
+    <!-- Leaflet Locate Control CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.locatecontrol@0.79.0/dist/L.Control.Locate.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/catchment.css">
+
+    <!-- Google Analytics (GA4) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-147239266-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', 'UA-147239266-1');
     </script>
-
-    <title>Catchment Areas | SD8</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8" />
-    <meta name="description" content="Kootenay Lake School District 8 Catchment Areas">
-    <meta name="keywords" content="School,Catchment,Kootenay Lake,Nelson,British Columbia">
-    <meta name="author" content="Dana Diotte" />
-    <link rel="canonical" href="https://www.sd8.bc.ca/catchments/" />
-    <link rel="icon" href="images/icon_sd8.png" type="image/png"> 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css" rel="stylesheet">
-    <!-- MDB Bootstrap-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.11.0/mdb.min.css" integrity="sha512-rNt8lWWs1cMXXDl5EHDfGAbQJk5H/0G/T4hXpt3bikYc9IiLQOJfW3wXl8O0+b2QkD6LVeIEe8fYPeVNEzI3yA==" crossorigin="anonymous" />
-    <!-- Leaflet CSS-->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
-    <!-- jquery CSS-->
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/smoothness/jquery-ui.css" />
-    <!-- Leaflet Marker Cluster CSS-->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
-    <!-- Leaflet Locate Control-->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
-    <!-- Catchment Map CSS-->
-    <link rel="stylesheet" href="css/catchment.css" />
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 <body>
-    <!-- This is the off canvas menu for filtering -->
-    <div class="navmenu navmenu-default navmenu-fixed-right offcanvas-sm" id="filterMenu">
-        <!--CHECKBOXES-->
-        <!--All school locations-->
-        <h5><span class="label label-default">Schools</span></h5>
-        <label class="small">
-            <input type="checkbox" id="schools" checked>
-            School Locations
-        </label><br>
-        <h5><span class="label label-default">Catchment Boundaries</span></h5>
-        <!--Slocan Valley-->
-        <h6><span>Slocan Valley</span></h6>
-        <label class="small">
-            <input type="checkbox" id="Brent Kennedy" class="catchment" name="catchment" value="Brent Kenney k-6">
-            Brent Kennedy
-        </label><br>
-        <label class="small">
-            <input type="checkbox" id="Mount Sentinel Middle" class="catchment" name="catchment" value="Mount Sentinel 7-9">
-            Mount Sentinel Middle
-        </label><br> 
-        <label class="small">
-            <input type="checkbox" id="Mount Sentinel Secondary" class="catchment" name="catchment" value="Mount Sentinel 9-12">
-            Mount Sentinel Secondary
-        </label><br>   
-        <label class="small">
-            <input type="checkbox" id="W.E. Graham Community Elementary" class="catchment" name="catchment" value="W.E. Graham Community k-6">
-            W.E. Graham Community Elementary
-        </label><br>
-        <label class="small">
-            <input type="checkbox" id="W.E. Graham Community Secondary" class="catchment" name="catchment" value="W.E. Graham Community 7-10">
-            W.E. Graham Community Secondary
-        </label><br>
-        <label class="small">
-            <input type="checkbox" id="Winlaw Elementary" class="catchment" name="catchment" value="Winlaw Elementary">
-            Winlaw Elementary
-        </label><br>
-        <!--Nelson-->
-        <h6><span>Nelson</span></h6>
-        <label class="small">
-            <input type="checkbox" id="Blewett Elementary" class="catchment" name="catchment" value="Blewett Elementary" >
-            Blewett Elementary
-        </label><br>
-        <label class="small">
-            <input type="checkbox" id="Hume Elementary" class="catchment" name="catchment" value="Hume Elementary k-5">
-            Hume Elementary
-        </label><br>
-        <label class="small">
-            <input type="checkbox" id="LV Rogers Secondary" class="catchment" name="catchment" value="LV Rogers Secondary">
-            LV Rogers Secondary
-        </label><br>
-        <label class="small">
-            <input type="checkbox" id="Redfish Elementary" class="catchment" name="catchment" value="Redfish Elementary">
-            Redfish Elementary
-        </label><br>
-        <label class="small">
-            <input type="checkbox" id="Rosemont Elementary" class="catchment" name="catchment" value="Rosemont Elementary">
-            Rosemont Elementary
-        </label><br>
-        <label class="small">
-            <input type="checkbox" id="South Nelson Elementary" class="catchment" name="catchment" value="South Nelson Elementary">
-            South Nelson Elementary
-        </label><br>      
-        <label class="small">
-            <input type="checkbox" id="Trafalgar Middle School" class="catchment" name="catchment" value="Trafalgar Middle School">
-            Trafalgar Middle School
-        </label><br>
-        <label class="small">
-            <input type="checkbox" id="Wildflower Elementary Nelson" class="catchment" name="catchment" value="Wildflower Nelson">
-            Wildflower Elementary Nelson
-        </label><br> 
-        <!--North Shore, Kaslo and Meadow Creek-->
-        <h6><span>Kaslo and Meadow Creek</span></h6>
-        <label class="small">
-            <input type="checkbox" id="Jewett Elementary" class="catchment" name="catchment" value="Jewett Elementary">
-            Jewett Elementary
-        </label><br>    
-        <label class="small">
-            <input type="checkbox" id="JV Humphries Elementary" class="catchment" name="catchment" value="JV Humphries Elementary">
-            JV Humphries Elementary
-        </label><br> 
-        <label class="small">
-            <input type="checkbox" id="JV Humphries Secondary" class="catchment" name="catchment" value="JV Humphries Secondary">
-            JV Humphries Secondary
-        </label><br>
-        <!--Salmo-->
-        <h6><span>Salmo</span></h6>
-        <label class="small">
-            <input type="checkbox" id="Salmo Elementary" class="catchment" name="catchment" value="Salmo Elementary">
-            Salmo Elementary
-        </label><br>      
-        <label class="small">
-            <input type="checkbox" id="Salmo Secondary" class="catchment" name="catchment" value="Salmo Secondary">
-            Salmo Secondary
-        </label><br>
-        <!--Creston and Crawford Bay and Yahk-->
-        <h6><span>Creston and Crawford Bay</span></h6>
-        <label class="small">
-            <input type="checkbox" id="Adam Robertson Elementary" class="catchment" name="catchment" value="Adam Robertson Elementary">
-            Adam Robertson Elementary
-        </label><br>
-        <label class="small">
-            <input type="checkbox" id="Canyon-Lister Elementary" class="catchment" name="catchment" value="Canyon-Lister Elementary">
-            Canyon-Lister Elementary
-        </label><br>
-        <label class="small">
-            <input type="checkbox" id="Crawford Bay Elementary/Secondary" class="catchment" name="catchment" value="Crawford Bay Elementary Secondary">
-            Crawford Bay Elementary/Secondary
-        </label><br>
-        <label class="small">
-            <input type="checkbox" id="Erickson Elementary" class="catchment" name="catchment" value="Erickson Elementary">
-            Erickson Elementary
-        </label><br> 
-        <label class="small">
-            <input type="checkbox" id="Kootenay River Secondary" class="catchment" name="catchment" value="Kootenay River Secondary">
-            Kootenay River Secondary
-        </label><br>
-        <label class="small">
-            <input type="checkbox" id="Wildflower Elementary Creston" class="catchment" name="catchment" value="Wildflower Creston">
-            Wildflower Elementary Creston
-        </label><br>  
-         <!--Boundaries-->
-         <h5><span class="label label-default">Administrative Boundaries</span></h5>
-         <label class="small">
-             <input type="checkbox" id="Kootenay Lake School District 8"  class="bndry" name="bndry" value="Kootenay Lake School District 8">
-             SD8 District Boundary
-         </label><br>
-         <label class="small">
-             <input type="checkbox" id="Lower Kootenay Band" class="bndry" name="bndry" value="Lower Kootenay Band">
-             Lower Kootenay Band
-         </label><br>
-         <!--Regional Districts-->
-         <h6><span>Regional Districts</span></h6>
-         <label class="small">
-             <input type="checkbox" id="Regional District of Central Kootenay" class="bndry" name="bndry" value="Regional District of Central Kootenay">
-             Central Kootenay
-         </label><br>
-         <label class="small">
-             <input type="checkbox" id="Columbia Shuswap Regional District" class="bndry" name="bndry" value="Columbia Shuswap Regional District">
-             Columbia Shuswap
-         </label><br>
-         <label class="small">
-             <input type="checkbox" id="Regional District of East Kootenay" class="bndry" name="bndry" value="Regional District of East Kootenay">
-             East Kootenay
-         </label><br>
-         <label class="small">
-             <input type="checkbox" id="Kootenay Boundary Regional District" class="bndry" name="bndry" value="Kootenay Boundary Regional District">
-             Kootenay Boundary
-         </label><br>
-        <!--SD8 Trustee Electroal Areas -->
-        <h6><span>SD 8 Trustee Electoral Areas</span></h6>
-        <label class="small">
-            <input type="checkbox" id="SD 8  Trustee Electoral Area 1" class="bndry" name="bndry" value="SD 8  Trustee Electoral Area 1">
-            Trustee Electoral Area 1
-        </label><br>
-        <label class="small">
-            <input type="checkbox" id="SD 8  Trustee Electoral Area 2" class="bndry" name="bndry" value="SD 8  Trustee Electoral Area 2">
-            Trustee Electoral Area 2
-        </label><br>
-        <label class="small">
-            <input type="checkbox" id="SD 8  Trustee Electoral Area 3" class="bndry" name="bndry" value="SD 8  Trustee Electoral Area 3">
-            Trustee Electoral Area 3
-        </label><br>
-        <label class="small">
-            <input type="checkbox" id="SD 8  Trustee Electoral Area 4" class="bndry" name="bndry" value="SD 8  Trustee Electoral Area 4">
-            Trustee Electoral Area 4
-        </label><br>
-        <label class="small">
-            <input type="checkbox" id="SD 8  Trustee Electoral Area 5" class="bndry" name="bndry" value="SD 8  Trustee Electoral Area 5">
-            Trustee Electoral Area 5
-        </label><br>
-        <label class="small">
-            <input type="checkbox" id="SD 8  Trustee Electoral Area 6" class="bndry" name="bndry" value="SD 8  Trustee Electoral Area 6">
-            Trustee Electoral Area 6
-        </label><br>
-        <label class="small">
-            <input type="checkbox" id="SD 8  Trustee Electoral Area 7" class="bndry" name="bndry" value="SD 8  Trustee Electoral Area 7">
-            Trustee Electoral Area 7
-        </label><br>
-        <!--RDCK Electroal Areas -->
-        <h6><span>RDCK Electoral Areas</span></h6>
-        <label class="small">
-            <input type="checkbox" id="RDCK Electoral Area A (Wynndel / East Shore Kootenay Lake)" class="bndry" name="bndry" value="RDCK Electoral Area A (Wynndel / East Shore Kootenay Lake)">
-            RDCK Electoral Area A
-        </label><br>
-        <label class="small">
-            <input type="checkbox" id="RDCK Electoral Area B" class="bndry" name="bndry" value="RDCK Electoral Area B">
-            RDCK Electoral Area B
-        </label><br>
-        <label class="small">
-            <input type="checkbox" id="RDCK Electoral Area C" class="bndry" name="bndry" value="RDCK Electoral Area C">
-            RDCK Electoral Area C
-        </label><br>
-        <label class="small">
-            <input type="checkbox" id="RDCK Electoral Area D" class="bndry" name="bndry" value="RDCK Electoral Area D">
-            RDCK Electoral Area D
-        </label><br>
-        <label class="small">
-            <input type="checkbox" id="RDCK Electoral Area E" class="bndry" name="bndry" value="RDCK Electoral Area E">
-            RDCK Electoral Area E
-        </label><br>
-        <label class="small">
-            <input type="checkbox" id="RDCK Electoral Area F" class="bndry" name="bndry" value="RDCK Electoral Area F">
-            RDCK Electoral Area F
-        </label><br>
-        <label class="small">
-            <input type="checkbox" id="RDCK Electoral Area G" class="bndry" name="bndry" value="RDCK Electoral Area G">
-            RDCK Electoral Area G
-        </label><br>
-        <label class="small">
-            <input type="checkbox" id="RDCK Electoral Area H (The Slocan Valley)" class="bndry" name="bndry" value="RDCK Electoral Area H (The Slocan Valley)">
-            RDCK Electoral Area H
-        </label><br>
-        <label class="small">
-            <input type="checkbox" id="RDCK Electoral Area I" class="bndry" name="bndry" value="RDCK Electoral Area I">
-            RDCK Electoral Area I
-        </label><br>
-        <label class="small">
-            <input type="checkbox" id="RDCK Electoral Area J (Lower Arrow / Columbia)" class="bndry" name="bndry" value="RDCK Electoral Area J (Lower Arrow / Columbia)">
-            RDCK Electoral Area J
-        </label><br>
-        <label class="small">
-            <input type="checkbox" id="RDCK Electoral Area K (The Arrow Lakes)" class="bndry" name="bndry" value="RDCK Electoral Area K (The Arrow Lakes)">
-            RDCK Electoral Area K
-        </label><br>
-         <!--Communities -->
-         <h6><span>Communities</span></h6>
-         <label class="small">
-             <input type="checkbox" id="Creston" class="bndry" name="bndry" value="Creston">
-             Creston
-         </label><br>
-         <label class="small">
-             <input type="checkbox" id="Kalso" class="bndry" name="bndry" value="Kalso">
-             Kaslo
-         </label><br>
-         <label class="small">
-             <input type="checkbox" id="Nelson" class="bndry" name="bndry" value="Nelson">
-             Nelson
-         </label><br>
-         <label class="small">
-             <input type="checkbox" id="Salmo" class="bndry" name="bndry" value="Salmo">
-             Salmo
-         </label><br>
-         <label class="small">
-             <input type="checkbox" id="Slocan" class="bndry" name="bndry" value="Slocan">
-             Slocan
-         </label><br><br>
-         <button type="button" class="btn btn-default" id="reset">
-             <span class="glyphicon glyphicon-repeat"></span> Reset Map
-         </button>
-         <br><br><br><br><br>
-    </div>
-
-    <!-- This is the top navigation bar -->
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <!-- Top Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand"><img src="images/logo_sd8.png" alt="Kootenay Lake School District" style="width:100px;height:46px;float:left;margin-top:-15px;padding:5px 5px 5px 5px;vertical-align: middle;display: inline-block;" class="img-responsive"></a>
-                <a class="navbar-brand">Catchment Areas</a>
-                <button type="button" class="navbar-toggle navmenu-toggle btn btn-xs" data-toggle="offcanvas" data-target="#filterMenu" data-canvas="body">Filters</button>
-            </div>
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="images/logo_sd8.png" alt="Kootenay Lake School District" height="46" class="me-2">
+                <span>Catchment Areas</span>
+            </a>
+            <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterMenu" aria-controls="filterMenu">
+                Filters
+            </button>
         </div>
     </nav>
-    <!-- This is where the map will be displayed -->
-    <div class="container-map">
-        <!-- Address Form BC Geocoder -->
-        <div>
-            <form>
-                <div class="input-group">
-                    <input id="geocodeField" type="text" class="form-control" placeholder="Enter a civic address">
-                    <!-- <input type="text" class="form-control input-field ui-autocomplete-input" id="geocodeField" placeholder="Enter civic address (eg. 1511 Vancouver St)" autocomplete="off"> -->
-                        <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
-                    <div class="input-group-btn">
-                        <button id="geocodeBtn" class="btn btn-default" type="button" title="Search">
-                            <span class="glyphicon glyphicon-search" aria-label="Search"></span>
-                        </button>
-                        <button id="addressClear" class="btn btn-default input-clear" type="button" title="Clear">
-                            <span class="glyphicon glyphicon-remove" aria-label="Clear"></span>
-                        </button>
-                    </div>
-                </div>
-            </form>
+
+    <!-- Offcanvas Filter Menu -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="filterMenu" aria-labelledby="filterMenuLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="filterMenuLabel">Map Filters</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
+        <div class="offcanvas-body">
+            <!-- Schools -->
+            <h6 class="badge bg-secondary mb-2">Schools</h6>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="schools" checked>
+                <label class="form-check-label small" for="schools">
+                    School Locations
+                </label>
+            </div>
+
+            <!-- Catchment Boundaries -->
+            <h6 class="badge bg-secondary mb-2 mt-3">Catchment Boundaries</h6>
+
+            <!-- Slocan Valley -->
+            <div class="mt-2">
+                <strong class="small">Slocan Valley</strong>
+                <div class="form-check">
+                    <input class="form-check-input catchment" type="checkbox" id="Brent Kennedy" name="catchment" value="Brent Kenney k-6">
+                    <label class="form-check-label small" for="Brent Kennedy">Brent Kennedy</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input catchment" type="checkbox" id="Mount Sentinel Middle" name="catchment" value="Mount Sentinel 7-9">
+                    <label class="form-check-label small" for="Mount Sentinel Middle">Mount Sentinel Middle</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input catchment" type="checkbox" id="Mount Sentinel Secondary" name="catchment" value="Mount Sentinel 9-12">
+                    <label class="form-check-label small" for="Mount Sentinel Secondary">Mount Sentinel Secondary</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input catchment" type="checkbox" id="W.E. Graham Community Elementary" name="catchment" value="W.E. Graham Community k-6">
+                    <label class="form-check-label small" for="W.E. Graham Community Elementary">W.E. Graham Community Elementary</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input catchment" type="checkbox" id="W.E. Graham Community Secondary" name="catchment" value="W.E. Graham Community 7-10">
+                    <label class="form-check-label small" for="W.E. Graham Community Secondary">W.E. Graham Community Secondary</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input catchment" type="checkbox" id="Winlaw Elementary" name="catchment" value="Winlaw Elementary">
+                    <label class="form-check-label small" for="Winlaw Elementary">Winlaw Elementary</label>
+                </div>
+            </div>
+
+            <!-- Nelson -->
+            <div class="mt-2">
+                <strong class="small">Nelson</strong>
+                <div class="form-check">
+                    <input class="form-check-input catchment" type="checkbox" id="Blewett Elementary" name="catchment" value="Blewett Elementary">
+                    <label class="form-check-label small" for="Blewett Elementary">Blewett Elementary</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input catchment" type="checkbox" id="Hume Elementary" name="catchment" value="Hume Elementary k-5">
+                    <label class="form-check-label small" for="Hume Elementary">Hume Elementary</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input catchment" type="checkbox" id="LV Rogers Secondary" name="catchment" value="LV Rogers Secondary">
+                    <label class="form-check-label small" for="LV Rogers Secondary">LV Rogers Secondary</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input catchment" type="checkbox" id="Redfish Elementary" name="catchment" value="Redfish Elementary">
+                    <label class="form-check-label small" for="Redfish Elementary">Redfish Elementary</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input catchment" type="checkbox" id="Rosemont Elementary" name="catchment" value="Rosemont Elementary">
+                    <label class="form-check-label small" for="Rosemont Elementary">Rosemont Elementary</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input catchment" type="checkbox" id="South Nelson Elementary" name="catchment" value="South Nelson Elementary">
+                    <label class="form-check-label small" for="South Nelson Elementary">South Nelson Elementary</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input catchment" type="checkbox" id="Trafalgar Middle School" name="catchment" value="Trafalgar Middle School">
+                    <label class="form-check-label small" for="Trafalgar Middle School">Trafalgar Middle School</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input catchment" type="checkbox" id="Wildflower Elementary Nelson" name="catchment" value="Wildflower Nelson">
+                    <label class="form-check-label small" for="Wildflower Elementary Nelson">Wildflower Elementary Nelson</label>
+                </div>
+            </div>
+
+            <!-- Kaslo and Meadow Creek -->
+            <div class="mt-2">
+                <strong class="small">Kaslo and Meadow Creek</strong>
+                <div class="form-check">
+                    <input class="form-check-input catchment" type="checkbox" id="Jewett Elementary" name="catchment" value="Jewett Elementary">
+                    <label class="form-check-label small" for="Jewett Elementary">Jewett Elementary</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input catchment" type="checkbox" id="JV Humphries Elementary" name="catchment" value="JV Humphries Elementary">
+                    <label class="form-check-label small" for="JV Humphries Elementary">JV Humphries Elementary</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input catchment" type="checkbox" id="JV Humphries Secondary" name="catchment" value="JV Humphries Secondary">
+                    <label class="form-check-label small" for="JV Humphries Secondary">JV Humphries Secondary</label>
+                </div>
+            </div>
+
+            <!-- Salmo -->
+            <div class="mt-2">
+                <strong class="small">Salmo</strong>
+                <div class="form-check">
+                    <input class="form-check-input catchment" type="checkbox" id="Salmo Elementary" name="catchment" value="Salmo Elementary">
+                    <label class="form-check-label small" for="Salmo Elementary">Salmo Elementary</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input catchment" type="checkbox" id="Salmo Secondary" name="catchment" value="Salmo Secondary">
+                    <label class="form-check-label small" for="Salmo Secondary">Salmo Secondary</label>
+                </div>
+            </div>
+
+            <!-- Creston and Crawford Bay -->
+            <div class="mt-2">
+                <strong class="small">Creston and Crawford Bay</strong>
+                <div class="form-check">
+                    <input class="form-check-input catchment" type="checkbox" id="Adam Robertson Elementary" name="catchment" value="Adam Robertson Elementary">
+                    <label class="form-check-label small" for="Adam Robertson Elementary">Adam Robertson Elementary</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input catchment" type="checkbox" id="Canyon-Lister Elementary" name="catchment" value="Canyon-Lister Elementary">
+                    <label class="form-check-label small" for="Canyon-Lister Elementary">Canyon-Lister Elementary</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input catchment" type="checkbox" id="Crawford Bay Elementary/Secondary" name="catchment" value="Crawford Bay Elementary Secondary">
+                    <label class="form-check-label small" for="Crawford Bay Elementary/Secondary">Crawford Bay Elementary/Secondary</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input catchment" type="checkbox" id="Erickson Elementary" name="catchment" value="Erickson Elementary">
+                    <label class="form-check-label small" for="Erickson Elementary">Erickson Elementary</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input catchment" type="checkbox" id="Kootenay River Secondary" name="catchment" value="Kootenay River Secondary">
+                    <label class="form-check-label small" for="Kootenay River Secondary">Kootenay River Secondary</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input catchment" type="checkbox" id="Wildflower Elementary Creston" name="catchment" value="Wildflower Creston">
+                    <label class="form-check-label small" for="Wildflower Elementary Creston">Wildflower Elementary Creston</label>
+                </div>
+            </div>
+
+            <!-- Administrative Boundaries -->
+            <h6 class="badge bg-secondary mb-2 mt-3">Administrative Boundaries</h6>
+            <div class="form-check">
+                <input class="form-check-input bndry" type="checkbox" id="Kootenay Lake School District 8" name="bndry" value="Kootenay Lake School District 8">
+                <label class="form-check-label small" for="Kootenay Lake School District 8">SD8 District Boundary</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input bndry" type="checkbox" id="Lower Kootenay Band" name="bndry" value="Lower Kootenay Band">
+                <label class="form-check-label small" for="Lower Kootenay Band">Lower Kootenay Band</label>
+            </div>
+
+            <!-- Regional Districts -->
+            <div class="mt-2">
+                <strong class="small">Regional Districts</strong>
+                <div class="form-check">
+                    <input class="form-check-input bndry" type="checkbox" id="Regional District of Central Kootenay" name="bndry" value="Regional District of Central Kootenay">
+                    <label class="form-check-label small" for="Regional District of Central Kootenay">Central Kootenay</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input bndry" type="checkbox" id="Columbia Shuswap Regional District" name="bndry" value="Columbia Shuswap Regional District">
+                    <label class="form-check-label small" for="Columbia Shuswap Regional District">Columbia Shuswap</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input bndry" type="checkbox" id="Regional District of East Kootenay" name="bndry" value="Regional District of East Kootenay">
+                    <label class="form-check-label small" for="Regional District of East Kootenay">East Kootenay</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input bndry" type="checkbox" id="Kootenay Boundary Regional District" name="bndry" value="Kootenay Boundary Regional District">
+                    <label class="form-check-label small" for="Kootenay Boundary Regional District">Kootenay Boundary</label>
+                </div>
+            </div>
+
+            <!-- SD 8 Trustee Electoral Areas -->
+            <div class="mt-2">
+                <strong class="small">SD 8 Trustee Electoral Areas</strong>
+                <div class="form-check">
+                    <input class="form-check-input bndry" type="checkbox" id="SD 8  Trustee Electoral Area 1" name="bndry" value="SD 8  Trustee Electoral Area 1">
+                    <label class="form-check-label small" for="SD 8  Trustee Electoral Area 1">Trustee Electoral Area 1</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input bndry" type="checkbox" id="SD 8  Trustee Electoral Area 2" name="bndry" value="SD 8  Trustee Electoral Area 2">
+                    <label class="form-check-label small" for="SD 8  Trustee Electoral Area 2">Trustee Electoral Area 2</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input bndry" type="checkbox" id="SD 8  Trustee Electoral Area 3" name="bndry" value="SD 8  Trustee Electoral Area 3">
+                    <label class="form-check-label small" for="SD 8  Trustee Electoral Area 3">Trustee Electoral Area 3</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input bndry" type="checkbox" id="SD 8  Trustee Electoral Area 4" name="bndry" value="SD 8  Trustee Electoral Area 4">
+                    <label class="form-check-label small" for="SD 8  Trustee Electoral Area 4">Trustee Electoral Area 4</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input bndry" type="checkbox" id="SD 8  Trustee Electoral Area 5" name="bndry" value="SD 8  Trustee Electoral Area 5">
+                    <label class="form-check-label small" for="SD 8  Trustee Electoral Area 5">Trustee Electoral Area 5</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input bndry" type="checkbox" id="SD 8  Trustee Electoral Area 6" name="bndry" value="SD 8  Trustee Electoral Area 6">
+                    <label class="form-check-label small" for="SD 8  Trustee Electoral Area 6">Trustee Electoral Area 6</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input bndry" type="checkbox" id="SD 8  Trustee Electoral Area 7" name="bndry" value="SD 8  Trustee Electoral Area 7">
+                    <label class="form-check-label small" for="SD 8  Trustee Electoral Area 7">Trustee Electoral Area 7</label>
+                </div>
+            </div>
+
+            <!-- RDCK Electoral Areas -->
+            <div class="mt-2">
+                <strong class="small">RDCK Electoral Areas</strong>
+                <div class="form-check">
+                    <input class="form-check-input bndry" type="checkbox" id="RDCK Electoral Area A (Wynndel / East Shore Kootenay Lake)" name="bndry" value="RDCK Electoral Area A (Wynndel / East Shore Kootenay Lake)">
+                    <label class="form-check-label small" for="RDCK Electoral Area A (Wynndel / East Shore Kootenay Lake)">RDCK Electoral Area A</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input bndry" type="checkbox" id="RDCK Electoral Area B" name="bndry" value="RDCK Electoral Area B">
+                    <label class="form-check-label small" for="RDCK Electoral Area B">RDCK Electoral Area B</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input bndry" type="checkbox" id="RDCK Electoral Area C" name="bndry" value="RDCK Electoral Area C">
+                    <label class="form-check-label small" for="RDCK Electoral Area C">RDCK Electoral Area C</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input bndry" type="checkbox" id="RDCK Electoral Area D" name="bndry" value="RDCK Electoral Area D">
+                    <label class="form-check-label small" for="RDCK Electoral Area D">RDCK Electoral Area D</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input bndry" type="checkbox" id="RDCK Electoral Area E" name="bndry" value="RDCK Electoral Area E">
+                    <label class="form-check-label small" for="RDCK Electoral Area E">RDCK Electoral Area E</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input bndry" type="checkbox" id="RDCK Electoral Area F" name="bndry" value="RDCK Electoral Area F">
+                    <label class="form-check-label small" for="RDCK Electoral Area F">RDCK Electoral Area F</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input bndry" type="checkbox" id="RDCK Electoral Area G" name="bndry" value="RDCK Electoral Area G">
+                    <label class="form-check-label small" for="RDCK Electoral Area G">RDCK Electoral Area G</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input bndry" type="checkbox" id="RDCK Electoral Area H (The Slocan Valley)" name="bndry" value="RDCK Electoral Area H (The Slocan Valley)">
+                    <label class="form-check-label small" for="RDCK Electoral Area H (The Slocan Valley)">RDCK Electoral Area H</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input bndry" type="checkbox" id="RDCK Electoral Area I" name="bndry" value="RDCK Electoral Area I">
+                    <label class="form-check-label small" for="RDCK Electoral Area I">RDCK Electoral Area I</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input bndry" type="checkbox" id="RDCK Electoral Area J (Lower Arrow / Columbia)" name="bndry" value="RDCK Electoral Area J (Lower Arrow / Columbia)">
+                    <label class="form-check-label small" for="RDCK Electoral Area J (Lower Arrow / Columbia)">RDCK Electoral Area J</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input bndry" type="checkbox" id="RDCK Electoral Area K (The Arrow Lakes)" name="bndry" value="RDCK Electoral Area K (The Arrow Lakes)">
+                    <label class="form-check-label small" for="RDCK Electoral Area K (The Arrow Lakes)">RDCK Electoral Area K</label>
+                </div>
+            </div>
+
+            <!-- Communities -->
+            <div class="mt-2">
+                <strong class="small">Communities</strong>
+                <div class="form-check">
+                    <input class="form-check-input bndry" type="checkbox" id="Creston" name="bndry" value="Creston">
+                    <label class="form-check-label small" for="Creston">Creston</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input bndry" type="checkbox" id="Kalso" name="bndry" value="Kalso">
+                    <label class="form-check-label small" for="Kalso">Kaslo</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input bndry" type="checkbox" id="Nelson" name="bndry" value="Nelson">
+                    <label class="form-check-label small" for="Nelson">Nelson</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input bndry" type="checkbox" id="Salmo" name="bndry" value="Salmo">
+                    <label class="form-check-label small" for="Salmo">Salmo</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input bndry" type="checkbox" id="Slocan" name="bndry" value="Slocan">
+                    <label class="form-check-label small" for="Slocan">Slocan</label>
+                </div>
+            </div>
+
+            <!-- Reset Button -->
+            <div class="mt-4">
+                <button type="button" class="btn btn-outline-secondary w-100" id="reset">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                        <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                    </svg>
+                    Reset Map
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Map Container -->
+    <div class="container-map">
+        <!-- Address Search Form -->
+        <div class="address-search">
+            <div class="input-group">
+                <input id="geocodeField" type="text" class="form-control" placeholder="Enter a civic address" autocomplete="off">
+                <button id="geocodeBtn" class="btn btn-outline-secondary" type="button" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                </button>
+                <button id="addressClear" class="btn btn-outline-secondary" type="button" title="Clear">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                </button>
+            </div>
+            <div id="autocomplete-list" class="autocomplete-items"></div>
+        </div>
+
+        <!-- Map -->
         <div id="map"></div>
     </div>
 
-    <!-- This is the footer as fixed navigation bar -->
-    <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+    <!-- Bottom Navigation Bar -->
+    <nav class="navbar navbar-light bg-light fixed-bottom">
         <div class="container-fluid">
-            <div class="panel-footer pull-left">
-                <!-- Trigge> the modal with a button -->
-                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">About</button>
-            </div>
+            <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#aboutModal">
+                About
+            </button>
         </div>
     </nav>
-    
-    <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Metadata</h4>
-            </div>
-            <div class="modal-body">
-              <p><strong>Summary:</strong>  A School District Catchment Boundary is a geographic area created for the purposes of educational administration.
-              </p>
-  
-              <p><strong>Description:</strong> SD catchment boundaries are determined by School District 8, Kootenay Lake <a href="https://www.sd8.bc.ca/Policy/461SchoolChoice&Catchments.pdf" target="_blank">
-                Policy No. 461</a>. Boundaries are determined based upon a number of factors including geography and demographics. Boundaries were created using 1:20,000 TRIM data from 
-                <a href="https://www.data.gov.bc.ca/dbc/geographic/connect/index.page?" target="_blank">DataBC WMS base layers</a> and Fire Zone, Fire Department and Addressing data provided by the 
-                <a href="https://www.rdck.bc.ca/" target="_blank">Regional District of Central Kootenay (RDCK)</a>.</p>
-  
-              <p><a href="https://www.bcstats.gov.bc.ca/StatisticsBySubject/Geography/TranslationsDataSets.aspx" target="_blank">School District</a> boundary data acquired from <a href="https://www.bcstats.gov.bc.ca/Home.aspx" target="_blank">BC Stats</a>.</p>
-  
-              <p><a href="https://catalogue.data.gov.bc.ca/dataset/bc-schools-school-locations" target="_blank">School Location</a>, 
-                  <a href="https://catalogue.data.gov.bc.ca/dataset/tantalis-municipalities" target="_blank">Municipality</a>, 
-                  <a href="https://catalogue.data.gov.bc.ca/dataset/indian-reserves-band-names-administrative-boundaries" target="_blank">First Nations</a>,
-                  <a href="https://catalogue.data.gov.bc.ca/dataset/school-district-trustee-electoral-areas" target="_blank">School District Trustee Electoral Areas</a>,
-                  and <a href="https://catalogue.data.gov.bc.ca/dataset/tantalis-regional-districts" target="_blank">Regional District</a> data acquired from <a href="https://www.data.gov.bc.ca/" target="_blank">DataBC</a>.
-              </p>
-  
-              <p>Built on a <a href="https://leafletjs.com/" target="_blank">Leaflet</a> with all layers served using <a href="https://geojson.org/" target="_blank">GeoJSON</a> (markers) and 
-                <a href="https://github.com/topojson/topojson" target="_blank">TopoJSON</a> (polygons). GeoJSON and TopoJSON validated using <a href="https://jsonlint.com/" target="_blank">JSONLint</a>.
-              </p>
-  
-              <p>All school catchment layers digitized in <a href="https://www.qgis.org/en/site/" target="_blank">QGIS</a> and topology run through <a href="https://grass.osgeo.org/" target="_blank">GRASS</a> where geometry errors were detected.
-              </p>
 
-              <p><strong>Report Bugs:</strong> Open an issue on <a href="https://github.com/danagerous/school-catchment/issues" target="_blank"> GitHub</a>.
-              </p>
+    <!-- About Modal -->
+    <div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="aboutModalLabel">Metadata</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Summary:</strong> A School District Catchment Boundary is a geographic area created for the purposes of educational administration.</p>
 
-              <p><strong>Developed by:</strong> <a href="https://danadiotte.com" title="Dana Diotte" target="_blank">Dana Diotte</a>
-              </p>
+                    <p><strong>Description:</strong> SD catchment boundaries are determined by School District 8, Kootenay Lake
+                        <a href="https://www.sd8.bc.ca/Policy/461SchoolChoice&Catchments.pdf" target="_blank">Policy No. 461</a>.
+                        Boundaries are determined based upon a number of factors including geography and demographics. Boundaries were created using 1:20,000 TRIM data from
+                        <a href="https://www.data.gov.bc.ca/dbc/geographic/connect/index.page?" target="_blank">DataBC WMS base layers</a>
+                        and Fire Zone, Fire Department and Addressing data provided by the
+                        <a href="https://www.rdck.bc.ca/" target="_blank">Regional District of Central Kootenay (RDCK)</a>.
+                    </p>
+
+                    <p><a href="https://www.bcstats.gov.bc.ca/StatisticsBySubject/Geography/TranslationsDataSets.aspx" target="_blank">School District</a>
+                        boundary data acquired from <a href="https://www.bcstats.gov.bc.ca/Home.aspx" target="_blank">BC Stats</a>.
+                    </p>
+
+                    <p>
+                        <a href="https://catalogue.data.gov.bc.ca/dataset/bc-schools-school-locations" target="_blank">School Location</a>,
+                        <a href="https://catalogue.data.gov.bc.ca/dataset/tantalis-municipalities" target="_blank">Municipality</a>,
+                        <a href="https://catalogue.data.gov.bc.ca/dataset/indian-reserves-band-names-administrative-boundaries" target="_blank">First Nations</a>,
+                        <a href="https://catalogue.data.gov.bc.ca/dataset/school-district-trustee-electoral-areas" target="_blank">School District Trustee Electoral Areas</a>,
+                        and <a href="https://catalogue.data.gov.bc.ca/dataset/tantalis-regional-districts" target="_blank">Regional District</a>
+                        data acquired from <a href="https://www.data.gov.bc.ca/" target="_blank">DataBC</a>.
+                    </p>
+
+                    <p>Built on a <a href="https://leafletjs.com/" target="_blank">Leaflet</a> with all layers served using
+                        <a href="https://geojson.org/" target="_blank">GeoJSON</a> (markers) and
+                        <a href="https://github.com/topojson/topojson" target="_blank">TopoJSON</a> (polygons).
+                        GeoJSON and TopoJSON validated using <a href="https://jsonlint.com/" target="_blank">JSONLint</a>.
+                    </p>
+
+                    <p>All school catchment layers digitized in <a href="https://www.qgis.org/en/site/" target="_blank">QGIS</a>
+                        and topology run through <a href="https://grass.osgeo.org/" target="_blank">GRASS</a> where geometry errors were detected.
+                    </p>
+
+                    <p><strong>Report Bugs:</strong> Open an issue on
+                        <a href="https://github.com/danagerous/school-catchment/issues" target="_blank">GitHub</a>.
+                    </p>
+
+                    <p><strong>Developed by:</strong>
+                        <a href="https://danadiotte.com" title="Dana Diotte" target="_blank">Dana Diotte</a>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-          </div>
         </div>
-      </div>
-    
-    <!-- Update Browser from IE11 or earlier -->
-    <script> 
-        var $buoop = {
-            required:{e:-3},
-            reminder: 0,
-            insecure:true,
-            unsupported:true,
-            api:2019.08,
-            text:"Your browser, {brow_name}, does not work with this application. Please <a{up_but}>update</a> your browser."}; 
-        function $buo_f(){ 
-         var e = document.createElement("script"); 
-         e.src = "//browser-update.org/update.min.js"; 
-         document.body.appendChild(e);
-        };
-        try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
-        catch(e){window.attachEvent("onload", $buo_f)}
-    </script>
-    <!-- Leaflet-->
-    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
-    <!-- Leaflet Locate Control-->
-    <script src="https://unpkg.com/leaflet.locatecontrol/dist/L.Control.Locate.min.js"></script>
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <!-- Boostrap -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.11.0/mdb.min.js" integrity="sha512-3YAdXKo3ow5O9fUQH3UDz5B+MkP6+U0YGqo9V3o7/1OmlOvepD5f+6IF/GqFavNIRzVv6fFdJ/k8rFXa4mFp9A==" crossorigin="anonymous"></script>
-    <!-- Jasny -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <!-- Leaflet -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <!-- Leaflet Locate Control -->
+    <script src="https://unpkg.com/leaflet.locatecontrol@0.79.0/dist/L.Control.Locate.min.js"></script>
+
+    <!-- Leaflet Marker Cluster -->
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+
     <!-- TopoJSON -->
-    <script src="https://d3js.org/topojson.v1.min.js"></script>
-    <!-- Leaflet Marker Cluster-->
-    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
-    <!-- Catchment Leaflet -->
-    <!-- <script src="js/geocoder.js"></script> -->
+    <script src="https://unpkg.com/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+
+    <!-- Bootstrap 5 JS Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <!-- Custom Map Script -->
     <script src="js/map.js"></script>
-    </body>
+</body>
 </html>

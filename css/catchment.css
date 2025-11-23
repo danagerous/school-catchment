@@ -32,16 +32,6 @@ body {
    Navigation & Offcanvas
    ============================================================================ */
 
-/* Ensure offcanvas is properly sized on desktop */
-@media (min-width: 992px) {
-    body {
-        padding-right: 0;
-    }
-
-    .offcanvas-end {
-        width: 300px;
-    }
-}
 
 /* Offcanvas body scrolling */
 .offcanvas-body {
@@ -171,66 +161,10 @@ body {
     .address-search {
         width: 400px;
     }
-}
 
-/* Large screens - offcanvas becomes always visible sidebar */
-@media (min-width: 992px) {
-    body {
-        padding-right: 0;
-    }
-
-    .container-map {
-        margin-right: 300px;
-    }
-
-    #map {
-        margin-right: 0;
-    }
-
-    /* Ensure Leaflet attribution is not hidden by filter menu */
-    .leaflet-bottom.leaflet-right {
-        right: 45px;
-    }
-
+    /* Wider offcanvas on larger screens */
     .offcanvas-end {
-        visibility: visible !important;
-        transform: none !important;
-        position: fixed;
-        top: 56px;
-        bottom: 56px;
-        right: 0;
-        width: 300px;
-        border-left: 1px solid rgba(0, 0, 0, 0.125);
-    }
-
-    .offcanvas-backdrop {
-        display: none;
-    }
-
-    /* Hide toggle button on desktop */
-    .navbar .btn[data-bs-toggle="offcanvas"] {
-        display: none;
-    }
-
-    /* Hide close button in offcanvas on desktop */
-    .offcanvas-end .btn-close {
-        display: none;
-    }
-}
-
-/* Extra large screens */
-@media (min-width: 1200px) {
-    .container-map {
-        margin-right: 350px;
-    }
-
-    /* Ensure Leaflet attribution is not hidden by wider filter menu */
-    .leaflet-bottom.leaflet-right {
-        right: 45px;
-    }
-
-    .offcanvas-end {
-        width: 350px;
+        width: 400px;
     }
 }
 

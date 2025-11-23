@@ -13,13 +13,12 @@ html, body {
     padding: 0;
 }
 
-body {
-    padding-top: 56px;
-}
-
 .container-map {
-    height: calc(100vh - 112px);
-    position: relative;
+    position: absolute;
+    top: 56px;
+    bottom: 56px;
+    left: 0;
+    right: 0;
 }
 
 #map {

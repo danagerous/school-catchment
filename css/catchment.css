@@ -15,8 +15,8 @@ html, body {
 
 .container-map {
     position: absolute;
-    top: 62px;
-    bottom: 62px;
+    top: 70px;
+    bottom: 45px;
     left: 0;
     right: 0;
 }
